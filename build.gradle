@@ -37,20 +37,6 @@ dependencies {
 	compile "io.restx:restx-specs-admin:${restVersion}"
 	compile "io.restx:restx-admin:${restVersion}"
 	compile "io.restx:restx-specs-tests:${restVersion}"
-	/*
-	compile {
-		"io.restx:restx-core:${restVersion}" 
-		"io.restx:restx-security-basic:${restVersion}"
-		"io.restx:restx-core-annotation-processor:${restVersion}" 
-		"io.restx:restx-factory:${restVersion}" 
-		"io.restx:restx-factory-admin:${restVersion}" 
-		"io.restx:restx-monitor-admin:${restVersion}"  
-		"io.restx:restx-server-jetty:${restVersion}"  
-		"io.restx:restx-apidocs:${restVersion}" 
-		"io.restx:restx-specs-admin:${restVersion}" 
-		"io.restx:restx-admin:${restVersion}" 
-		"io.restx:restx-specs-tests:${restVersion}" 
-	}/*
 
 	/**/
 	compile "ch.qos.logback:logback-classic:1.0.13"
