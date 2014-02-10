@@ -25,24 +25,26 @@ dependencies {
 	
 
 	/*Restx dependencies*/
-	def restVersion = '0.31.1'
+	def restVersion = '0.30'
 	compile "io.restx:restx-core:${restVersion}"
-	compile "io.restx:restx-security-basic:${restVersion}"
-	compile "io.restx:restx-core-annotation-processor:${restVersion}"
-	compile "io.restx:restx-factory:${restVersion}"
-	compile "io.restx:restx-factory-admin:${restVersion}"
-	compile "io.restx:restx-monitor-admin:${restVersion}"
-	compile "io.restx:restx-server-jetty:${restVersion}"
-	compile "io.restx:restx-apidocs:${restVersion}"
-	compile "io.restx:restx-specs-admin:${restVersion}"
-	compile "io.restx:restx-admin:${restVersion}"
-	compile "io.restx:restx-specs-tests:${restVersion}"
+    compile "io.restx:restx-core-annotation-processor:${restVersion}"
+    compile "io.restx:restx-factory:${restVersion}"
+    compile "io.restx:restx-jongo:${restVersion}"
+    compile "io.restx:restx-factory-admin:${restVersion}"
+    compile "io.restx:restx-monitor-admin:${restVersion}"
+    compile "io.restx:restx-apidocs:${restVersion}"
+    compile "io.restx:restx-specs-admin:${restVersion}"
+    compile "io.restx:restx-server-jetty:${restVersion}"
 
 	/**/
 	compile "ch.qos.logback:logback-classic:1.0.13"
 
 	/*Test*/
 	testCompile 'junit:junit:4.11'
+    testCompile "io.restx:restx-specs-tests:${restVersion}"
+    testCompile "io.restx:restx-jongo-specs-tests:${restVersion}"
+
+
 	
 
 }
