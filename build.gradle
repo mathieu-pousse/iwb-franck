@@ -15,29 +15,21 @@ buildscript {
 repositories { mavenCentral() }
 
 dependencies {
-	/*Tomcat dependencies*/
-	def tomcatVersion = '8.0.1'
-	tomcat "org.apache.tomcat.embed:tomcat-embed-core:${tomcatVersion}",
-	"org.apache.tomcat.embed:tomcat-embed-logging-juli:${tomcatVersion}"
-	tomcat("org.apache.tomcat.embed:tomcat-embed-jasper:${tomcatVersion}") {  
-	exclude group: 'org.eclipse.jdt.core.compiler', module: 'ecj'
-	}
-	
 
 	/*Restx dependencies*/
 	def restVersion = '0.30'
 	compile "io.restx:restx-core:${restVersion}"
-    compile "io.restx:restx-core-annotation-processor:${restVersion}"
-    compile "io.restx:restx-factory:${restVersion}"
-    compile "io.restx:restx-jongo:${restVersion}"
-    compile "io.restx:restx-factory-admin:${restVersion}"
-    compile "io.restx:restx-monitor-admin:${restVersion}"
-    compile "io.restx:restx-apidocs:${restVersion}"
-    compile "io.restx:restx-specs-admin:${restVersion}"
-    compile "io.restx:restx-server-jetty:${restVersion}"
+	compile "io.restx:restx-core-annotation-processor:${restVersion}"
+	compile "io.restx:restx-factory:${restVersion}"
+	compile "io.restx:restx-jongo:${restVersion}"
+	compile "io.restx:restx-factory-admin:${restVersion}"
+	compile "io.restx:restx-monitor-admin:${restVersion}"
+	compile "io.restx:restx-apidocs:${restVersion}"
+	compile "io.restx:restx-specs-admin:${restVersion}"
+	compile "io.restx:restx-server-jetty:${restVersion}"
 
 	/**/
-	compile "ch.qos.logback:logback-classic:1.0.13"
+	compile "ch.qos.logback:logback-classic:1.0.9"
 
 	/*Test*/
 	testCompile 'junit:junit:4.11'

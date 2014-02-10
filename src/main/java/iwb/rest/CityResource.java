@@ -1,7 +1,7 @@
-package hellomongo.rest;
+package iwb.rest;
 
 import com.google.common.base.Optional;
-import hellomongo.domain.City;
+import iwb.domain.City;
 import org.bson.types.ObjectId;
 import restx.Status;
 import restx.annotations.*;

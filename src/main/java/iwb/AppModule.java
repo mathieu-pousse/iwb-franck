@@ -1,10 +1,12 @@
-package hellomongo;
+package iwb;
 
 import com.google.common.base.Charsets;
 import restx.security.SignatureKey;
 import restx.factory.Module;
 import restx.factory.Provides;
 import restx.jongo.JongoFactory;
+import restx.server.WebServerSupplier;
+import com.google.common.base.Optional;
 
 import javax.inject.Named;
 
@@ -12,11 +14,23 @@ import javax.inject.Named;
 public class AppModule {
     @Provides
     public SignatureKey signatureKey() {
-         return new SignatureKey("3685755889849339038 636b37d4-f945-4a6b-8fea-31900e12861a restx-samples-hellomongo restx-samples-hellomongo".getBytes(Charsets.UTF_8));
+        return new SignatureKey("iwb fd66f4c9-2b76-4495-9d57-d0f92d3b02f6 -8512238729272782174 iwb".getBytes(Charsets.UTF_8));
+    }
+    @Provides
+    @Named("restx.admin.password")
+    public String restxAdminPassword() {
+        return "2136";
+    }
+
+    @Provides
+    @Named("app.name")
+    public String appName(){
+        return "iwb";
     }
 
     @Provides @Named(JongoFactory.JONGO_DB_NAME)
     public String dbName() {
         return "restx-hellomongo";
     }
+
 }
