@@ -17,11 +17,11 @@ repositories { mavenCentral() }
 dependencies {
 
 	/*Restx dependencies*/
-	def restVersion = '0.30'
+	def restVersion = '0.31.1'
 	compile "io.restx:restx-core:${restVersion}"
 	compile "io.restx:restx-core-annotation-processor:${restVersion}"
 	compile "io.restx:restx-factory:${restVersion}"
-	compile "io.restx:restx-jongo:${restVersion}"
+	compile "io.restx:restx-jongo:0.30"
 	compile "io.restx:restx-factory-admin:${restVersion}"
 	compile "io.restx:restx-monitor-admin:${restVersion}"
 	compile "io.restx:restx-apidocs:${restVersion}"
