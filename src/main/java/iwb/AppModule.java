@@ -1,10 +1,10 @@
 package iwb;
 
 import com.google.common.base.Charsets;
+import restx.mongo.MongoModule;
 import restx.security.SignatureKey;
 import restx.factory.Module;
 import restx.factory.Provides;
-import restx.jongo.JongoFactory;
 import restx.server.WebServerSupplier;
 import com.google.common.base.Optional;
 
@@ -28,7 +28,7 @@ public class AppModule {
         return "iwb";
     }
 
-    @Provides @Named(JongoFactory.JONGO_DB_NAME)
+    @Provides @Named(MongoModule.MONGO_DB_NAME)
     public String dbName() {
         return "restx-hellomongo";
     }
