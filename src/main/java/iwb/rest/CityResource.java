@@ -2,6 +2,7 @@ package iwb.rest;
 
 import com.google.common.base.Optional;
 import iwb.domain.City;
+import iwb.domain.Metropolis;
 import org.bson.types.ObjectId;
 import restx.Status;
 import restx.annotations.*;
@@ -17,9 +18,12 @@ import static restx.common.MorePreconditions.checkEquals;
 @PermitAll
 public class CityResource {
     private final JongoCollection cities;
+    private final JongoCollection metropolises;
 
-    public CityResource(@Named("cities") JongoCollection cities) {
+
+    public CityResource(@Named("cities") JongoCollection cities, @Named("metropolises") JongoCollection metropolises) {
         this.cities = cities;
+        this.metropolises = metropolises;
     }
 
     @GET("/cities")
@@ -28,6 +32,15 @@ public class CityResource {
             return cities.get().find("{name: #}", name.get()).as(City.class);
         } else {
             return cities.get().find().as(City.class);
+        }
+    }
+
+    @GET("/metropolises")
+    public Iterable<Metropolis> findMetropolises (Optional<String> name) {
+        if (name.isPresent()) {
+            return metropolises.get().find("{name: #}", name.get()).as(Metropolis.class);
+        } else {
+            return metropolises.get().find().as(Metropolis.class);
         }
     }
 

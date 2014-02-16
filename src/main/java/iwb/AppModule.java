@@ -5,8 +5,6 @@ import restx.mongo.MongoModule;
 import restx.security.SignatureKey;
 import restx.factory.Module;
 import restx.factory.Provides;
-import restx.server.WebServerSupplier;
-import com.google.common.base.Optional;
 
 import javax.inject.Named;
 
