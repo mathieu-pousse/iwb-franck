@@ -1,4 +1,4 @@
-package iwb.rest;
+package iwb.transport;
 
 public class MetropolisResource {
 }

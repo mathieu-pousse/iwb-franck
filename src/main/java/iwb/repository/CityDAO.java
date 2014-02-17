@@ -1,8 +1,8 @@
-package iwb.dao;
+package iwb.repository;
 
 
 import com.google.common.base.Optional;
-import iwb.domain.City;
+import iwb.bo.City;
 
 public interface CityDAO {
     public City addCity(City city);

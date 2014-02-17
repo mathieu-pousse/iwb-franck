@@ -1,9 +1,9 @@
-package iwb.dao.impl;
+package iwb.repository.impl;
 
 
 import com.google.common.base.Optional;
-import iwb.dao.CityDAO;
-import iwb.domain.City;
+import iwb.bo.City;
+import iwb.repository.CityDAO;
 import org.bson.types.ObjectId;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
@@ -13,7 +13,7 @@ import javax.inject.Named;
 import static restx.common.MorePreconditions.checkEquals;
 
 @Component @Named("cityDAO")
-public class CityDAOImpl implements CityDAO{
+public class CityDAOImpl implements CityDAO {
 
     private JongoCollection cities;
 

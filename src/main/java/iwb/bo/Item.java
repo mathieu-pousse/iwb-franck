@@ -1,4 +1,4 @@
-package iwb.domain;
+package iwb.bo;
 
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;

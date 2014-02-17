@@ -2,7 +2,7 @@ package iwb.service.impl;
 
 
 import com.google.common.base.Optional;
-import iwb.domain.Metropolis;
+import iwb.bo.Metropolis;
 import iwb.service.MetropolisService;
 
 public class MetropolisServiceImpl implements MetropolisService{

@@ -1,11 +1,9 @@
-package iwb.rest;
+package iwb.transport;
 
 import com.google.common.base.Optional;
-import iwb.domain.City;
-import iwb.domain.Metropolis;
-import iwb.service.CityService;
+import iwb.bo.City;
+import iwb.bo.Metropolis;
 import iwb.service.impl.CityServiceImpl;
-import org.bson.types.ObjectId;
 import restx.Status;
 import restx.annotations.*;
 import restx.factory.Component;
@@ -13,8 +11,6 @@ import restx.jongo.JongoCollection;
 import restx.security.PermitAll;
 
 import javax.inject.Named;
-
-import static restx.common.MorePreconditions.checkEquals;
 
 @Component @RestxResource
 @PermitAll

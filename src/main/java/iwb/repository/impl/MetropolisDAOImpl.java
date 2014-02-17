@@ -1,9 +1,9 @@
-package iwb.dao.impl;
+package iwb.repository.impl;
 
 
 import com.google.common.base.Optional;
-import iwb.dao.MetropolisDAO;
-import iwb.domain.Metropolis;
+import iwb.bo.Metropolis;
+import iwb.repository.MetropolisDAO;
 import org.bson.types.ObjectId;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;

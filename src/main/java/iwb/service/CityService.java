@@ -2,7 +2,7 @@ package iwb.service;
 
 
 import com.google.common.base.Optional;
-import iwb.domain.City;
+import iwb.bo.City;
 
 public interface CityService {
     public City addCity(City city);

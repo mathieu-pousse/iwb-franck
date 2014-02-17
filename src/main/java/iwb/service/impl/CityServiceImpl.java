@@ -2,8 +2,8 @@ package iwb.service.impl;
 
 
 import com.google.common.base.Optional;
-import iwb.dao.impl.CityDAOImpl;
-import iwb.domain.City;
+import iwb.repository.impl.CityDAOImpl;
+import iwb.bo.City;
 import iwb.service.CityService;
 import restx.factory.Component;
 

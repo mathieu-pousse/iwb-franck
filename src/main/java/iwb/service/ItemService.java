@@ -2,10 +2,8 @@ package iwb.service;
 
 
 import com.google.common.base.Optional;
-import iwb.domain.Constituent;
-import iwb.domain.Item;
-
-import java.util.List;
+import iwb.bo.Constituent;
+import iwb.bo.Item;
 
 public interface ItemService {
 

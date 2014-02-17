@@ -1,4 +1,4 @@
-package iwb.domain;
+package iwb.bo;
 
 
 public class Trash {

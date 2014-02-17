@@ -1,9 +1,9 @@
 package iwb.service.impl;
 
 import com.google.common.base.Optional;
-import iwb.dao.impl.ItemDAOImpl;
-import iwb.domain.Constituent;
-import iwb.domain.Item;
+import iwb.repository.impl.ItemDAOImpl;
+import iwb.bo.Constituent;
+import iwb.bo.Item;
 import iwb.service.ItemService;
 import restx.factory.Component;
 

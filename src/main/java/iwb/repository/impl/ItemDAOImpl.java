@@ -1,9 +1,9 @@
-package iwb.dao.impl;
+package iwb.repository.impl;
 
 
-import iwb.dao.ItemDAO;
-import iwb.domain.Constituent;
-import iwb.domain.Item;
+import iwb.bo.Constituent;
+import iwb.bo.Item;
+import iwb.repository.ItemDAO;
 import org.bson.types.ObjectId;
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
@@ -16,7 +16,7 @@ import java.util.List;
 import static restx.common.MorePreconditions.checkEquals;
 
 @Component @Named("itemDAO")
-public class ItemDAOImpl implements ItemDAO{
+public class ItemDAOImpl implements ItemDAO {
 
     private JongoCollection items;
 

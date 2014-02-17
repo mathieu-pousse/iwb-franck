@@ -1,20 +1,14 @@
-package iwb.rest;
+package iwb.transport;
 
 import com.google.common.base.Optional;
-import iwb.domain.Item;
-import iwb.domain.Constituent;
-import iwb.domain.Metropolis;
+import iwb.bo.Item;
+import iwb.bo.Constituent;
 import iwb.service.impl.ItemServiceImpl;
-import org.bson.types.ObjectId;
-import restx.Status;
 import restx.annotations.*;
 import restx.factory.Component;
-import restx.factory.Factory;
 import restx.security.PermitAll;
 
 import javax.inject.Named;
-
-import static restx.common.MorePreconditions.checkEquals;
 
 @Component @RestxResource
 @PermitAll
