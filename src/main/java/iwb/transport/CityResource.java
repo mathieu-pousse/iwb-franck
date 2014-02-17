@@ -2,7 +2,6 @@ package iwb.transport;
 
 import com.google.common.base.Optional;
 import iwb.bo.City;
-import iwb.bo.Metropolis;
 import iwb.service.impl.CityServiceImpl;
 import restx.Status;
 import restx.annotations.*;
@@ -30,24 +29,15 @@ public class CityResource {
     @GET("/cities")
     public Iterable<City> findCities(Optional<String> name) {
         if (name.isPresent()) {
-            return cities.get().find("{name: #}", name.get()).as(City.class);
+            return cityService.getCityByName(name.get());
         } else {
-            return cities.get().find().as(City.class);
-        }
-    }
-
-    @GET("/metropolises")
-    public Iterable<Metropolis> findMetropolises (Optional<String> name) {
-        if (name.isPresent()) {
-            return metropolises.get().find("{name: #}", name.get()).as(Metropolis.class);
-        } else {
-            return metropolises.get().find().as(Metropolis.class);
+            return cityService.getCities();
         }
     }
 
     @POST("/cities")
     public City createCity(City city) {
-       return cityService.addCity(city);
+       return cityService.createCity(city);
     }
 
     @GET("/cities/{oid}")

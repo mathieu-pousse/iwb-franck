@@ -7,10 +7,10 @@ import iwb.bo.Item;
 
 public interface ItemService {
 
-    public Item addItem(Item item);
+    public Item createItem(Item item);
     public Optional<Item> getItemById(String oid);
     public Optional<Item> getItemByBarcode(String barcode);
-    public Iterable<Item> getAllItems();
+    public Iterable<Item> getItems();
     public void addConstituent(Item item, Constituent comp);
     public void deleteItem(String id);
     public void deleteConstituent(Item item, Constituent comp);

@@ -21,7 +21,7 @@ public class ItemResource {
 
     @GET("/items")
     public Iterable<Item> findAllItems(){
-        return itemService.getAllItems();
+        return itemService.getItems();
     }
 
     @GET("/items/{oid}")
@@ -37,7 +37,7 @@ public class ItemResource {
 
     @POST("/items")
     public Item createItem(Item item){
-        return itemService.addItem(item);
+        return itemService.createItem(item);
     }
 
     @DELETE("/items/{oid}")

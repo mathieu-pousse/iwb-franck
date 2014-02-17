@@ -21,8 +21,8 @@ public class ItemServiceImpl implements ItemService{
         this.itemDAO = itemDAO;
     }
 
-    public Item addItem(Item item) {
-        return itemDAO.addItem(item);
+    public Item createItem(Item item) {
+        return itemDAO.createItem(item);
     }
 
     public Optional<Item> getItemById(String oid) {
@@ -33,8 +33,8 @@ public class ItemServiceImpl implements ItemService{
         return itemDAO.getItemByBarcode(barcode);
     }
 
-    public Iterable<Item> getAllItems() {
-        return itemDAO.getAllItems();
+    public Iterable<Item> getItems() {
+        return itemDAO.getItems();
     }
 
     public void addConstituent(Item item, Constituent comp) {

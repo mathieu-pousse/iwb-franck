@@ -24,7 +24,7 @@ public class ItemDAOImpl implements ItemDAO {
         this.items = items;
     }
 
-    public Item addItem(Item item) {
+    public Item createItem(Item item) {
         items.get().save(item);
         return item;
     }
@@ -34,11 +34,10 @@ public class ItemDAOImpl implements ItemDAO {
     }
 
     public Optional<Item> getItemByBarcode(String barcode) {
-        String query = "{barcode: '"+barcode+"'}";
-        return Optional.fromNullable( items.get().findOne(query).as(Item.class));
+        return Optional.fromNullable( items.get().findOne("{barcode: #}", barcode).as(Item.class));
     }
 
-    public Iterable<Item> getAllItems() {
+    public Iterable<Item> getItems() {
         return items.get().find().as(Item.class);
     }
 

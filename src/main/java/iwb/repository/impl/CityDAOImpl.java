@@ -21,7 +21,7 @@ public class CityDAOImpl implements CityDAO {
         this.cities = cities;
     }
 
-    public City addCity(City city) {
+    public City createCity(City city) {
         cities.get().save(city);
         return city;
     }
@@ -40,7 +40,12 @@ public class CityDAOImpl implements CityDAO {
         return Optional.fromNullable(cities.get().findOne(new ObjectId(oid)).as(City.class));
     }
 
-    public Iterable<City> getAllCities() {
+    public Iterable<City> getCities() {
         return cities.get().find().as(City.class);
     }
+
+    public Iterable<City> getCityByName(String name){
+        return cities.get().find("{name: #}", name).as(City.class);
+    }
+
 }

@@ -21,7 +21,7 @@ public class MetropolisDAOImpl implements MetropolisDAO {
         this.metropolises = metropolises;
     }
 
-    public Metropolis addMetropolis(Metropolis metropolis) {
+    public Metropolis createMetropolis(Metropolis metropolis) {
         metropolises.get().save(metropolis);
         return metropolis;
     }
@@ -38,5 +38,9 @@ public class MetropolisDAOImpl implements MetropolisDAO {
 
     public Optional<Metropolis> getMetropolisById(String oid) {
         return Optional.fromNullable(metropolises.get().findOne(new ObjectId(oid)).as(Metropolis.class));
+    }
+
+    public Iterable<Metropolis> getMetropolises(){
+        return metropolises.get().find().as(Metropolis.class);
     }
 }

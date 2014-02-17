@@ -18,8 +18,8 @@ public class CityServiceImpl implements CityService{
         this.cityDAO = cityDAO;
     }
 
-    public City addCity(City city) {
-        return cityDAO.addCity(city);
+    public City createCity(City city) {
+        return cityDAO.createCity(city);
     }
 
     public City updateCity(String oid, City city) {
@@ -33,4 +33,13 @@ public class CityServiceImpl implements CityService{
     public Optional<City> getCityById(String oid) {
         return cityDAO.getCityById(oid);
     }
+
+    public Iterable<City> getCities(){
+        return cityDAO.getCities();
+    }
+
+    public Iterable<City> getCityByName(String name){
+        return cityDAO.getCityByName(name);
+    }
+
 }
