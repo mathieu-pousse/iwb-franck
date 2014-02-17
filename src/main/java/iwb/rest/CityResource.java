@@ -3,6 +3,8 @@ package iwb.rest;
 import com.google.common.base.Optional;
 import iwb.domain.City;
 import iwb.domain.Metropolis;
+import iwb.service.CityService;
+import iwb.service.impl.CityServiceImpl;
 import org.bson.types.ObjectId;
 import restx.Status;
 import restx.annotations.*;
@@ -17,13 +19,16 @@ import static restx.common.MorePreconditions.checkEquals;
 @Component @RestxResource
 @PermitAll
 public class CityResource {
+
+    private CityServiceImpl cityService;
     private final JongoCollection cities;
     private final JongoCollection metropolises;
 
 
-    public CityResource(@Named("cities") JongoCollection cities, @Named("metropolises") JongoCollection metropolises) {
+    public CityResource(@Named("cityService")CityServiceImpl cityService, @Named("cities") JongoCollection cities, @Named("metropolises") JongoCollection metropolises) {
         this.cities = cities;
         this.metropolises = metropolises;
+        this.cityService = cityService;
     }
 
     @GET("/cities")
@@ -46,25 +51,22 @@ public class CityResource {
 
     @POST("/cities")
     public City createCity(City city) {
-        cities.get().save(city);
-        return city;
+       return cityService.addCity(city);
     }
 
     @GET("/cities/{oid}")
     public Optional<City> findCityById(String oid) {
-        return Optional.fromNullable(cities.get().findOne(new ObjectId(oid)).as(City.class));
+        return cityService.getCityById(oid);
     }
 
     @PUT("/cities/{oid}")
     public City updateCity(String oid, City city) {
-        checkEquals("oid", oid, "city.key", city.getKey());
-        cities.get().save(city);
-        return city;
+        return cityService.updateCity(oid, city);
     }
 
     @DELETE("/cities/{oid}")
     public Status deleteCity(String oid) {
-        cities.get().remove(new ObjectId(oid));
+        cityService.deleteCity(oid);
         return Status.of("deleted");
     }
 

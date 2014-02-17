@@ -5,18 +5,9 @@ import org.jongo.marshall.jackson.oid.ObjectId;
 
 public class Constituent {
 
-    @Id @ObjectId
-    private String id;
     private String name;
     private Waste wasteType;
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

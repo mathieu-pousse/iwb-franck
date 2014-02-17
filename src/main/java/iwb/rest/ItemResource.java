@@ -32,7 +32,13 @@ public class ItemResource {
 
     @GET("/items/{oid}")
     public Optional<Item> findItemById(String oid){
-        return findItemById(oid);
+        return itemService.getItemById(oid);
+    }
+
+    @GET("/items/{oid}/components")
+    public Iterable<Constituent> findItemComponentsById(String oid){
+        Optional<Item> item = itemService.getItemById(oid);
+        return item.get().getConstituents();
     }
 
     @POST("/items")
