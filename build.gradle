@@ -37,7 +37,4 @@ dependencies {
     testCompile "io.restx:restx-specs-tests:${restVersion}"
     testCompile "io.restx:restx-jongo-specs-tests:${restVersion}"
 
-
-	
-
 }

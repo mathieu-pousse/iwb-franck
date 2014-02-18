@@ -9,7 +9,7 @@ public interface ItemService {
 
     public Item createItem(Item item);
     public Optional<Item> getItemById(String oid);
-    public Optional<Item> getItemByBarcode(String barcode);
+    public Iterable<Item> getItemByBarcode(String barcode);
     public Iterable<Item> getItems();
     public void addConstituent(Item item, Constituent comp);
     public void deleteItem(String id);

@@ -29,7 +29,7 @@ public class ItemServiceImpl implements ItemService{
         return itemDAO.getItemById(oid);
     }
 
-    public Optional<Item> getItemByBarcode(String barcode) {
+    public Iterable<Item> getItemByBarcode(String barcode) {
         return itemDAO.getItemByBarcode(barcode);
     }
 

@@ -1,9 +1,11 @@
 package iwb.bo;
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Trash {
     @Id @ObjectId
     private String id;

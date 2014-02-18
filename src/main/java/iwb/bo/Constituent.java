@@ -1,5 +1,8 @@
 package iwb.bo;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Constituent {
 
     private String name;

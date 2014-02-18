@@ -33,8 +33,8 @@ public class ItemDAOImpl implements ItemDAO {
         return Optional.fromNullable(items.get().findOne(new ObjectId(oid)).as(Item.class));
     }
 
-    public Optional<Item> getItemByBarcode(String barcode) {
-        return Optional.fromNullable( items.get().findOne("{barcode: #}", barcode).as(Item.class));
+    public Iterable<Item> getItemByBarcode(String barcode) {
+        return items.get().find("{barcode: #}", barcode).as(Item.class);
     }
 
     public Iterable<Item> getItems() {
