@@ -16,13 +16,8 @@ import javax.inject.Named;
 public class CityResource {
 
     private CityServiceImpl cityService;
-    private final JongoCollection cities;
-    private final JongoCollection metropolises;
 
-
-    public CityResource(@Named("cityService")CityServiceImpl cityService, @Named("cities") JongoCollection cities, @Named("metropolises") JongoCollection metropolises) {
-        this.cities = cities;
-        this.metropolises = metropolises;
+    public CityResource(@Named("cityService")CityServiceImpl cityService) {
         this.cityService = cityService;
     }
 

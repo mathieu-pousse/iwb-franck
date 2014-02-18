@@ -9,9 +9,13 @@ public class Trash {
     private String id;
     private String type;
     private String description;
-    private Iterable<String> metropolises;
+    private String color;
     private Iterable<String> recommendations;
-    private Iterable<Waste> wasteHandled;
+    private Iterable<Waste> wastesHandled;
+
+    public Trash(){
+        this.color = null;
+    }
 
     public String getId() {
         return id;
@@ -37,14 +41,6 @@ public class Trash {
         this.type = type;
     }
 
-    public Iterable<String> getMetropolises() {
-        return metropolises;
-    }
-
-    public void setMetropolises(Iterable<String> metropolises) {
-        this.metropolises = metropolises;
-    }
-
     public Iterable<String> getRecommendations() {
         return recommendations;
     }
@@ -53,11 +49,19 @@ public class Trash {
         this.recommendations = recommendations;
     }
 
-    public Iterable<Waste> getWasteHandled() {
-        return wasteHandled;
+    public Iterable<Waste> getWastesHandled() {
+        return wastesHandled;
     }
 
-    public void setWasteHandled(Iterable<Waste> wasteHandled) {
-        this.wasteHandled = wasteHandled;
+    public void setWastesHandled(Iterable<Waste> wastesHandled) {
+        this.wastesHandled = wastesHandled;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

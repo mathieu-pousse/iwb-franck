@@ -14,8 +14,8 @@ public class Metropolis {
     private String name;
     private String region;
     private String department;
-    private List<Trash> trashes;
-    private List<City> cities;
+    private Iterable<String> trashes;
+    private Iterable<City> cities;
     private double area;
     private int population;
     private int density;
@@ -51,19 +51,19 @@ public class Metropolis {
         this.department = department;
     }
 
-    public List<Trash> getTrashes() {
+    public Iterable<String> getTrashes() {
         return trashes;
     }
 
-    public void setTrashes(List<Trash> trashes) {
+    public void setTrashes(Iterable<String> trashes) {
         this.trashes = trashes;
     }
 
-    public List<City> getCities() {
+    public Iterable<City> getCities() {
         return cities;
     }
 
-    public void setCities(List<City> cities) {
+    public void setCities(Iterable<City> cities) {
         this.cities = cities;
     }
 
