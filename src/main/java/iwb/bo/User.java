@@ -16,6 +16,7 @@ public class User implements RestxPrincipal{
 
     @Id @ObjectId
     private String id;
+    private Link link;
     private String name;
     private String email;
     private String firstName;
@@ -33,6 +34,7 @@ public class User implements RestxPrincipal{
         this.roles = new ArrayList<String>();
     }
 
+    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -84,5 +86,13 @@ public class User implements RestxPrincipal{
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

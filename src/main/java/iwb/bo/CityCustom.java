@@ -2,19 +2,15 @@ package iwb.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
-import org.jongo.marshall.jackson.oid.Id;
-import org.jongo.marshall.jackson.oid.ObjectId;
 
 /**
- * Represents a waste type
+ * Represents a simplified version of City with less properties
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public class Waste {
+public class CityCustom {
 
-    @Id @ObjectId
     private String id;
     private String name;
-    private String description;
 
     @JsonIgnore
     public String getId() {
@@ -31,14 +27,6 @@ public class Waste {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
 }

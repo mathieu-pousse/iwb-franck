@@ -2,12 +2,15 @@ package iwb.bo;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
+
+/**
+ * Represents item's components
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Constituent {
 
     private String name;
     private Waste wasteType;
-
 
     public String getName() {
         return name;

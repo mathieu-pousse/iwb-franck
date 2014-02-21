@@ -1,20 +1,26 @@
 package iwb.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
+/**
+ * Represents a City and it's characteristics
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class City {
     @Id @ObjectId
     private String id;
     private String name;
-    private Iterable<String> zipcodes;
-    private double area;
-    private int population;
-    private int density;
-    private String label;
 
+    /**
+     * List of zip codes associated to a city
+     */
+    private Iterable<String> zipcodes;
+    private String description;
+
+    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -39,36 +45,12 @@ public class City {
         this.zipcodes = zipcodes;
     }
 
-    public double getArea() {
-        return area;
+    public String getDescription() {
+        return description;
     }
 
-    public void setArea(double area) {
-        this.area = area;
-    }
-
-    public int getPopulation() {
-        return population;
-    }
-
-    public void setPopulation(int population) {
-        this.population = population;
-    }
-
-    public int getDensity() {
-        return density;
-    }
-
-    public void setDensity(int density) {
-        this.density = density;
-    }
-
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Override

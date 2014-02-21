@@ -8,6 +8,7 @@ import restx.factory.Component;
 
 import javax.inject.Named;
 
+
 @Component @Named("trashService")
 public class TrashServiceImpl implements TrashService{
 

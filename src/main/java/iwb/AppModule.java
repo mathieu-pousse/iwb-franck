@@ -17,10 +17,12 @@ public class AppModule {
         return (User) RestxSession.current().getPrincipal().get();
     }
 
+
     public static final class Roles {
         public static final String ADMIN = "admin";
         public static final String OTHER = "other";
     }
+
 
     @Provides
     public SignatureKey signatureKey() {

@@ -1,11 +1,15 @@
 package iwb.bo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 import java.util.List;
 
+/**
+ * Represents an Item with its characteristics
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class Item {
 
@@ -22,6 +26,7 @@ public class Item {
         wasteType = null;
     }
 
+    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -68,5 +73,9 @@ public class Item {
 
     public void setWasteType(Waste wasteType) {
         this.wasteType = wasteType;
+    }
+
+    public void setConstituents(Iterable<Constituent> constituents) {
+        this.constituents = constituents;
     }
 }
