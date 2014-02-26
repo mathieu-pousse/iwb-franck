@@ -34,7 +34,6 @@ public class User implements RestxPrincipal{
         this.roles = new ArrayList<String>();
     }
 
-    @JsonIgnore
     public String getId() {
         return id;
     }

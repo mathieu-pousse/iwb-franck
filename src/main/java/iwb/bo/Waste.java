@@ -15,8 +15,8 @@ public class Waste {
     private String id;
     private String name;
     private String description;
+    private Link link;
 
-    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -41,4 +41,11 @@ public class Waste {
         this.description = description;
     }
 
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
 }

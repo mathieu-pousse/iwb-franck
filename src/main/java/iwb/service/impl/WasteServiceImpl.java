@@ -2,6 +2,8 @@ package iwb.service.impl;
 
 
 import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
+import iwb.bo.Link;
 import iwb.bo.Waste;
 import iwb.repository.WasteDAO;
 import iwb.service.WasteService;
@@ -18,27 +20,85 @@ public class WasteServiceImpl implements WasteService {
         this.wasteDAO = wasteDAO;
     }
 
+    /**
+     *
+     * @param waste
+     * @return
+     */
     public Waste createWaste(Waste waste) {
-        return wasteDAO.createWaste(waste);
+        return setLinks(wasteDAO.createWaste(waste));
     }
 
+    /**
+     *
+     * @param oid
+     * @param waste
+     * @return
+     */
     public Waste updateWaste(String oid, Waste waste) {
-        return wasteDAO.updateWaste(oid, waste);
+        return setLinks(wasteDAO.updateWaste(oid, waste));
     }
 
+    /**
+     *
+     * @param oid
+     */
     public void deleteWaste(String oid) {
         wasteDAO.deleteWaste(oid);
     }
 
+    /**
+     *
+     * @param oid
+     * @return
+     */
     public Optional<Waste> getWasteById(String oid) {
-        return wasteDAO.getWasteById(oid);
+        return setLinks(wasteDAO.getWasteById(oid));
     }
 
+    /**
+     *
+     * @param name
+     * @return
+     */
     public Iterable<Waste> getWastesByName(String name) {
-        return wasteDAO.getWastesByName(name);
+        Iterable<Waste> wastes = Lists.newArrayList(wasteDAO.getWastesByName(name));
+        for(Waste waste : wastes){
+            setLinks(waste);
+        }
+        return wastes;
     }
 
+    /**
+     *
+     * @return
+     */
     public Iterable<Waste> getWastes() {
-        return wasteDAO.getWastes();
+        Iterable<Waste> wastes = Lists.newArrayList(wasteDAO.getWastes());
+        for(Waste waste : wastes){
+            setLinks(waste);
+        }
+        return wastes;
+    }
+
+    /**
+     *
+     * @param waste
+     * @return
+     */
+    public Waste setLinks(Waste waste){
+        waste.setLink(new Link("alternate", "/wastes/"+waste.getId()));
+
+        return waste;
+    }
+
+    /**
+     *
+     * @param waste
+     * @return
+     */
+    public Optional<Waste> setLinks(Optional<Waste> waste){
+        waste.get().setLink(new Link("alternate", "/wastes/"+waste.get().getId()));
+        return waste;
     }
 }

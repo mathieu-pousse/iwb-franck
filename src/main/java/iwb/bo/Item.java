@@ -20,13 +20,13 @@ public class Item {
     private String image;
     private Iterable<Constituent> constituents;
     private Waste wasteType;
+    private Link link;
 
 
     public Item(){
         wasteType = null;
     }
 
-    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -77,5 +77,13 @@ public class Item {
 
     public void setConstituents(Iterable<Constituent> constituents) {
         this.constituents = constituents;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

@@ -19,8 +19,11 @@ public class City {
      */
     private Iterable<String> zipcodes;
     private String description;
+    private Link link;
 
-    @JsonIgnore
+    public City(){
+    }
+
     public String getId() {
         return id;
     }
@@ -51,6 +54,14 @@ public class City {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 
     @Override

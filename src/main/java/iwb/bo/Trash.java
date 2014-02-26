@@ -16,6 +16,7 @@ public class Trash {
     private String type;
     private String description;
     private String name;
+    private Link link;
 
     /**
      * color of the trash depending on the Metropolis recycling policy
@@ -27,7 +28,7 @@ public class Trash {
     public Trash(){
         this.color = null;
     }
-    @JsonIgnore
+
     public String getId() {
         return id;
     }
@@ -82,5 +83,13 @@ public class Trash {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

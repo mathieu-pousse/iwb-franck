@@ -11,8 +11,8 @@ public class CityCustom {
 
     private String id;
     private String name;
+    private Link link;
 
-    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -29,4 +29,11 @@ public class CityCustom {
         this.name = name;
     }
 
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
+    }
 }

@@ -17,7 +17,7 @@ public class Link {
 
     public Link(){}
 
-    public Link(String ref, String href){
+    public Link(String rel, String href){
         this.rel = rel;
         this.href = href;
     }
@@ -36,5 +36,10 @@ public class Link {
 
     public void setRel(String rel) {
         this.rel = rel;
+    }
+
+    public void setRelAndHref(String rel, String href){
+        this.rel = rel;
+        this.href = href;
     }
 }

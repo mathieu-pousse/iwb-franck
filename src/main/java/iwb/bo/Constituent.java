@@ -11,6 +11,7 @@ public class Constituent {
 
     private String name;
     private Waste wasteType;
+    private Link link;
 
     public String getName() {
         return name;
@@ -26,5 +27,13 @@ public class Constituent {
 
     public void setWasteType(Waste wasteType) {
         this.wasteType = wasteType;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

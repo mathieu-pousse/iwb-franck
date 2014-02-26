@@ -12,6 +12,7 @@ public class TrashCustom {
     private String type;
     private String color;
     private String name;
+    private Link link;
 
 
     public String getId() {
@@ -44,5 +45,13 @@ public class TrashCustom {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }

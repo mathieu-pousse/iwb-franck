@@ -42,7 +42,7 @@ public class AppModule {
 
     @Provides @Named(MongoModule.MONGO_DB_NAME)
     public String dbName() {
-        return "restx-hellomongo";
+        return "iwb-dev";
     }
 
     @Provides

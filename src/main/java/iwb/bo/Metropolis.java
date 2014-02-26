@@ -21,6 +21,7 @@ public class Metropolis {
     private Iterable<TrashCustom> trashes;
     private Iterable<CityCustom> cities;
     private String description;
+    private Link link;
 
     public Metropolis(){
         super();
@@ -66,7 +67,6 @@ public class Metropolis {
         this.cities = cities;
     }
 
-    @JsonIgnore
     public String getId() {
         return id;
     }
@@ -81,5 +81,13 @@ public class Metropolis {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Link getLink() {
+        return link;
+    }
+
+    public void setLink(Link link) {
+        this.link = link;
     }
 }
