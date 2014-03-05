@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/batch 
+                http://www.springframework.org/schema/batch/spring-batch-2.2.xsd">
+
+	<import resource="../config/database.xml"/>    
+	<import resource="../config/context.xml"/>     
+	
+	<!-- Readers Bean declaration -->  
+	<bean id="cityReader" class="com.zenika.custom.readers.CityItemReader">
+    	<property name="resource" value="classpath:csv/cities.csv" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="ville_id,ville_departement,ville_slug,ville_nom,ville_nom_reel,ville_nom_soundex,ville_nom_metaphone,
+						ville_code_postal,ville_commune,ville_code_commune,ville_arrondissement,ville_canton,ville_amdi,ville_population_2010,
+						ville_population_1999,ville_population_2012,ville_densite_2010,ville_surface,ville_longitude_deg,ville_latitude_deg,ville_longitude_grd,
+						ville_latitude_grd,ville_longitude_dms,ville_latitude_dms,ville_zmin,ville_zmax,ville_population_2010_order_france,
+						ville_densite_2010_order_france,ville_surface_order_france"/>
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.zenika.custom.mappers.CityFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+    </bean>
+    
+    <bean id="mapppingFIleReader" class="com.zenika.custom.readers.MetropolisItemReader">
+    	<property name="resource" value="classpath:csv/mapping.csv" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="names" value="cityCode,cityLabel,metropolisCode,metropolisLabel,metropolisType" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.zenika.custom.mappers.MetropolisFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+    </bean>
+    
+    
+    <!-- Processors Bean Declaration -->
+    <bean id="cityProcessor" class="com.zenika.custom.processors.CityItemProcessor" />
+    <bean id="metropolisProcessor" class="com.zenika.custom.processors.MetropolisItemProcessor" />
+    
+    
+    <!-- Writers Bean declaration -->
+    <bean id="cityWriter" class="com.zenika.custom.writers.CityItemWriter" />
+    <bean id="metropolisWriter" class="com.zenika.custom.writers.MetropolisItemWriter" />
+    
+    
+    <!-- Batch Job Declarations -->
+    <batch:job id="loadDatatJob"> 
+		<batch:step id="loadCities" next="loadMetropolises">
+			<batch:tasklet>
+				<batch:chunk reader="cityReader" processor="cityProcessor" writer="cityWriter" commit-interval="37000"/>
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="loadMetropolises">
+			<batch:tasklet>
+				<batch:chunk reader="mapppingFIleReader" processor="metropolisProcessor" writer="metropolisWriter" commit-interval="37000"/>
+			</batch:tasklet>
+		</batch:step>
+	</batch:job>
+           
+                
+</beans>

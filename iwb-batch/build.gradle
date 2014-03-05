@@ -1,0 +1,35 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin:'application'
+
+repositories { 
+	mavenCentral()
+}
+
+mainClassName = "com.zenika.App"
+
+
+dependencies {
+
+	def springVersion = '3.2.2.RELEASE'
+	def springBatchVersion = '2.2.0.RELEASE'
+	def springDataVersion = '1.2.1.RELEASE'
+	def mongodbDriverVersion = '2.11.2'
+	def guavaLibrariesVersion = '16.0.1'
+	def junitVersion = '4.11'
+	def jacksonVersion = '2.3.0'
+
+	compile "org.springframework:spring-core:${springVersion}"
+	compile "org.springframework.batch:spring-batch-core:${springBatchVersion}"
+	compile "org.springframework:spring-context:${springVersion}"
+	compile "org.springframework:spring-tx:${springVersion}"
+	compile "org.springframework.batch:spring-batch-infrastructure:${springBatchVersion}"
+	compile "org.mongodb:mongo-java-driver:${mongodbDriverVersion}"
+	compile "org.springframework.data:spring-data-mongodb:${springDataVersion}"
+	compile "com.google.guava:guava:${guavaLibrariesVersion}"
+	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+
+	compile "org.springframework.batch:spring-batch-test:${springBatchVersion}"
+	testCompile "junit:junit:${junitVersion}"
+
+}
