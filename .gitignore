@@ -15,8 +15,5 @@ build
 .swp
 .app.log
 out
-md.restx.json
-module.ivy
-pom.xml
 app.log
 untitled
