@@ -17,3 +17,7 @@ build
 out
 app.log
 untitled
+/bin
+.settings
+.classpath
+.project
