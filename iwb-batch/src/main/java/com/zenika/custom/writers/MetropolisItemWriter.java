@@ -21,12 +21,18 @@ import com.zenika.bo.Mapping;
 import com.zenika.bo.Metropolis;
 
 public class MetropolisItemWriter implements ItemWriter<Mapping>{
-
+	
+	private ApplicationContext ctx;
+	private MongoOperations mongoOperation;
+	
+	public MetropolisItemWriter(){
+		super();
+		this.ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
+		this.mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
+	}
 	
 	public void write(List<? extends Mapping> items) throws Exception {
 		
-		ApplicationContext ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
-		MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
 		Map<String,Metropolis> metropolises = new HashMap<String,Metropolis>();
 		
 		for(Mapping mapObject : items){			

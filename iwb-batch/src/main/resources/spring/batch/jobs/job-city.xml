@@ -82,11 +82,47 @@
 		</property>
     </bean>
     
+    <bean id="itemFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+    	<property name="resource" value="classpath:csv/items.csv" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value=";"/>
+						<property name="names" value="name,barcode,image,constituents,tags" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.zenika.custom.mappers.ItemFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+    </bean>
+    
+    <bean id="wasteFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+    	<property name="resource" value="classpath:csv/wastes.csv" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value=";"/>
+						<property name="names" value="name,acronym,description" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.zenika.custom.mappers.WasteFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+    </bean>
+    
 
     <!-- Processors Bean Declaration -->
     <bean id="cityProcessor" class="com.zenika.custom.processors.CityItemProcessor" />
     <bean id="metropolisProcessor" class="com.zenika.custom.processors.MetropolisItemProcessor" />
     <bean id="trashCenterProcessor" class="com.zenika.custom.processors.TrashCenterItemProcessor" />
+    <bean id="itemProcessor" class="com.zenika.custom.processors.ProductItemProcessor" />
+    <bean id="wasteProcessor" class="com.zenika.custom.processors.WasteItemProcessor" />
     
     
     <!-- Writers Bean declaration -->
@@ -94,6 +130,8 @@
     <bean id="metropolisWriter" class="com.zenika.custom.writers.MetropolisItemWriter" />
     <bean id="trashCenterWriter" class="com.zenika.custom.writers.TrashCenterItemWriter" />
     <bean id="trashBinWriter" class="com.zenika.custom.writers.TrashCenterItemWriter" />
+    <bean id="itemWriter" class="com.zenika.custom.writers.ProductItemWriter" />
+    <bean id="wasteWriter" class="com.zenika.custom.writers.WasteItemWriter" />
     
     
     <!-- Batch Job Declarations -->
@@ -103,7 +141,7 @@
 				<batch:chunk reader="cityReader" processor="cityProcessor" writer="cityWriter" commit-interval="37000"/>
 			</batch:tasklet>
 		</batch:step>
-		<batch:step id="loadMetropolises" next="">
+		<batch:step id="loadMetropolises" next="loadTrashCenters">
 			<batch:tasklet>
 				<batch:chunk reader="mapppingFileReader" processor="metropolisProcessor" writer="metropolisWriter" commit-interval="37000"/>
 			</batch:tasklet>
@@ -113,9 +151,19 @@
 				<batch:chunk reader="trashCenterFileReader" processor="trashCenterProcessor" writer="trashCenterWriter" commit-interval="30"/>
 			</batch:tasklet>
 		</batch:step>
-		<batch:step id="loadTrashBins">
+		<batch:step id="loadTrashBins" next="loadItems">
 			<batch:tasklet>
 				<batch:chunk reader="trashBinFileReader" processor="trashCenterProcessor" writer="trashBinWriter" commit-interval="3000"/>
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="loadItems" next="loadWastes">
+			<batch:tasklet>
+				<batch:chunk reader="itemFileReader" processor="itemProcessor" writer="itemWriter" commit-interval="10"/>
+			</batch:tasklet>
+		</batch:step>
+		<batch:step id="loadWastes">
+			<batch:tasklet>
+				<batch:chunk reader="wasteFileReader" processor="wasteProcessor" writer="wasteWriter" commit-interval="10"/>
 			</batch:tasklet>
 		</batch:step>
 	</batch:job>

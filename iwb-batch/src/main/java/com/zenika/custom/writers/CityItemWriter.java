@@ -11,9 +11,16 @@ import com.zenika.bo.City;
 
 public class CityItemWriter implements ItemWriter<City>{
 	
+	private ApplicationContext ctx;
+	private MongoOperations mongoOperation;
+	
+	public CityItemWriter(){
+		super();
+		this.ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
+		this.mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
+	}
+	
 	public void write(List<? extends City> items) throws Exception {
-		ApplicationContext ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
-		MongoOperations mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
 		int i = 0;
 		for(City city : items){
 			mongoOperation.save(city, "cities");
