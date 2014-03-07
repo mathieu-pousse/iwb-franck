@@ -1,5 +1,8 @@
 package com.zenika.bo;
 
+import java.util.List;
+
+import org.jongo.marshall.jackson.oid.ObjectId;
 import org.springframework.data.annotation.Id;
 
 
@@ -38,4 +41,8 @@ public class City {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	
+	
+	
 }

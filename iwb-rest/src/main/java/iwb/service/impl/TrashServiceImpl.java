@@ -47,17 +47,17 @@ public class TrashServiceImpl implements TrashService{
 
     public Trash setLinks(Trash trash){
         trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));
-        for(Waste waste : trash.getWastesHandled()){
+        /*for(Waste waste : trash.getWastesHandled()){
             waste.setLink(new Link("alternate", "/wastes/"+waste.getId()));
-        }
+        }*/
         return trash;
     }
 
     public Optional<Trash> setLinks(Optional<Trash> trash){
         trash.get().setLink(new Link("alternate", "/trashes/" + trash.get().getId()));
-        for(Waste waste : trash.get().getWastesHandled()){
+        /*for(Waste waste : trash.get().getWastesHandled()){
             waste.setLink(new Link("alternate", "/wastes/"+waste.getId()));
-        }
+        }*/
         return trash;
     }
     

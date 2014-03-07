@@ -79,23 +79,33 @@ public class MetropolisServiceImpl implements MetropolisService{
     public Metropolis setLinks(Metropolis metropolis){
         metropolis.setLink(new Link("alternate", "/metropolises/"+metropolis.getId()));
         for(CityCustom city : metropolis.getCities()){
-            city.setLink(new Link("alternate", "/cities/" + city.getId()));
+        	if(city!=null)
+        		city.setLink(new Link("alternate", "/cities/" + city.getCode()));
         }
-        for(TrashCustom trash : metropolis.getTrashes()){
-            trash.setLink(new Link("alternate", "/trashes/" + trash.getId()));
+        if(metropolis.hasTrash()){
+        	for(TrashCustom trash : metropolis.getTrashes()){
+            	if(trash!=null)
+            		trash.setLink(new Link("alternate", "/trashes/" + trash.getId()));
+            }
         }
         return metropolis;
     }
 
 
     public Optional<Metropolis> setLinks(Optional<Metropolis> metropolis){
-        metropolis.get().setLink(new Link("alternate", "/metropolises/" + metropolis.get().getId()));
-        for(CityCustom city : metropolis.get().getCities()){
-            city.setLink(new Link("alternate", "/cities/" + city.getId()));
-        }
-        for(TrashCustom trash : metropolis.get().getTrashes()){
-            trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));
-        }
+    	if(metropolis.isPresent()){
+    		metropolis.get().setLink(new Link("alternate", "/metropolises/" + metropolis.get().getId()));
+            for(CityCustom city : metropolis.get().getCities()){
+            	if(city!=null)
+            		city.setLink(new Link("alternate", "/cities/" + city.getCode()));
+            }
+            if(metropolis.get().hasTrash()){
+            	for(TrashCustom trash : metropolis.get().getTrashes()){
+                	trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));
+                }
+            }
+            
+    	}
         return metropolis;
     }
 }

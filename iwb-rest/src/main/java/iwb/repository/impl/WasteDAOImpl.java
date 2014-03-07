@@ -2,12 +2,14 @@ package iwb.repository.impl;
 
 
 import com.google.common.base.Optional;
+
 import iwb.bo.Waste;
 import iwb.repository.WasteDAO;
+
 import org.bson.types.ObjectId;
+
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
-
 
 import javax.inject.Named;
 
@@ -80,4 +82,9 @@ public class WasteDAOImpl implements WasteDAO{
     public Iterable<Waste> getWastes() {
         return wastes.get().find().as(Waste.class);
     }
+
+	@Override
+	public Iterable<Waste> getWasteByAcronym(String acronym) {
+		return wastes.get().find("{acronym : #}",acronym).limit(5).as(Waste.class);
+	}
 }

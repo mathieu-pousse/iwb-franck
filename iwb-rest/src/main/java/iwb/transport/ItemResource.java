@@ -1,8 +1,11 @@
 package iwb.transport;
 
 import com.google.common.base.Optional;
+
+import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
 import iwb.bo.Constituent;
+import iwb.bo.Trash;
 import iwb.service.impl.ItemServiceImpl;
 import restx.annotations.*;
 import restx.factory.Component;
@@ -26,7 +29,6 @@ public class ItemResource {
         } else {
             return itemService.getItems();
         }
-
     }
 
     @GET("/items/{oid}")
@@ -53,6 +55,16 @@ public class ItemResource {
     @PUT("/items/{oid}")
     public Item updateItem(String oid, Item item){
         return itemService.updateItem(oid, item);
+    }
+    
+    @GET("/items/{oid}/recycling")
+    public Iterable<Trash> findTrashes(String oid, Optional<String> cityName){
+    	return itemService.getTrashesByProductId(oid, cityName);
+    }
+    
+    @GET("/items/{oid}/components/recycling")
+    public Iterable<ConstituentTrash> findTrashesComponents(String oid){
+    	return itemService.getConstituentTrash(oid);
     }
 
 

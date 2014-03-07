@@ -2,6 +2,7 @@ package iwb.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
@@ -13,19 +14,32 @@ public class City {
     @Id @ObjectId
     private String id;
     private String name;
-
+    private String ucName;
     /**
      * List of zip codes associated to a city
      */
     private Iterable<String> zipcodes;
-    private String description;
     private Link link;
+    private String code;
 
     public City(){
     }
+    
+    public City(String id, String name, String code, Iterable<String> zipcodes){
+    	this.id = id;
+    	this.name = name;
+    	this.code = code;
+    	this.zipcodes = zipcodes;
+    }
+    
+    public City(String id, String name, String code){
+    	this.id = id;
+    	this.name = name;
+    	this.code = code;
+    }
 
     public String getId() {
-        return id;
+        return id.replaceAll("(\\\\|\")", "");
     }
 
     public void setId(String id) {
@@ -48,14 +62,6 @@ public class City {
         this.zipcodes = zipcodes;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Link getLink() {
         return link;
     }
@@ -63,8 +69,25 @@ public class City {
     public void setLink(Link link) {
         this.link = link;
     }
+    
 
-    @Override
+    public String getUcName() {
+		return ucName;
+	}
+
+	public void setUcName(String ucName) {
+		this.ucName = ucName;
+	}
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+
+	@Override
     public String toString() {
         return "City{" +
                 "Id='" + id + '\'' +

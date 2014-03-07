@@ -28,6 +28,7 @@ dependencies {
 	compile "org.springframework.data:spring-data-mongodb:${springDataVersion}"
 	compile "com.google.guava:guava:${guavaLibrariesVersion}"
 	compile "com.fasterxml.jackson.core:jackson-annotations:${jacksonVersion}"
+	compile "org.jongo:jongo:1.0"
 
 	compile "org.springframework.batch:spring-batch-test:${springBatchVersion}"
 	testCompile "junit:junit:${junitVersion}"

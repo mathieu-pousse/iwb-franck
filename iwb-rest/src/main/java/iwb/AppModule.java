@@ -31,7 +31,7 @@ public class AppModule {
     @Provides
     @Named("restx.admin.password")
     public String restxAdminPassword() {
-        return "2136";
+        return "admin";
     }
 
     @Provides

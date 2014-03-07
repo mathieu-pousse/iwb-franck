@@ -90,4 +90,11 @@ public class Metropolis {
     public void setLink(Link link) {
         this.link = link;
     }
+    
+    public boolean hasTrash(){
+    	boolean state = false;
+    	if(trashes != null)
+    		state = true;
+    	return state;
+    }
 }

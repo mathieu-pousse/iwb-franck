@@ -28,8 +28,6 @@ public class CityCustom {
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	
-	
+	}	
 
 }

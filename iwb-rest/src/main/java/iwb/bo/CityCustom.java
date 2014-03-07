@@ -8,20 +8,20 @@ import com.fasterxml.jackson.annotation.JsonInclude;
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class CityCustom {
-
-    private String id;
+	
+	private String code;
     private String name;
     private Link link;
 
-    public String getId() {
-        return id;
-    }
+    public String getCode() {
+		return code;
+	}
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getName() {
+	public String getName() {
         return name;
     }
 

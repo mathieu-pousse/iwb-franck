@@ -5,16 +5,14 @@ import java.util.List;
 public class Metropolis {
 	
 	private String code;
-	private String label;
+	private String name;
 	private List<CityCustom> cities;
 	
-	public Metropolis(){
-		
-	}
+	public Metropolis(){}
 	
-	public Metropolis(String code, String label){
+	public Metropolis(String code, String name){
 		this.code = code;
-		this.label = label;
+		this.name = name;
 	}
 	
 	public String getCode() {
@@ -23,12 +21,15 @@ public class Metropolis {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	public String getLabel() {
-		return label;
+	
+	public String getName() {
+		return name;
 	}
-	public void setLabel(String label) {
-		this.label = label;
+
+	public void setName(String name) {
+		this.name = name;
 	}
+
 	public List<CityCustom> getCities() {
 		return cities;
 	}

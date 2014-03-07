@@ -1,9 +1,17 @@
 package iwb.service.impl;
 
+import java.util.List;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
+
+import iwb.bo.ConstituentTrash;
 import iwb.bo.Link;
+import iwb.bo.Trash;
 import iwb.bo.Waste;
+import iwb.repository.ItemDAO;
+import iwb.repository.TrashDAO;
+import iwb.repository.WasteDAO;
 import iwb.repository.impl.ItemDAOImpl;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
@@ -17,11 +25,15 @@ import javax.inject.Named;
 public class ItemServiceImpl implements ItemService{
 
 
-    private ItemDAOImpl itemDAO;
+    private ItemDAO itemDAO;
+    private WasteDAO wasteDAO;
+    private TrashDAO trashDAO;
 
 
-    public ItemServiceImpl(@Named("itemDAO") ItemDAOImpl itemDAO){
+    public ItemServiceImpl(@Named("itemDAO") ItemDAO itemDAO, @Named("wasteDAO") WasteDAO wasteDAO, @Named("trashDAO") TrashDAO trashDAO){
         this.itemDAO = itemDAO;
+        this.wasteDAO = wasteDAO;
+        this.trashDAO = trashDAO;
     }
 
     /**
@@ -89,7 +101,7 @@ public class ItemServiceImpl implements ItemService{
     }
 
     /**
-     * Uses teh appropriate DAO method to update the item matching the oid parameter,
+     * Uses the appropriate DAO method to update the item matching the oid parameter,
      * then set the link to the resource
      * @param oid
      * @param item
@@ -107,6 +119,42 @@ public class ItemServiceImpl implements ItemService{
     public void deleteConstituent(Item item, Constituent comp) {
            itemDAO.deleteConstituent(item, comp);
     }
+    
+    /**
+     * Returns the corresponding trashes for a given item
+     * @param oid
+     * @param cityName
+     * @return
+     */
+    public Iterable<Trash> getTrashesByProductId(String oid, Optional<String> cityName){
+    	Optional<Item> item = itemDAO.getItemById(oid);
+    	if(!item.isPresent() || item.get().getConstituents() != null || item.get().getWasteType() == null){
+    		return Lists.newArrayList();
+    	}else{
+    		String wasteId = item.get().getWasteType().getId();
+    		return  trashDAO.getTrashesByWasteType(wasteDAO.getWasteById(wasteId).get().getAcronym());
+    	}
+    }
+    
+	/**
+	 * 
+	 */
+    public Iterable<ConstituentTrash> getConstituentTrash(String oid) {
+    	Optional<Item> item = itemDAO.getItemById(oid);
+    	Iterable<Constituent> consituents;
+    	List<ConstituentTrash> list = Lists.newArrayList();
+    	
+    	if((consituents = item.get().getConstituents())!=null){
+    		for(Constituent cons : consituents){
+    			String wasteId = cons.getWasteType().getId();
+    			Iterable<Trash> trashes = trashDAO.getTrashesByWasteTypeForComponents(wasteDAO.getWasteById(wasteId).get().getAcronym());
+    			List<Trash> tmp = Lists.newArrayList(trashes);
+    			ConstituentTrash cstTrash =  new ConstituentTrash(cons, tmp.get(0));
+    			list.add(cstTrash);
+    		}
+    	}
+		return list;
+	}
 
     /**
      *
@@ -142,5 +190,7 @@ public class ItemServiceImpl implements ItemService{
         return item;
       
     }
+
+	
 
 }

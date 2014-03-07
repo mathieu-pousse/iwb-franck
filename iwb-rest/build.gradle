@@ -9,6 +9,7 @@ dependencies {
 
 	/*Restx dependencies*/
 	def restVersion = '0.31.1'
+	def mockitoVersion = '1.9.5'
 	compile "io.restx:restx-core:${restVersion}"
 	compile "io.restx:restx-core-annotation-processor:${restVersion}"
 	compile "io.restx:restx-factory:${restVersion}"
@@ -18,6 +19,7 @@ dependencies {
 	compile "io.restx:restx-apidocs:${restVersion}"
 	compile "io.restx:restx-specs-admin:${restVersion}"
 	compile "io.restx:restx-server-jetty:${restVersion}"
+	compile "org.mockito:mockito-all:${mockitoVersion}"
 
 	/**/
 	compile "ch.qos.logback:logback-classic:1.0.9"

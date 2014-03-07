@@ -3,21 +3,24 @@ package iwb.service.impl;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
+
 import iwb.bo.Link;
+import iwb.repository.CityDAO;
 import iwb.repository.impl.CityDAOImpl;
 import iwb.bo.City;
 import iwb.service.CityService;
 import restx.factory.Component;
 
 import javax.inject.Named;
+
 import java.util.List;
 
 @Component  @Named("cityService")
 public class CityServiceImpl implements CityService{
 
-    private CityDAOImpl cityDAO;
+    private CityDAO cityDAO;
 
-    public CityServiceImpl(@Named("cityDAO") CityDAOImpl cityDAO ){
+    public CityServiceImpl(@Named("cityDAO") CityDAO cityDAO ){
         this.cityDAO = cityDAO;
     }
 

@@ -2,8 +2,11 @@ package iwb.service;
 
 
 import com.google.common.base.Optional;
+
 import iwb.bo.Constituent;
+import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
+import iwb.bo.Trash;
 
 public interface ItemService {
 
@@ -15,5 +18,7 @@ public interface ItemService {
     public void deleteItem(String id);
     public void deleteConstituent(Item item, Constituent comp);
     public Item updateItem(String oid, Item item);
+    public Iterable<Trash> getTrashesByProductId(String oid, Optional<String> cityName);
+    public Iterable<ConstituentTrash> getConstituentTrash(String oid);
 
 }

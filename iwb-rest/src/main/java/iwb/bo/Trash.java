@@ -3,6 +3,7 @@ package iwb.bo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
@@ -17,13 +18,15 @@ public class Trash {
     private String description;
     private String name;
     private Link link;
+    
 
     /**
      * color of the trash depending on the Metropolis recycling policy
      */
     private String color;
-    private Iterable<String> recommendations;
-    private Iterable<Waste> wastesHandled;
+    private Iterable<String> wastesHandled;
+    private String cityCode;
+    private String address;
 
     public Trash(){
         this.color = null;
@@ -53,23 +56,15 @@ public class Trash {
         this.type = type;
     }
 
-    public Iterable<String> getRecommendations() {
-        return recommendations;
-    }
+    public Iterable<String> getWastesHandled() {
+		return wastesHandled;
+	}
 
-    public void setRecommendations(Iterable<String> recommendations) {
-        this.recommendations = recommendations;
-    }
+	public void setWastesHandled(Iterable<String> wastesHandled) {
+		this.wastesHandled = wastesHandled;
+	}
 
-    public Iterable<Waste> getWastesHandled() {
-        return wastesHandled;
-    }
-
-    public void setWastesHandled(Iterable<Waste> wastesHandled) {
-        this.wastesHandled = wastesHandled;
-    }
-
-    public String getColor() {
+	public String getColor() {
         return color;
     }
 
@@ -92,4 +87,20 @@ public class Trash {
     public void setLink(Link link) {
         this.link = link;
     }
+
+	public String getCityCode() {
+		return cityCode;
+	}
+
+	public void setCityCode(String cityCode) {
+		this.cityCode = cityCode;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String adress) {
+		this.address = adress;
+	}
 }

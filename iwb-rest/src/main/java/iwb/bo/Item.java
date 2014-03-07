@@ -1,6 +1,5 @@
 package iwb.bo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
@@ -21,6 +20,8 @@ public class Item {
     private Iterable<Constituent> constituents;
     private Waste wasteType;
     private Link link;
+    private List<String> tags;
+    private String description;
 
 
     public Item(){
@@ -86,4 +87,24 @@ public class Item {
     public void setLink(Link link) {
         this.link = link;
     }
+
+	public List<String> getTags() {
+		return tags;
+	}
+
+	public void setTags(List<String> tags) {
+		this.tags = tags;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+	
+	
+    
+    
 }

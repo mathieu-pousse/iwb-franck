@@ -11,4 +11,5 @@ public interface WasteDAO {
     public Optional<Waste> getWasteById(String oid);
     public Iterable<Waste> getWastesByName(String name);
     public Iterable<Waste> getWastes();
+    public Iterable<Waste> getWasteByAcronym(String acronym);
 }

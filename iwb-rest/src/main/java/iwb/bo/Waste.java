@@ -15,6 +15,7 @@ public class Waste {
     private String id;
     private String name;
     private String description;
+    private String acronym;
     private Link link;
 
     public String getId() {
@@ -48,4 +49,14 @@ public class Waste {
     public void setLink(Link link) {
         this.link = link;
     }
+
+	public String getAcronym() {
+		return acronym;
+	}
+
+	public void setAcronym(String acronym) {
+		this.acronym = acronym;
+	}
+    
+    
 }

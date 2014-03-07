@@ -1,10 +1,16 @@
 package iwb.repository.impl;
 
 
+import java.util.List;
+
 import com.google.common.base.Optional;
+
+import iwb.bo.City;
 import iwb.bo.Trash;
 import iwb.repository.TrashDAO;
+
 import org.bson.types.ObjectId;
+
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
 
@@ -41,6 +47,24 @@ public class TrashDAOImpl implements TrashDAO{
     }
 
     public Iterable<Trash> getTrashes() {
-        return trashes.get().find().as(Trash.class);
+        return trashes.get().find().limit(5).as(Trash.class);
     }
+
+	@Override
+	public Iterable<Trash> getTrashesByWasteType(String acr) {
+		if(acr == null|| acr.isEmpty()){
+			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(5).as(Trash.class);
+		}else{
+			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).limit(5).as(Trash.class);
+		}
+	}
+	
+	@Override
+	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr) {
+		if(acr == null|| acr.isEmpty()){
+			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(5).as(Trash.class);
+		}else{
+			return trashes.get().find("{type: #}", "DOM").limit(5).as(Trash.class);
+		}
+	}
 }

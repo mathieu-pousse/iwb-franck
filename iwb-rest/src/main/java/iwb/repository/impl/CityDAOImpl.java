@@ -66,7 +66,8 @@ public class CityDAOImpl implements CityDAO {
      * @return
      */
     public Optional<City> getCityById(String oid) {
-        return Optional.fromNullable(cities.get().findOne(new ObjectId(oid)).as(City.class));
+        //return Optional.fromNullable(cities.get().findOne(new ObjectId(oid)).as(City.class));
+    	return Optional.fromNullable(cities.get().findOne("{_id: #}", oid).as(City.class));
     }
 
     /**
@@ -74,7 +75,7 @@ public class CityDAOImpl implements CityDAO {
      * @return
      */
     public Iterable<City> getCities() {
-        return cities.get().find().as(City.class);
+        return cities.get().find().limit(10).as(City.class);
     }
 
     /**

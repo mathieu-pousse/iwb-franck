@@ -7,7 +7,9 @@ import org.springframework.batch.core.JobParameters;
 import org.springframework.batch.core.launch.JobLauncher;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.mongodb.DB;
+
 
 
 public class App {
@@ -33,5 +35,6 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 	}
 }

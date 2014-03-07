@@ -2,6 +2,7 @@ package iwb.repository;
 
 
 import com.google.common.base.Optional;
+
 import iwb.bo.Trash;
 
 public interface TrashDAO {
@@ -10,4 +11,6 @@ public interface TrashDAO {
     public void deleteTrash(String oid);
     public Optional<Trash> getTrashById(String oid);
     public Iterable<Trash> getTrashes();
+    public Iterable<Trash> getTrashesByWasteType(String wasteType);
+	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr);
 }

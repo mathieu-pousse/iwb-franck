@@ -1,0 +1,175 @@
+title: Find items 20140307 101244
+given:
+  - time: 2014-03-07T10:12:44.557+01:00
+  - collection: items
+    data: |
+        { "name" : "Building an Testing with gradle" , "barcode" : "9781449304638" , "image" : "/img/img5GU.jpg" , "wasteType" : { "name" : "papier" , "_id" : { "$oid" : "531876d5e4b0e5958729f301"}} , "tags" : [ "livre"] , "_id" : { "$oid" : "5318783fe4b0e5958729f307"}}
+        { "name" : "Epson T0715 Cartouche d'encre d'origine" , "barcode" : "9781449304630" , "image" : "/img/img9689.jpg" , "constituents" : [ { "name" : "barquette plastique" , "wasteType" : { "name" : "plastique d'emballage" , "_id" : { "$oid" : "5318774ce4b0e5958729f303"}}} , { "name" : "Emballage plastique cartouche" , "wasteType" : { "name" : "plastique d'emballage" , "_id" : { "$oid" : "5318774ce4b0e5958729f303"}}} , { "name" : "Cartouche imprimante sans plastique" , "wasteType" : { "name" : "cartouche imprimante" , "_id" : { "$oid" : "53187737e4b0e5958729f302"}}}] , "tags" : [ "cartouche" , "imprimante" , "epson"] , "_id" : { "$oid" : "53187883e4b0e5958729f308"}}
+        { "name" : "DéliChoc original - Chocolat noir" , "barcode" : "9711449399630" , "image" : "/img/delichoc.jpg" , "constituents" : [ { "name" : "emballage carton" , "wasteType" : { "name" : "petit carton" , "_id" : { "$oid" : "5318779be4b0e5958729f305"}}} , { "name" : "film plastique" , "wasteType" : { "name" : "plastique d'emballage" , "_id" : { "$oid" : "5318774ce4b0e5958729f303"}}} , { "name" : "barquette plastique" , "wasteType" : { "name" : "plastique d'emballage" , "_id" : { "$oid" : "5318774ce4b0e5958729f303"}}} , { "name" : "biscuit" , "wasteType" : { "name" : "biodégradable" , "_id" : { "$oid" : "5318778ae4b0e5958729f304"}}}] , "tags" : [ "biscuits" , "nourriture" , "alimentaire"] , "_id" : { "$oid" : "5318793ae4b0e5958729f30a"}}
+        { "name" : "Whirpool WBE37172W " , "barcode" : "9711449664709" , "image" : "/img/wirhpool.jpg" , "wasteType" : { "name" : "electromenager" , "_id" : { "$oid" : "531877c5e4b0e5958729f306"}} , "tags" : [ "réfrigérateur" , "frigo"] , "_id" : { "$oid" : "531879b7e4b0e5958729f30c"}}
+        { "name" : "Pâte à tartiner aux noisette nutella" , "barcode" : "9711449662709" , "image" : "/img/nutella.jpg" , "constituents" : [ { "name" : "pot en verre" , "wasteType" : { "name" : "verre d'emballage" , "link" : { "rel" : "alternate" , "href" : "/wastes/531876b1e4b0e5958729f300"} , "_id" : { "$oid" : "531876b1e4b0e5958729f300"}}} , { "name" : "couvercle en plastique" , "wasteType" : { "name" : "plastique d'emballage" , "link" : { "rel" : "alternate" , "href" : "/wastes/5318774ce4b0e5958729f303"} , "_id" : { "$oid" : "5318774ce4b0e5958729f303"}}}] , "link" : { "rel" : "alternative" , "href" : "/items/53187977e4b0e5958729f30b"} , "tags" : [ "nuttella" , "chocolat"] , "_id" : { "$oid" : "53187977e4b0e5958729f30b"}}
+wts:
+  - when: |
+       GET items
+       Cookie: RestxSession-iwb={"_expires":"2014-04-06T10:12:44.557+02:00","principal":"admin","sessionKey":"ae359e6c-f4a8-4dcd-9cca-1ba3d7cc8d71"}; RestxSessionSignature-iwb=pl9HvR17nxeZDvfCx7ohcSjHCvQ=
+    then: |
+        [ {
+          "name" : "Building an Testing with gradle",
+          "barcode" : "9781449304638",
+          "image" : "/img/img5GU.jpg",
+          "wasteType" : {
+            "name" : "papier",
+            "link" : {
+              "rel" : "alternate",
+              "href" : "/wastes/531876d5e4b0e5958729f301"
+            },
+            "_id" : "531876d5e4b0e5958729f301"
+          },
+          "link" : {
+            "rel" : "alternative",
+            "href" : "/items/5318783fe4b0e5958729f307"
+          },
+          "tags" : [ "livre" ],
+          "_id" : "5318783fe4b0e5958729f307"
+        }, {
+          "name" : "Epson T0715 Cartouche d'encre d'origine",
+          "barcode" : "9781449304630",
+          "image" : "/img/img9689.jpg",
+          "constituents" : [ {
+            "name" : "barquette plastique",
+            "wasteType" : {
+              "name" : "plastique d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318774ce4b0e5958729f303"
+              },
+              "_id" : "5318774ce4b0e5958729f303"
+            }
+          }, {
+            "name" : "Emballage plastique cartouche",
+            "wasteType" : {
+              "name" : "plastique d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318774ce4b0e5958729f303"
+              },
+              "_id" : "5318774ce4b0e5958729f303"
+            }
+          }, {
+            "name" : "Cartouche imprimante sans plastique",
+            "wasteType" : {
+              "name" : "cartouche imprimante",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/53187737e4b0e5958729f302"
+              },
+              "_id" : "53187737e4b0e5958729f302"
+            }
+          } ],
+          "link" : {
+            "rel" : "alternative",
+            "href" : "/items/53187883e4b0e5958729f308"
+          },
+          "tags" : [ "cartouche", "imprimante", "epson" ],
+          "_id" : "53187883e4b0e5958729f308"
+        }, {
+          "name" : "DéliChoc original - Chocolat noir",
+          "barcode" : "9711449399630",
+          "image" : "/img/delichoc.jpg",
+          "constituents" : [ {
+            "name" : "emballage carton",
+            "wasteType" : {
+              "name" : "petit carton",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318779be4b0e5958729f305"
+              },
+              "_id" : "5318779be4b0e5958729f305"
+            }
+          }, {
+            "name" : "film plastique",
+            "wasteType" : {
+              "name" : "plastique d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318774ce4b0e5958729f303"
+              },
+              "_id" : "5318774ce4b0e5958729f303"
+            }
+          }, {
+            "name" : "barquette plastique",
+            "wasteType" : {
+              "name" : "plastique d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318774ce4b0e5958729f303"
+              },
+              "_id" : "5318774ce4b0e5958729f303"
+            }
+          }, {
+            "name" : "biscuit",
+            "wasteType" : {
+              "name" : "biodégradable",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318778ae4b0e5958729f304"
+              },
+              "_id" : "5318778ae4b0e5958729f304"
+            }
+          } ],
+          "link" : {
+            "rel" : "alternative",
+            "href" : "/items/5318793ae4b0e5958729f30a"
+          },
+          "tags" : [ "biscuits", "nourriture", "alimentaire" ],
+          "_id" : "5318793ae4b0e5958729f30a"
+        }, {
+          "name" : "Whirpool WBE37172W ",
+          "barcode" : "9711449664709",
+          "image" : "/img/wirhpool.jpg",
+          "wasteType" : {
+            "name" : "electromenager",
+            "link" : {
+              "rel" : "alternate",
+              "href" : "/wastes/531877c5e4b0e5958729f306"
+            },
+            "_id" : "531877c5e4b0e5958729f306"
+          },
+          "link" : {
+            "rel" : "alternative",
+            "href" : "/items/531879b7e4b0e5958729f30c"
+          },
+          "tags" : [ "réfrigérateur", "frigo" ],
+          "_id" : "531879b7e4b0e5958729f30c"
+        }, {
+          "name" : "Pâte à tartiner aux noisette nutella",
+          "barcode" : "9711449662709",
+          "image" : "/img/nutella.jpg",
+          "constituents" : [ {
+            "name" : "pot en verre",
+            "wasteType" : {
+              "name" : "verre d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/531876b1e4b0e5958729f300"
+              },
+              "_id" : "531876b1e4b0e5958729f300"
+            }
+          }, {
+            "name" : "couvercle en plastique",
+            "wasteType" : {
+              "name" : "plastique d'emballage",
+              "link" : {
+                "rel" : "alternate",
+                "href" : "/wastes/5318774ce4b0e5958729f303"
+              },
+              "_id" : "5318774ce4b0e5958729f303"
+            }
+          } ],
+          "link" : {
+            "rel" : "alternative",
+            "href" : "/items/53187977e4b0e5958729f30b"
+          },
+          "tags" : [ "nuttella", "chocolat" ],
+          "_id" : "53187977e4b0e5958729f30b"
+        } ]
