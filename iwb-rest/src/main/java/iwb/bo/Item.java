@@ -22,10 +22,17 @@ public class Item {
     private Link link;
     private List<String> tags;
     private String description;
+    private List<TrashCustom> trashes;
 
 
     public Item(){
         wasteType = null;
+    }
+    
+    public Item(String id, String name, String barcode){
+    	this.id = id;
+    	this.name = name;
+    	this.barcode = barcode;
     }
 
     public String getId() {
@@ -103,8 +110,16 @@ public class Item {
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
+	public List<TrashCustom> getTrashes() {
+		return trashes;
+	}
+
+	public void setTrashes(List<TrashCustom> trashes) {
+		this.trashes = trashes;
+	}
+
 	
+
 	
-    
-    
 }

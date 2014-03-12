@@ -20,7 +20,8 @@ public class TrashBinFieldSetMapper implements FieldSetMapper<Trash>{
 		trash.setAddress(fs.readString("localisati"));
 		String tmp = fs.readString("flux");
 		trash.setWastesHandled(Arrays.asList(tmp.split("-")));
-		
+		trash.setLongitude(fs.readString("longitude"));
+		trash.setLatitude(fs.readString("latitude"));
 		return trash;
 	}
 

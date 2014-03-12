@@ -11,6 +11,7 @@ public interface TrashDAO {
     public void deleteTrash(String oid);
     public Optional<Trash> getTrashById(String oid);
     public Iterable<Trash> getTrashes();
-    public Iterable<Trash> getTrashesByWasteType(String wasteType);
-	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr);
+    public Iterable<Trash> getTrashesByWasteType(String wasteType, int max);
+	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr, int max);
+	public Iterable<Trash> getTrashesByWasteTypeLimitless(String acr);
 }

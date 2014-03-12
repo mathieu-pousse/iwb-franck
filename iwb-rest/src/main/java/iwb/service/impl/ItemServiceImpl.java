@@ -1,6 +1,10 @@
 package iwb.service.impl;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
@@ -8,6 +12,7 @@ import com.google.common.collect.Lists;
 import iwb.bo.ConstituentTrash;
 import iwb.bo.Link;
 import iwb.bo.Trash;
+import iwb.bo.TrashCustom;
 import iwb.bo.Waste;
 import iwb.repository.ItemDAO;
 import iwb.repository.TrashDAO;
@@ -15,12 +20,19 @@ import iwb.repository.WasteDAO;
 import iwb.repository.impl.ItemDAOImpl;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
+import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.ItemService;
+import iwb.service.helpers.TrashComparator;
+import iwb.service.helpers.TrashHelper;
 import restx.factory.Component;
 
 import javax.inject.Named;
 
 
+/**
+ * @author franckylm
+ *
+ */
 @Component @Named("itemService")
 public class ItemServiceImpl implements ItemService{
 
@@ -132,7 +144,7 @@ public class ItemServiceImpl implements ItemService{
     		return Lists.newArrayList();
     	}else{
     		String wasteId = item.get().getWasteType().getId();
-    		return  trashDAO.getTrashesByWasteType(wasteDAO.getWasteById(wasteId).get().getAcronym());
+    		return  trashDAO.getTrashesByWasteType(wasteDAO.getWasteById(wasteId).get().getAcronym(),5);
     	}
     }
     
@@ -147,7 +159,7 @@ public class ItemServiceImpl implements ItemService{
     	if((consituents = item.get().getConstituents())!=null){
     		for(Constituent cons : consituents){
     			String wasteId = cons.getWasteType().getId();
-    			Iterable<Trash> trashes = trashDAO.getTrashesByWasteTypeForComponents(wasteDAO.getWasteById(wasteId).get().getAcronym());
+    			Iterable<Trash> trashes = trashDAO.getTrashesByWasteTypeForComponents(wasteDAO.getWasteById(wasteId).get().getAcronym(),5);
     			List<Trash> tmp = Lists.newArrayList(trashes);
     			ConstituentTrash cstTrash =  new ConstituentTrash(cons, tmp.get(0));
     			list.add(cstTrash);
@@ -155,6 +167,35 @@ public class ItemServiceImpl implements ItemService{
     	}
 		return list;
 	}
+    
+  
+	public Optional<Item> getItemAndTrash(String oid, Optional<String> recycling, Optional<String> nb, Optional<GeoPoint2D> location) {
+		Optional<Item> item = itemDAO.getItemById(oid);
+		
+		if(!recycling.isPresent())
+			return item;
+		
+		if(location.isPresent()){
+			if(item.get().getWasteType() != null){
+				String wasteId = item.get().getWasteType().getId();
+				int toIndex = 1;
+				try{
+					toIndex = Integer.parseInt(nb.get());
+				}catch(NumberFormatException nfe){}
+				List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), toIndex);
+				item.get().setTrashes(tc);
+			}
+			else{
+				for(Constituent cons : item.get().getConstituents()){
+					String wasteId = cons.getWasteType().getId();
+					List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), 1);
+					cons.setTrash(tc.get(0));
+				}
+			}
+		}
+		return setLinks(item);
+	}
+    
 
     /**
      *
@@ -190,7 +231,5 @@ public class ItemServiceImpl implements ItemService{
         return item;
       
     }
-
-	
 
 }

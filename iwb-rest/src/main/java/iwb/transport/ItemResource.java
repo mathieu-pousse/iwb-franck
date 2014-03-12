@@ -6,6 +6,7 @@ import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
 import iwb.bo.Constituent;
 import iwb.bo.Trash;
+import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.impl.ItemServiceImpl;
 import restx.annotations.*;
 import restx.factory.Component;
@@ -30,10 +31,15 @@ public class ItemResource {
             return itemService.getItems();
         }
     }
-
+    
     @GET("/items/{oid}")
-    public Optional<Item> findItemById(String oid){
-        return itemService.getItemById(oid);
+    public Optional<Item> findItemById(String oid, Optional<String> recycling, Optional<String> nb){
+    	if((recycling.isPresent() || nb.isPresent()) && nb.isPresent()){
+    		Optional<GeoPoint2D> location = Optional.fromNullable(new GeoPoint2D(48.111933799999996,-1.6838946999999962));
+    		return itemService.getItemAndTrash(oid,recycling,nb,location);
+    	}else {
+    		return itemService.getItemById(oid);
+    	}
     }
 
     @GET("/items/{oid}/components")

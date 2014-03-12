@@ -7,6 +7,7 @@ import iwb.bo.Constituent;
 import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
 import iwb.bo.Trash;
+import iwb.bo.coordinates.GeoPoint2D;
 
 public interface ItemService {
 
@@ -20,5 +21,6 @@ public interface ItemService {
     public Item updateItem(String oid, Item item);
     public Iterable<Trash> getTrashesByProductId(String oid, Optional<String> cityName);
     public Iterable<ConstituentTrash> getConstituentTrash(String oid);
+    public Optional<Item> getItemAndTrash(String oid, Optional<String> recycling, Optional<String> nb, Optional<GeoPoint2D> location);
 
 }

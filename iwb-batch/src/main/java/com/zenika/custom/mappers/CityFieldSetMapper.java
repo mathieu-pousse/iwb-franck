@@ -19,7 +19,8 @@ public class CityFieldSetMapper implements FieldSetMapper<City>{
 		city.setUcName(fs.readString("ville_nom"));
 		city.setCode(fs.readString("ville_code_commune"));
 		city.setZipcode(fs.readString("ville_code_postal"));
+		city.setLongitude(fs.readString("ville_longitude_deg"));
+		city.setLatitude(fs.readString("ville_latitude_deg"));
 		return city;	
 	}
-
 }

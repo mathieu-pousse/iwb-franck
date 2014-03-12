@@ -18,7 +18,7 @@ public class App {
 			{	
 				"spring/batch/config/context.xml",
 				"spring/batch/config/database.xml",
-				"spring/batch/jobs/job-city.xml" 
+				"spring/batch/jobs/jobs.xml" 
 			};
 		ApplicationContext appContext = new ClassPathXmlApplicationContext(springConfig);
 
@@ -35,6 +35,5 @@ public class App {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 	}
 }

@@ -12,8 +12,20 @@ public class TrashCustom {
     private String type;
     private String color;
     private String name;
+    private String address;
+    private double distanceTo;
     private Link link;
-
+    
+    public TrashCustom(){}
+    
+    public TrashCustom(Trash trash){
+    	this.id = trash.getId();
+    	this.type = trash.getType();
+    	this.color = trash.getColor();
+    	this.name = trash.getName();
+    	this.address = trash.getAddress();
+    	this.distanceTo = trash.getDistanceTo();
+    }
 
     public String getId() {
         return id;
@@ -54,4 +66,22 @@ public class TrashCustom {
     public void setLink(Link link) {
         this.link = link;
     }
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public double getDistanceTo() {
+		return distanceTo;
+	}
+
+	public void setDistanceTo(double distanceTo) {
+		this.distanceTo = distanceTo;
+	}
+    
+    
 }

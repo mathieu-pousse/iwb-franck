@@ -16,6 +16,8 @@ public class City {
 	 */
 	@Id
 	private String code;
+	private String longitude;
+	private String latitude;
 	
 	public String getName() {
 		return name;
@@ -40,6 +42,18 @@ public class City {
 	}
 	public void setCode(String code) {
 		this.code = code;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}
 	
 	

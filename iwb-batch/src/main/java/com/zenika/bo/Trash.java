@@ -11,6 +11,8 @@ public class Trash {
     private String cityCode;
     private String address;
     private Iterable<String> wastesHandled;
+    private String longitude;
+    private String latitude;
     
 	public String getId() {
 		return id;
@@ -59,5 +61,18 @@ public class Trash {
 	}
 	public void setWastesHandled(Iterable<String> wastesHandled) {
 		this.wastesHandled = wastesHandled;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
 	}	
+	
 }

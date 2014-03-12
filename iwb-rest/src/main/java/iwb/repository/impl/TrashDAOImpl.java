@@ -26,11 +26,15 @@ public class TrashDAOImpl implements TrashDAO{
     public TrashDAOImpl(@Named("trashes") JongoCollection trashes){
         this.trashes = trashes;
     }
-
+    
+    /* (non-Javadoc)
+     * @see iwb.repository.TrashDAO#createTrash(iwb.bo.Trash)
+     */
     public Trash createTrash(Trash trash) {
         trashes.get().save(trash);
         return  trash;
     }
+    
 
     public Trash updateTrash(String oid, Trash trash) {
         checkEquals("oid", oid, "waste.id", trash.getId());
@@ -50,21 +54,30 @@ public class TrashDAOImpl implements TrashDAO{
         return trashes.get().find().limit(5).as(Trash.class);
     }
 
-	@Override
-	public Iterable<Trash> getTrashesByWasteType(String acr) {
+	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
 		if(acr == null|| acr.isEmpty()){
-			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(5).as(Trash.class);
+			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(max).as(Trash.class);
 		}else{
-			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).limit(5).as(Trash.class);
+			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).limit(max).as(Trash.class);
 		}
 	}
 	
-	@Override
-	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr) {
+	public Iterable<Trash> getTrashesByWasteTypeLimitless(String acr) {
 		if(acr == null|| acr.isEmpty()){
-			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(5).as(Trash.class);
+			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").as(Trash.class);
+		}else{
+			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).as(Trash.class);
+		}
+	}
+	
+	
+	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr, int max) {
+		if(acr == null|| acr.isEmpty()){
+			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(max).as(Trash.class);
 		}else{
 			return trashes.get().find("{type: #}", "DOM").limit(5).as(Trash.class);
 		}
 	}
+	
+	
 }

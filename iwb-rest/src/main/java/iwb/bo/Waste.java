@@ -17,6 +17,14 @@ public class Waste {
     private String description;
     private String acronym;
     private Link link;
+    
+    public Waste(){}
+    
+    public Waste(String id, String name, String acronym){
+    	this.id = id;
+    	this.name = name;
+    	this.acronym = acronym;
+    }
 
     public String getId() {
         return id;

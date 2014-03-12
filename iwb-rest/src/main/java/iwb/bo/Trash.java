@@ -18,7 +18,6 @@ public class Trash {
     private String description;
     private String name;
     private Link link;
-    
 
     /**
      * color of the trash depending on the Metropolis recycling policy
@@ -27,6 +26,9 @@ public class Trash {
     private Iterable<String> wastesHandled;
     private String cityCode;
     private String address;
+    private String longitude;
+    private String latitude;
+    private double distanceTo;
 
     public Trash(){
         this.color = null;
@@ -103,4 +105,36 @@ public class Trash {
 	public void setAddress(String adress) {
 		this.address = adress;
 	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+
+	public double getDistanceTo() {
+		return distanceTo;
+	}
+
+	public void setDistanceTo(double distanceTo) {
+		this.distanceTo = distanceTo;
+	}
+	
+	public void toTrashCustom(){
+		this.latitude = null;
+		this.longitude = null;
+		this.cityCode = null;
+		this.wastesHandled = null;
+	}
+	
 }
