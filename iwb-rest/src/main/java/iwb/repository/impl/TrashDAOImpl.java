@@ -27,9 +27,6 @@ public class TrashDAOImpl implements TrashDAO{
         this.trashes = trashes;
     }
     
-    /* (non-Javadoc)
-     * @see iwb.repository.TrashDAO#createTrash(iwb.bo.Trash)
-     */
     public Trash createTrash(Trash trash) {
         trashes.get().save(trash);
         return  trash;
