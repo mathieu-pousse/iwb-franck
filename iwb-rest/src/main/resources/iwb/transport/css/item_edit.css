@@ -1,0 +1,47 @@
+.bloc-dsh > .container {
+	width: 800px;
+	min-height: 850px;
+	margin-top: 30px;
+	margin-bottom: 100px;
+	padding: 20px 20px 20px 20px;
+	border-radius: 5px 5px 0px 0px;
+	background-color: white;
+}
+.bloc-dsh > .container > .row{
+	margin-left: 0px;
+	margin-right: 0px;
+}
+.bloc-dsh > .container > .row > div{
+	height: 100%;
+}
+.img-item-detail-edit {
+	width: 220px;
+	height: auto;
+}
+
+.search-field > input {
+	height: 25px;
+}
+
+.img-item-comp-detail-edit{
+	width: 110px;
+	height: 120px;
+	margin-left: 10px;
+}
+
+.cmp-img > .container > img:hover{
+	background: #d8d8d8;
+}
+.cmp-img > .container{
+	width: 275px;
+}
+.cmp-img {
+	margin-top: 20px;
+}
+
+.form-cmp > .panel-item-content {
+	border-top-width: 1px;
+}
+#map {
+	max-height: 300px;
+}
