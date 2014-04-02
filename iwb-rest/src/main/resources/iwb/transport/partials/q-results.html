@@ -1,0 +1,145 @@
+<div class="container-fluid sr">
+  <!-- Header -->
+  <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="inline-header logo">
+        <div class="indiv">
+            <h4>InWhichBin</h4>
+        </div>
+    </div>
+    <div class="inline-header search-bloc">
+        <div class="indiv container-fluid">
+            <div class="input-group input-group-lg">
+                <input type="text" class="form-control no-radius" placeholder="Search" name="srch-term" id="srch-term" ng-model="queryString">
+                <div class="input-group-btn">
+                    <button class="btn btn-default no-radius-btn" type="submit"><i class="fa fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inline-header other">
+        <div class="indiv">
+            <div class="pull-right">test</div>
+        </div>
+    </div>
+    </div> <!-- Header end-->
+
+    <div class="container bsrch">
+        <div class="row">
+          <div class="results">
+            <ul class="list-group">
+              <li class="list-group-item" ng-repeat="result in results">
+                <div class="container-fluid">
+                  <div class="col-lg-2 img-item">
+                      <a href="search-results_item.html" style="color:black;">
+                        <img src="img/nutella.jpg" alt="product-image" class="">
+                      </a>
+                  </div>
+                  <div class="col-lg-9">
+                    <p>
+                      <a href="search-results_item.html" style="color:black;">
+                          <b>{{result.name | uppercase}}</b>
+                      </a>
+                      <br>
+                      <b>Codebarre</b> : {{result.barcode}}
+                      <br>
+                      <b>Composants</b> : {{result.constituents.length}}
+                      <br>
+                      <b>Fabriquant</b> : Ferrero rocher
+                      <br>
+                    </p>
+                  </div>
+                </div>
+              </li>
+          </div>
+          <div class="details">
+            <div class="container">
+                <a href="edit_item.html" class="btn edit" style="padding-left:0px;"><i class="fa fa-pencil fa-fw"></i> </a>
+                
+                <div class="container-fluid item-general">
+                  <div class="inline gen-txt">
+                    <h4>{{results[0].name | uppercase}}</h4>
+                    <p class="tag-item">
+                      {{results[0].tags[0] | capitalize }}
+                      <br>
+                      {{results[0].tags[1] | capitalize}}
+                    </p> 
+                    <div class="recycle-itm-ico">
+                      <span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie">
+                          <img src="fonts/glyphicons_png/png/glyphicons_450_factory.png" class="img-rounded"/></span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poublelle d'ordure ménagère">
+                          <img src="fonts/glyphicons_png/png/glyphicons_016_bin.png"/></span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Collecte">
+                          <img src="fonts/glyphicons_png/png/glyphicons_058_truck.png"/></span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport communautaire">
+                          <img src="fonts/glyphicons_png/png/glyphicons_059_cargo.png"/></span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="inline gen-img">
+                    <img src="img/nutella.jpg" alt="product-image" class="img-rounded">
+                  </div>
+                </div>
+                <div class="container-fluid itm-comp">
+                  <div class="panel-detail btn no-radius">
+                    Composants
+                  </div>
+                  <div class="panel-item-content collapse in" id="const">
+                     <div class="container-fluild itm">
+                      <div class="inline cmp-img">
+                        <img src="img/couvercle-nutella.jpg">
+                      </div>
+                      <div class="inline cmp-txt">
+                        <h4>Couvercle pot nutella</h4>
+                        <div>
+                          <span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie">
+                              <img src="fonts/glyphicons_png/png/glyphicons_450_factory.png" class="img-rounded"/></span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport communautaire">
+                              <img src="fonts/glyphicons_png/png/glyphicons_059_cargo.png"/></span>
+                          </span>
+                        </div>
+                      </div>
+                     </div>
+                     <div class="container-fluild itm">
+                      <div class="inline cmp-img">
+                        <img src="img/pot-nutella-vide.jpg">
+                      </div>
+                      <div class="inline cmp-txt">
+                        <h4>Pot nutella vide</h4>
+                        <div>
+                          <span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poublelle d'ordure ménagère">
+                              <img src="fonts/glyphicons_png/png/glyphicons_016_bin.png"/></span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Collecte">
+                              <img src="fonts/glyphicons_png/png/glyphicons_058_truck.png"/></span>
+                          </span>
+                        </div>
+                      </div>
+                     </div>
+                  </div>
+                  <div class="panel-detail btn no-radius" data-toggle="collapse" data-target="#desc">
+                    Description
+                  </div>
+                  <div class="panel-item-content collapse in" id="desc">
+                    nim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird 
+                  </div>
+                  <div class="panel-detail btn no-radius" data-toggle="collapse" data-target="#map">
+                    Map
+                  </div>
+                  <div class="panel-item-content collapse in" id="map">
+                    <iframe width="100%" height="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A&amp;output=embed"></iframe>
+                  <br />
+                  <small>
+                      <a href="https://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;aq=0&amp;oq=twitter&amp;sll=28.659344,-81.187888&amp;sspn=0.128789,0.264187&amp;ie=UTF8&amp;hq=Twitter,+Inc.,+Market+Street,+San+Francisco,+CA&amp;t=m&amp;z=15&amp;iwloc=A"></a>
+                  </small>
+                  </iframe>
+                  
+                  </div>
+                </div>
+
+            </div>
+          </div>
+        </div>
+    </div>
+</div>

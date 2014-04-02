@@ -4,14 +4,19 @@ package iwb.repository.impl;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
 import iwb.repository.ItemDAO;
+
 import org.bson.types.ObjectId;
+
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
+
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
 
 import javax.inject.Named;
+
 import java.util.List;
+import java.util.regex.Pattern;
 
 import static restx.common.MorePreconditions.checkEquals;
 
@@ -53,6 +58,28 @@ public class ItemDAOImpl implements ItemDAO {
      */
     public Iterable<Item> getItemByBarcode(String barcode) {
         return items.get().find("{barcode: #}", barcode).as(Item.class);
+    }
+    
+    /**
+     * Returns the item that matches the name parameter
+     * @param barcode
+     * @return
+     */
+    public Iterable<Item> getItemByName(String name) {
+    	String nameregex = ".*"+name+".*";
+    	Pattern regex = Pattern.compile(nameregex, Pattern.CASE_INSENSITIVE);
+        return items.get().find("{name: #}", regex).as(Item.class);
+    }
+    
+    /**
+     * Returns the item that matches the name or barcode parameters
+     * @param barcode
+     * @return
+     */
+    public Iterable<Item> getItemByBarcodeOrName(String query){
+    	String nameregex = ".*"+query+".*";
+    	Pattern regex = Pattern.compile(nameregex, Pattern.CASE_INSENSITIVE);
+    	return items.get().find("{$or: [{barcode: #}, {name: #}]},", query, regex).as(Item.class);
     }
 
     /**

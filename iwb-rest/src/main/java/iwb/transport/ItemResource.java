@@ -24,12 +24,13 @@ public class ItemResource {
     }
 
     @GET("/items")
-    public Iterable<Item> findItems(Optional<String> barcode){
-        if (barcode.isPresent()) {
-            return itemService.getItemByBarcode(barcode.get());
-        } else {
-            return itemService.getItems();
+    public Iterable<Item> findItems(Optional<String> query){
+        if (query.isPresent()) {
+            return itemService.getItemByBarcodeOrName(query.or(""));
+        }else{
+        	return itemService.getItems();
         }
+        
     }
     
     @GET("/items/{oid}")

@@ -81,6 +81,34 @@ public class ItemServiceImpl implements ItemService{
         }
         return items;
     }
+    
+    /**
+     * Gets the item matching the name parameter using the appropriate DAO method,
+     * then sets the sets the link to the resource
+     * @param barcode
+     * @return
+     */
+    public Iterable<Item> getItemByName(String name) {
+        Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByName(name));
+        for(Item item : items){
+            setLinks(item);
+        }
+        return items;
+    }
+    
+    /**
+     * Gets the item matching the name or barcode parameter using the appropriate DAO method,
+     * then sets the sets the link to the resource
+     * @param barcode
+     * @return
+     */
+    public Iterable<Item> getItemByBarcodeOrName(String query){
+    	Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByBarcodeOrName(query));
+        for(Item item : items){
+            setLinks(item);
+        }
+        return items; 
+    }
 
     /**
      * Gets all items using the appropriate DAO method,
