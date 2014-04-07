@@ -42,7 +42,7 @@ public class AppModule {
 
     @Provides @Named(MongoModule.MONGO_DB_NAME)
     public String dbName() {
-        return "iwb-dev";
+        return "iwb-test";
     }
 
     @Provides

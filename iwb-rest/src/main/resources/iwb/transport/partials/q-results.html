@@ -9,9 +9,9 @@
     <div class="inline-header search-bloc">
         <div class="indiv container-fluid">
             <div class="input-group input-group-lg">
-                <input type="text" class="form-control no-radius" placeholder="Search" name="srch-term" id="srch-term" ng-model="queryString">
+                <input type="text" class="form-control no-radius" placeholder="Search" name="query" id="query" ng-model="queryString">
                 <div class="input-group-btn">
-                    <button class="btn btn-default no-radius-btn" type="submit"><i class="fa fa-search"></i></button>
+                    <button class="btn btn-default no-radius-btn" type="submit" ng-click="submitForm($event)"><i class="fa fa-search" ></i></button>
                 </div>
             </div>
         </div>
@@ -28,40 +28,41 @@
           <div class="results">
             <ul class="list-group">
               <li class="list-group-item" ng-repeat="result in results">
-                <div class="container-fluid">
-                  <div class="col-lg-2 img-item">
-                      <a href="search-results_item.html" style="color:black;">
-                        <img src="img/nutella.jpg" alt="product-image" class="">
+                <div class="container-fluid" id="{{$index}}">
+                  <div class="col-lg-2 img-item" >
+                      <a style="color:black;" >
+                        <img ng-src="{{result.image}}" alt="product-image" class="{{$index}}" ng-click="updateDesc($event)">
                       </a>
                   </div>
                   <div class="col-lg-9">
                     <p>
-                      <a href="search-results_item.html" style="color:black;">
+                      <a href="#" style="color:black;">
                           <b>{{result.name | uppercase}}</b>
                       </a>
                       <br>
                       <b>Codebarre</b> : {{result.barcode}}
                       <br>
-                      <b>Composants</b> : {{result.constituents.length}}
+                      <b>Composants</b> : {{result.constituents.length || 0}}
                       <br>
-                      <b>Fabriquant</b> : Ferrero rocher
+                      <b>Fabriquant</b> : {{result.manufacturer || '--'}}
                       <br>
                     </p>
                   </div>
                 </div>
               </li>
+            </ul>
           </div>
           <div class="details">
             <div class="container">
-                <a href="edit_item.html" class="btn edit" style="padding-left:0px;"><i class="fa fa-pencil fa-fw"></i> </a>
+                <a href="edit_item.html" class="btn edit" style="padding-left:0px;"><i class="fa fa-pencil fa-fw"></i>edit</a>
                 
                 <div class="container-fluid item-general">
                   <div class="inline gen-txt">
-                    <h4>{{results[0].name | uppercase}}</h4>
+                    <h4>{{objectDetail.name | uppercase}}</h4>
                     <p class="tag-item">
-                      {{results[0].tags[0] | capitalize }}
+                      {{objectDetail.tags[0] || 'tag1'}}
                       <br>
-                      {{results[0].tags[1] | capitalize}}
+                      {{objectDetail.tags[1]|| 'tag2' }}
                     </p> 
                     <div class="recycle-itm-ico">
                       <span>
@@ -77,7 +78,7 @@
                     </div>
                   </div>
                   <div class="inline gen-img">
-                    <img src="img/nutella.jpg" alt="product-image" class="img-rounded">
+                    <img ng-src="{{objectDetail.image}}" alt="product-image" class="img-rounded">
                   </div>
                 </div>
                 <div class="container-fluid itm-comp">
@@ -85,34 +86,18 @@
                     Composants
                   </div>
                   <div class="panel-item-content collapse in" id="const">
-                     <div class="container-fluild itm">
+                     <div class="container-fluild itm" ng-repeat="constituent in objectDetail.constituents">
                       <div class="inline cmp-img">
-                        <img src="img/couvercle-nutella.jpg">
+                        <img ng-src="{{constituent.image}}">
                       </div>
                       <div class="inline cmp-txt">
-                        <h4>Couvercle pot nutella</h4>
+                        <h4>{{constituent.name}}</h4>
                         <div>
                           <span>
                             <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie">
                               <img src="fonts/glyphicons_png/png/glyphicons_450_factory.png" class="img-rounded"/></span>
                             <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport communautaire">
                               <img src="fonts/glyphicons_png/png/glyphicons_059_cargo.png"/></span>
-                          </span>
-                        </div>
-                      </div>
-                     </div>
-                     <div class="container-fluild itm">
-                      <div class="inline cmp-img">
-                        <img src="img/pot-nutella-vide.jpg">
-                      </div>
-                      <div class="inline cmp-txt">
-                        <h4>Pot nutella vide</h4>
-                        <div>
-                          <span>
-                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poublelle d'ordure ménagère">
-                              <img src="fonts/glyphicons_png/png/glyphicons_016_bin.png"/></span>
-                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Collecte">
-                              <img src="fonts/glyphicons_png/png/glyphicons_058_truck.png"/></span>
                           </span>
                         </div>
                       </div>

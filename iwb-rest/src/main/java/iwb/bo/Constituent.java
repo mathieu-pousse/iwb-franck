@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 public class Constituent {
 
     private String name;
+    private String image;
     private Waste wasteType;
     private TrashCustom trash;
     private Link link;
@@ -52,6 +53,14 @@ public class Constituent {
 
 	public void setTrash(TrashCustom trash) {
 		this.trash = trash;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	
