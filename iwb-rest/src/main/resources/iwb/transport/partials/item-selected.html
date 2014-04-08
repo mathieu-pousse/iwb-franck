@@ -1,0 +1,76 @@
+<div class="container-fluid si">
+  <!-- Header -->
+  <div class="navbar navbar-fixed-top" role="navigation">
+    <div class="inline-header logo">
+        <div class="indiv">
+            <h4>InWhichBin</h4>
+        </div>
+    </div>
+    <div class="inline-header search-bloc">
+        <div class="indiv container-fluid">
+            <div class="input-group input-group-sm">
+                <input type="text" class="form-control no-radius-input" placeholder="Search" name="query" id="query" ng-model="queryString">
+                <div class="input-group-btn">
+                    <button class="btn btn-default btn-sm no-radius-btn" type="submit" ng-click="submitForm($event)"><i class="fa fa-search" ></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="inline-header other">
+        <div class="indiv">
+            <div class="pull-right">test</div>
+        </div>
+    </div>
+    </div> <!-- Header end-->
+
+    <div class="container bslct">
+        <div class="row-img-itm">
+            <div class="container">
+                <div class="img-itm">
+                    <img ng-src="{{item.image}}" class="itm">
+                    <img src="img/iwb-imgs/map.jpg" class="map">
+                </div>
+            </div>
+        </div>
+
+        <div class="row-scroll-comp">
+            <div class="container">
+                <div class="scroll">
+                    <div class="inline left-btn"><i class="fa fa-angle-left fa-2x"></i></div>
+                    <div class="inline middle-cnt">
+                        <div class="inline img">
+                            <img ng-src="{{item.image}}" ng-click="editform(0)">
+                        </div>
+                        <div class="inline img" ng-repeat="constituent in item.constituents">
+                            <img ng-src="{{constituent.image}}" ng-click="editform($index+1)">
+                        </div>
+                    </div>
+                    <div class="inline right-btn"><i class="fa fa-angle-right fa-2x"></i></div>
+                </div>
+
+                <div class="form-const">
+                    <form role="form">
+                      <div class="form-group">
+                        <label for="itemName">Nom produit</label>
+                        <input type="text" class="form-control no-radius" id="itemName" placeholder="NUTELLA" ng-model="name_field">
+                      </div>
+                      <div class="form-group">
+                        <label for="itemBarCode">Code barre</label>
+                        <input type="text" class="form-control no-radius" id="itemBarCode" placeholder="15778906567" ng-disabled="isConstituent" ng-model="barcode_field">
+                      </div>
+                      <div class="form-group">
+                        <label for="imageUrl">Changer l'image</label>
+                        <input type="file" id="imageUrl">
+                      </div>
+                      <div class="form-group">
+                        <select class="form-control" id="myselection" ng-model="waste_selected" ng-options="w.name for w in wastes"></select>
+                      </div>
+                      <button type="submit" class="btn btn-default pull-right" ng-click="submitForm($event)">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+
+</div>

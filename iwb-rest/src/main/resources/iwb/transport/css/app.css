@@ -1,13 +1,11 @@
+/*-----------------------------------
+	nav bar css
+	Everything starts with .sr class
+------------------------------------*/
 
-/*
-	Search results css
-	Everything starts with .search-results class
-*/
-body {
-	background: white;
-}
-.sr .navbar{
-	height: 80px;
+.sr .navbar,
+.si .navbar{
+	height: 50px;
 	background: #0a5175;
 }
 
@@ -16,31 +14,37 @@ body {
 	float: left !important;
 }
 
-.sr .logo {
+.sr .logo,
+.si .logo {
 	width: 200px;
-	height: 80px;
+	height: 50px;
 	
 }
 
-.sr .search-bloc {
+.sr .search-bloc,
+.si .search-bloc {
 	width: 700px;
-	height: 80px;
+	height: 50px;
 }
 
-.sr .other {
+.sr .other,
+.si .other {
 	width: 200px;
-	height: 80px;
+	height: 50px;
 }
-.sr .logo, .sr .search-bloc, .sr .other {
+.sr .logo, .sr .search-bloc, .sr .other,
+.si .logo, .si .search-bloc, .si .other {
 	display: table;
 }
 
-.sr .indiv {
+.sr .indiv,
+.si .indiv {
 	display: table-cell;
 	vertical-align: middle;
 }
 
-.sr .logo h4 {
+.sr .logo h4,
+.si .logo h4 {
 	color: white;
 	font-weight: bold;
 	text-align: center;
@@ -50,29 +54,58 @@ body {
 	border-radius: 0px 0px 0px 0px !important;
 }
 
-.sr .input-group {
-	width: 700px;
+.no-radius-input {
+	border-top-left-radius: 2px !important;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+	border-bottom-left-radius: 2px !important;
 }
 
-.sr .input-group-btn {
+.sr .input-group,
+.si .input-group{
+	width: 700px;
+	height: 30px;
+}
+
+.sr .input-group-btn,
+.si .input-group-btn {
 	width: 15% !important;
 }
-.sr .input-group-btn button{
+.sr .input-group-btn button,
+.si .input-group-btn button{
 	width: 100%;
 }
 
 .no-radius-btn {
 	border-top-left-radius: 0px;
-	border-top-right-radius: 3px !important;
-	border-bottom-right-radius: 3px !important;
+	border-top-right-radius: 2px !important;
+	border-bottom-right-radius: 2px !important;
 	border-bottom-left-radius: 0px;
 } 
+
+.sr .input-group-sm > .form-control,
+.si .input-group-sm > .form-control {
+	font-size: 17px;
+}
+
+
+
+/*-----------------------------------
+	Search results css
+	Everything starts with .sr class
+------------------------------------*/
+
+body {
+	/*background: #f1f1f1;*/
+
+}
+
 
 .sr .container.bsrch {
 	margin-top: 110px;
 	margin-left: 200px;
 	min-width: 1400px;
-	min-height: 900px;
+	min-height: 1100px;
 }
 
 .sr .bsrch .results, .sr .bsrch .details{
@@ -87,6 +120,7 @@ body {
 
 .sr .list-group-item{
 	height: 100px;
+	cursor: pointer;
 }
 
 
@@ -112,6 +146,7 @@ body {
 .sr .list-group-item .container-fluid .img-item > a >img {
 	width: 60px;
 	height: 80px;
+	cursor: pointer;
 }
 
 .sr .container-fluid .col-lg-9 {
@@ -125,6 +160,7 @@ body {
 	margin-left: 20px;
 	position: fixed;
 	box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+	background: white;
 }
 
 .sr .details .container .edit{
@@ -235,4 +271,134 @@ body {
 	width: 85%;
 	height: 100%;
 	padding-left: 15px;
+}
+
+
+
+/*-----------------------------------
+	Selected item css
+	Everything starts with .si class
+	except nav bar
+------------------------------------*/
+
+.si .container.bslct {
+	margin-top: 110px;
+	/*margin-left: 200px;*/
+	width: 1200px;
+	min-height: 900px;
+	box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+	background: white;
+	padding: 0px 0px 0px 0px;
+}
+
+.si .bslct .row-img-itm {
+	height: 250px;
+	width: 100%;
+	border-bottom-style: solid;
+	border-bottom-color: #d8d8d8;
+	border-bottom-width: 1px;
+}
+.si .bslct .container {
+	display: table;
+	width: 350px;
+	height: 250px;
+}
+
+.si .bslct .container .img-itm {
+	display: table-cell;
+	vertical-align: middle;
+}
+.si .bslct .container .img-itm {
+	min-width: 500px;
+}
+
+.si .bslct .container .img-itm img.map, 
+.si .bslct .container .img-itm img.itm{
+	float: left;
+}
+
+.si .bslct .container .img-itm img.itm {
+	width: 150px;
+	height: 200px;
+	cursor: pointer;
+	border-style: solid;
+	border-color: #d8d8d8;
+	border-width: 1px;
+}
+
+.si .bslct .container .img-itm img.map {
+	width: 350px;
+	height: 200px;
+}
+.si .row-scroll-comp{
+	min-height: 250px;
+	width: 100%;
+}
+.si .row-scroll-comp .container{
+	width: 80%;
+	height: 100%;
+}
+.si .row-scroll-comp .scroll{
+	height: 160px;
+	width: 100%;
+	border-style: solid;
+	border-color: #d8d8d8;
+	border-width: 1px;
+	margin-top: 20px;
+}
+.si .inline{
+	display:inline-block;
+	float: left !important;
+}
+
+.si .inline.right-btn, 
+.si .inline.left-btn{
+	width: 28px;
+	height: 100%;
+	padding-left: 9px;
+	padding-right: 9px;
+	padding-top: 64px;
+	cursor: pointer;
+	background: #d8d8d8;
+}
+
+.si .inline.right-btn{
+	border-left-style: solid;
+	border-left-color: #d8d8d8;
+	border-left-width: 1px;
+}
+
+.si .inline.left-btn{
+	border-right-style: solid;
+	border-right-color: #d8d8d8;
+	border-right-width: 1px;
+}
+
+.si .inline.middle-cnt{
+	width: 872px;
+	height: 100%;
+	padding: 25px 10px 25px 10px;
+}
+
+.si .row-scroll-comp .form-const{
+	margin-top: 35px;
+	padding-top: 20px;
+	min-height: 300px;
+	width: 100%;
+	border-top-style: solid;
+	border-top-color: #d8d8d8;
+	border-top-width: 1px;
+}
+
+.si .inline.img {
+	width: 100px;
+	height: 108px;
+	background: gray;
+	margin-left: 10px;
+}
+
+.si .inline.img img{
+	width: 100px;
+	height: 108px;
+	cursor: pointer;
 }

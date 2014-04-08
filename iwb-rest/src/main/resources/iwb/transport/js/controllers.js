@@ -72,12 +72,101 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration'])
       $location.search('query', $scope.queryString);
       $location.path("/search");
     }
-    $scope.updateDesc = function(event){
+    $scope.updateDesc = function(index){
+      $scope.objectDetail = $scope.results[index];
+    }
+    $scope.gtItem =  function(event,index){
       event.stopPropagation();
-      var id = $(event.target).attr('class');
-      $scope.objectDetail = $scope.results[id];
+      $scope.updateDesc(index);
+      $location.url($scope.objectDetail.link.href);
     }
 
+  }])
+
+  /*
+    SelectedItemController
+  */
+  .controller('SelectedItemController', ['$scope','$routeParams','SearchItemWithIdService','TransverseService','WastesService','BASE_PATH_IMG','UpdateItemService','$route',  
+    function($scope,$routeParams, SearchItemWithIdService,TransverseService,WastesService,BASE_PATH_IMG,UpdateItemService,$route) {
+    init_css();
+    $scope.item = {};
+    $scope.wastes = [];
+    $scope.waste_selected = {};
+    $scope.id = $routeParams.id;
+    $scope.isConstituent = false;
+    $scope.curIndex = 0;
+    $scope.name_field = '';
+    $scope.barcode_field ='';
+    $scope.image_field = '';
+    $scope.waste_type_field = '';
+
+    getItem();
+    getAllWastes();
+
+    $scope.editform = function (index){
+      updateChanges();
+      $scope.curIndex = index;
+      if(index === 0){
+        $scope.isConstituent = false;
+        $scope.name_field = $scope.item.name;
+      }else{
+        $scope.isConstituent = true;
+        $scope.name_field = $scope.item.constituents[index-1].name;
+      }  
+    }
+    function getItem(){
+      SearchItemWithIdService.get({id:$scope.id},function(response) {
+        $scope.item = response;
+
+        TransverseService.set_img($scope.item,BASE_PATH_IMG);
+        //Set images constituents
+        if($scope.item.constituents && $scope.item.constituents.length >0)
+        {
+          for(var j=0; j<$scope.item.constituents.length; j++)
+          {
+            TransverseService.set_img($scope.item.constituents[j],BASE_PATH_IMG);
+          }
+        }
+        //Init form fields
+        $scope.name_field = $scope.item.name;
+        $scope.barcode_field = $scope.item.barcode;
+        $scope.waste_selected = $scope.item.constituents[0].wasteType;
+      });
+    }
+    function init_css(){
+      document.getElementById("home_css").setAttribute("href","");
+    }
+    function getAllWastes(){
+      WastesService.wastes(function(response) {
+      $scope.wastes = response;
+    });
+    }
+    function updateChanges(){
+      //alert($scope.item_edited.image);
+      if($scope.curIndex === 0){
+        //Thi updates the item fields
+        $scope.item.name = $scope.name_field;
+        $scope.item.barcode = $scope.barcode_field;
+      }else{
+        //This updates the constituents fields
+        $scope.item.constituents[$scope.curIndex-1].name = $scope.name_field;
+      }
+    }
+    $scope.submitForm = function (event){
+        event.preventDefault;
+        updateChanges();
+        TransverseService.unset_img($scope.item);
+        //Set images constituents
+        if($scope.item.constituents && $scope.item.constituents.length >0)
+        {
+          for(var j=0; j<$scope.item.constituents.length; j++)
+          {
+            TransverseService.unset_img($scope.item.constituents[j]);
+          }
+        }
+        UpdateItemService.update({id:$scope.id}, $scope.item);
+        $route.reload();
+    }
   }])
 
   .controller('HeaderController', ['$scope', '$location', function($scope, $location) {

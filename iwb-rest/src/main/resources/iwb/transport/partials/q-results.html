@@ -8,10 +8,10 @@
     </div>
     <div class="inline-header search-bloc">
         <div class="indiv container-fluid">
-            <div class="input-group input-group-lg">
-                <input type="text" class="form-control no-radius" placeholder="Search" name="query" id="query" ng-model="queryString">
+             <div class="input-group input-group-sm">
+                <input type="text" class="form-control no-radius-input" placeholder="Search" name="query" id="query" ng-model="queryString">
                 <div class="input-group-btn">
-                    <button class="btn btn-default no-radius-btn" type="submit" ng-click="submitForm($event)"><i class="fa fa-search" ></i></button>
+                    <button class="btn btn-default btn-sm no-radius-btn" type="submit" ng-click="submitForm($event)"><i class="fa fa-search" ></i></button>
                 </div>
             </div>
         </div>
@@ -27,16 +27,16 @@
         <div class="row">
           <div class="results">
             <ul class="list-group">
-              <li class="list-group-item" ng-repeat="result in results">
-                <div class="container-fluid" id="{{$index}}">
+              <li class="list-group-item" ng-repeat="result in results" ng-click="updateDesc($index)">
+                <div class="container-fluid" >
                   <div class="col-lg-2 img-item" >
                       <a style="color:black;" >
-                        <img ng-src="{{result.image}}" alt="product-image" class="{{$index}}" ng-click="updateDesc($event)">
+                        <img ng-src="{{result.image}}" alt="product-image" ng-click="updateDesc($index)">
                       </a>
                   </div>
                   <div class="col-lg-9">
                     <p>
-                      <a href="#" style="color:black;">
+                      <a href="" style="color:black;" ng-click="gtItem($event,$index)">
                           <b>{{result.name | uppercase}}</b>
                       </a>
                       <br>
