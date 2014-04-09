@@ -6,7 +6,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Stylish Portfolio Template for Bootstrap</title>
+  <title>iwb</title>
   <link href="lib/bootstrap/css/bootstrap.css" rel="stylesheet">
   <link href="css/personalized.css" rel="stylesheet" id="home_css">
   <link href="css/stylish-portfolio.css" rel="stylesheet">
@@ -14,8 +14,6 @@
   <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body ng-view>
-
-
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   -->
@@ -36,36 +34,32 @@
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
   <script>
-    $("#menu-close").click(function(e) {
+  $("#menu-close").click(function(e) {
         e.preventDefault();
         $("#sidebar-wrapper").toggleClass("active");
     });
-    </script>
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-    </script>
-    <script>
-    $(function() {
-        $('.scroll').click(function() {
-            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+  $("#menu-toggle").click(function(e) {
+      e.preventDefault();
+      $("#sidebar-wrapper").toggleClass("active");
+  });
+  $(function() {
+      $('.scroll').click(function() {
+          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
 
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 1000);
-                    return false;
-                }
-            }
-        });
-        $('.pull-down').each(function() {
-            $(this).css('margin-top', $(this).parent().height()-$(this).height())
-        });
-    });
-    </script>
+              var target = $(this.hash);
+              target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+              if (target.length) {
+                  $('html,body').animate({
+                      scrollTop: target.offset().top
+                  }, 1000);
+                  return false;
+              }
+          }
+      });
+      $('.pull-down').each(function() {
+          $(this).css('margin-top', $(this).parent().height()-$(this).height())
+      });
+  });
+  </script>
 </body>
 </html>
