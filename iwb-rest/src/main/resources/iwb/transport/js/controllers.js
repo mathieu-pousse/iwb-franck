@@ -12,6 +12,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration'])
   controller('HomeController', ['$scope' ,'QueryItemService','CommonFunctionsService','$location',  
     function($scope, QueryItemService, CommonFunctionsService, $location) {
       CommonFunctionsService.init_home_css();
+      $scope.name = 'HomeController';
       $scope.query = '';
       $scope.list = [];
       $scope.submitForm = function (e){
@@ -59,27 +60,18 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration'])
           $scope.results = response;
           for (var i=0;i<$scope.results.length;i++)
           { 
-            set_img($scope.results[i]);
+            CommonFunctionsService.set_img($scope.results[i],BASE_PATH_IMG);
             if($scope.results[i].constituents && $scope.results[i].constituents.length >0)
             {
               for(var j=0; j<$scope.results[i].constituents.length; j++)
               {
-                set_img($scope.results[i].constituents[j]);
+                CommonFunctionsService.set_img($scope.results[i].constituents[j],BASE_PATH_IMG);
               }
             }
           }
           $scope.objectDetail = $scope.results[0];
         });
       }
-      function set_img(item){
-        var name_img = item.image;
-        if(name_img && name_img.length >0){
-          item.image = BASE_PATH_IMG+name_img;
-        }else{
-          item.image = BASE_PATH_IMG+'imageNotFound.jpg';
-        }
-      }
-      
 
   }])
 
