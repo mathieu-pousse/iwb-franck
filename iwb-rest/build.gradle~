@@ -30,3 +30,9 @@ dependencies {
     testCompile "io.restx:restx-jongo-specs-tests:${restVersion}"
 
 }
+
+<dependency>
+    <groupId></groupId>
+    <artifactId></artifactId>
+    <version></version>
+</dependency>
