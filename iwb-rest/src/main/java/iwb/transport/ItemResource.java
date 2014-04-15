@@ -73,6 +73,7 @@ public class ItemResource {
     public Iterable<ConstituentTrash> findTrashesComponents(String oid){
     	return itemService.getConstituentTrash(oid);
     }
+    
 
 
 }

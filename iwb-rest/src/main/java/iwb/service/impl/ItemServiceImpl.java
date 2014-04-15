@@ -196,7 +196,7 @@ public class ItemServiceImpl implements ItemService{
 		return list;
 	}
     
-  
+    
 	public Optional<Item> getItemAndTrash(String oid, Optional<String> recycling, Optional<String> nb, Optional<GeoPoint2D> location) {
 		Optional<Item> item = itemDAO.getItemById(oid);
 		

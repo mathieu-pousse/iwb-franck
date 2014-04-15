@@ -2,6 +2,7 @@ package iwb.service.helpers;
 
 import iwb.bo.Trash;
 import iwb.bo.TrashCustom;
+import iwb.bo.Waste;
 import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.TrashDAO;
 import iwb.repository.WasteDAO;
@@ -21,7 +22,7 @@ public class TrashHelper {
 		Iterable<Trash> trashes = trashDAO.getTrashesByWasteTypeLimitless(acronym);
 		//calculate the distance for all the possible trashes
 		for(Trash trash : trashes){
-			if(trash.getColor() != null){
+			if(trash.getType().equals("HOM") ){
 				trash.setDistanceTo(0);
 				trashList.add(trash);
 				continue;
@@ -42,4 +43,5 @@ public class TrashHelper {
 		}
 		return trashCustomList;
 	}
+	
 }

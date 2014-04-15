@@ -2,10 +2,12 @@ package iwb.transport;
 
 
 import com.google.common.base.Optional;
+
+import iwb.bo.TrashCustom;
 import iwb.bo.Waste;
+import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.WasteService;
 import restx.annotations.*;
-import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
 
@@ -34,6 +36,13 @@ public class WasteResource {
     public Optional<Waste> findWasteById(String oid){
         return wasteService.getWasteById(oid);
     }
+    
+    @GET("/wastes/{oid}/recylcing")
+    public Iterable<TrashCustom> findWasteById(String oid, Optional<String> nb){
+    	Optional<GeoPoint2D> location = Optional.fromNullable(new GeoPoint2D(48.111933799999996,-1.6838946999999962));
+        return wasteService.getMatchingTrashesHome(oid, nb,location);
+    }
+    
 
     @POST("/wastes")
     public Waste createWaste(Waste waste){

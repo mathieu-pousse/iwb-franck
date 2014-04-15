@@ -14,6 +14,8 @@ public class TrashCustom {
     private String name;
     private String address;
     private double distanceTo;
+    private String longitude;
+    private String latitude;
     private Link link;
     
     public TrashCustom(){}
@@ -25,6 +27,9 @@ public class TrashCustom {
     	this.name = trash.getName();
     	this.address = trash.getAddress();
     	this.distanceTo = trash.getDistanceTo();
+    	if(trash.getLatitude() !=null && trash.getLongitude() != null){
+    		setCoords(trash.getLatitude(), trash.getLongitude());
+    	}
     }
 
     public String getId() {
@@ -81,6 +86,27 @@ public class TrashCustom {
 
 	public void setDistanceTo(double distanceTo) {
 		this.distanceTo = distanceTo;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	
+	public void setCoords(String latitude, String longitude){
+		this.latitude = latitude;
+		this.longitude = longitude;
 	}
     
     

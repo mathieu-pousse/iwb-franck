@@ -63,7 +63,7 @@ public class TrashDAOImpl implements TrashDAO{
 		if(acr == null|| acr.isEmpty()){
 			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").as(Trash.class);
 		}else{
-			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).as(Trash.class);
+			return trashes.get().find("{type: { $ne: 'decheterie'}, wastesHandled: { $all: [#] }}",acr).as(Trash.class);
 		}
 	}
 	

@@ -26,12 +26,11 @@ angular.module('iwbApp.services', ['ngResource']).
 
 	)})
 
-   	.service('WastesService', function($resource){
+   .service('WastesService', function($resource){
    	return $resource('/api/wastes', 
 		{}, 
 		{ 'wastes': {method: 'GET', isArray: true}})
    })
-
 
 
     /*
