@@ -264,4 +264,36 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
   }
   }])
 
+  /*
+    controller: HomeController
+    gets the query string inside the text fields, sets the url and redirect to the correct view
+  */
+  .controller('EditItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', '$routeParams', 'BASE_PATH_IMG',
+    function($scope, ItemService, CommonFunctionsService, $location, $routeParams, BASE_PATH_IMG) {
+      CommonFunctionsService.unset_home_css();
+
+      $scope.item = {};
+      $scope.id = $routeParams.id;
+
+      getItem();
+      function getItem(){
+        ItemService.get({id:$scope.id},function(response) {
+          console.log(response)
+          $scope.item = response;;
+          CommonFunctionsService.set_img($scope.item,BASE_PATH_IMG);
+          //Set images constituents
+          if($scope.item.constituents && $scope.item.constituents.length >0)
+          {
+            for(var j=0; j<$scope.item.constituents.length; j++)
+            {
+              CommonFunctionsService.set_img($scope.item.constituents[j],BASE_PATH_IMG);
+            }
+          }
+
+        });
+      }
+      
+  }])
+
+
 ;

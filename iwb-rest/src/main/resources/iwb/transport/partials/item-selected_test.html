@@ -1,4 +1,4 @@
-<div class="container-fluid si-t">
+<div class="container-fluid ei">
   <!-- Header -->
   <div class="navbar navbar-fixed-top" role="navigation">
     <div class="inline-header logo">
@@ -8,7 +8,7 @@
     </div>
     <div class="inline-header search-bloc">
         <div class="indiv container-fluid">
-            <div class="input-group input-group-sm">
+             <div class="input-group input-group-sm">
                 <input type="text" class="form-control no-radius-input" placeholder="Search" name="query" id="query" ng-model="queryString">
                 <div class="input-group-btn">
                     <button class="btn btn-default btn-sm no-radius-btn" type="submit" ng-click="submitForm($event)"><i class="fa fa-search" ></i></button>
@@ -23,82 +23,89 @@
     </div>
     </div> <!-- Header end-->
 
-    <div class="container-fluid bslct-new">
-	    <div class="row itm-row">
-	  		<div class="container">
-	  			<div class="inline itm-img-set">
-	  				<div class="img-vw">
-	  					<img ng-src="{{curImage}}">
-	  				</div>
-	  				<div class="slide">
-	  					<div class="inner-slide">
-	  						<div class="inline left-click" ng-disabled="currentPage == 0" ng-click="leftClick()">
-	  							<i class="fa fa-arrow-circle-left fa-2x"></i>
-	  						</div>
-	  						<div class="inline middle">
-	  							<div class="inner-pagin">
-	  								<ul class="list-inline">
-	  									<li ng-repeat="thumb in thumbnailDataResized">
-								            <img ng-src="{{thumb.image}}"  ng-click="editform(thumb.position)">
-								        </li>
-	  								</ul>
-	  							</div>
-	  						</div>
-	  						<div class="inline right-click" ng-click="righClick()">
-	  							<i class="fa fa-arrow-circle-right fa-2x"></i>
-	  						</div>
-	  					</div>
-	  				</div>
-	  			</div>
-	  			<div class="inline itm-frm-set">
-	  			<!--
-		  			<h1>{{name_field | uppercase}}</h1>
-		  			<p><span class="fl">Codebarre:</span> {{item.barcode}}</p>
-		  			<p><span class="fl">Nombre de Composants:</span> {{item.constituents.length || 0}}</p>
-		  			<p><span class="fl">Fabriquant:</span>  {{item.manufacturer || '--'}}</p>
-		  			<p><span class="fl">Dernière modification:</span> 02/02/2014</p>
-		  			<p><span class="fl">Informations recyclage du produit:</span><b></b> : 02/02/2014</p>
-		  			<div class="edit-btn">
-		  				<button class="btn btn-default edit">edit form</button>
-
-		  			</div>
-		  			-->
-
-		  			<div class="form-const">
-                    <form role="form">
+    <div class="container-fluid bslct">
+        <div class="container central">
+            <div class="jumb-custom">
+                <div class="block">
+                    <div class="inline col-form">
+                    <form class="form-horizontal" role="form">
                       <div class="form-group">
-                        <label for="itemName">Nom produit</label>
-                        <input type="text" class="form-control no-radius" id="itemName" placeholder="NUTELLA" ng-model="name_field">
+                        <label for="itemName" class="col-sm-2 control-label">Nom produit</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="itemName" placeholder="Nom produit" ng-model="item.name">
+                        </div>
                       </div>
                       <div class="form-group">
-                        <label for="itemBarCode">Code barre</label>
-                        <input type="text" class="form-control no-radius" id="itemBarCode" placeholder="15778906567" ng-disabled="isConstituent" ng-model="barcode_field">
+                        <label for="itemBarcode" class="col-sm-2 control-label">Codebarre</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="itemBarcode" placeholder="Codebarre" ng-model="item.barcode">
+                        </div>
                       </div>
                       <div class="form-group">
-                        <label for="imageUrl">Changer l'image</label>
-                        <!--<input type="file" ng-model="file_data" id="imageUrl">-->
-                        <input type="file" ng-file-select="onFileSelect($files)" ng-model="file_field">
+                        <label for="itemDescription"class="col-sm-2 control-label">Description</label>
+                        <div class="col-sm-10">
+                          <textarea class="form-control" rows="3" id="itemDescription"></textarea>
+                        </div>
                       </div>
                       <div class="form-group">
-                        <select class="form-control" id="myselection" ng-model="waste_selected" ng-options="w.name for w in wastes"></select>
+                          <label for="" class="col-sm-2 control-label">Type de déchet</label>
+                          <div class="col-sm-10">
+                            <select class="form-control" id="selectField" >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
                       </div>
-                      <button type="submit" class="btn btn-default pull-right" ng-click="submitForm($event)">Submit</button>
+                      
+                      
+                      <div class="form-group action">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button class="btn btn-default">Réinitialiser</button>
+                            <button class="btn btn-primary">Sauvegarder</button>
+                            <button class="btn btn-success pull-right"><i class="fa fa-plus-circle"> Ajouter un composant</i></button>
+                        </div>
+                      </div>
                     </form>
-                	</div>
-	  			</div>
-	  		</div>
-	    </div>
-	    <div class="row map-row">
-	    	<div class="container">
-	    	<div class="map">
-	    		<google-map center="map.center" zoom="map.zoom" draggable="true">
-	    			<marker coords="marker" ng-repeat="marker in markers"></marker>
-	    		</google-map>
-
-	    	</div>
-	    	</div>
-	    </div>
-
+                </div>
+                <div class="inline col-img">
+                    <div class="img-itm-form"><img ng-src="{{item.image}}" class="img-rounded"></div>
+                    <button class="btn btn-default"><i class="fa fa-upload"> Uploader l'image</i></button>
+                </div>
+                </div>
+            </div>
+            <div class="jumb-cmp-custom" ng-repeat="constituent in item.constituents">
+                <div class="container">
+                    <div class="inline col-cmp-img">
+                        <img ng-src="{{constituent.image}}" class="img-rounded">
+                    </div>
+                    <div class="inline col-cmp-form">
+                        <form role="form">
+                          <div class="form-group">
+                            <label>Nom du composant</label>
+                            <input type="text" class="form-control" placeholder="Nom du composant" ng-model="constituent.name">
+                          </div>
+                          <div class="form-group">
+                            <label for="exampleInputPassword1">Type de déchet composant</label>
+                            <select class="form-control" id="exampleInputPassword1" >
+                              <option>1</option>
+                              <option>2</option>
+                              <option>3</option>
+                              <option>4</option>
+                              <option>5</option>
+                            </select>
+                          </div>
+                          <div class="form-group action-cmp">
+                            <button class="btn btn-primary"><i class="fa fa-upload"> Changer l'image</i></button>
+                            <button class="btn btn-success pull-right"><i class="fa fa-plus-circle"> Nouveau composant</i></button>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     
 
