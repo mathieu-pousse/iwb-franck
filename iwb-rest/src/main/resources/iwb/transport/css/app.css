@@ -468,10 +468,12 @@ body {
 
 .ei .container.central .jumb-custom .col-form{
 	width: 65%;
+	min-width: 683px;
 	height: 100%;
 }
 .ei .container.central .jumb-custom .block .col-form form{
 	height: 400px;
+	min-width: 683px;
 }
 .ei .container.central .jumb-custom .col-img{
 	min-width: 300px !important;
@@ -533,4 +535,24 @@ body {
 
 .ei .form-group.action-cmp{
 	margin-top: 72px;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 999px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
 }

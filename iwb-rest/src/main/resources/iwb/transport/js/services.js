@@ -64,25 +64,43 @@ angular.module('iwbApp.services', ['ngResource']).
    		//Set the image base path url
    		"set_img": function(item, BASE_PATH_IMG){
    			var name_img = item.image;
-			if(name_img && name_img.length >0){
-				item.image = BASE_PATH_IMG+name_img;
-			}else{
-				item.image = BASE_PATH_IMG+'imageNotFound.jpg';
-			}
+   			if(name_img && name_img.length >0){
+   				item.image = BASE_PATH_IMG+name_img;
+   			}else{
+   				item.image = BASE_PATH_IMG+'imageNotFound.jpg';
+   			}
 	   	},
 	   	//Unset the image base path url before commit changes
 	   	"unset_img": function(item){
 	   		var fullpath = item.image;
    			var name_img = fullpath.replace(/^.*[\\\/]/, '');
-			if(name_img !== 'imageNotFound.jpg'){
-				item.image = name_img;
-			}else{
-				item.image = null;
-			}
-         if(item.trashes){
-            item.trashes = null;
+   			if(name_img !== 'imageNotFound.jpg'){
+   				item.image = name_img;
+   			}else{
+   				item.image = null;
+   			}
+            if(item.trashes){
+               item.trashes = null;
+            }
+	   	},
+
+         "removeLinks": function(item){
+            item.link = null;
+            item.wasteType.link = null;
+            var fullpath = item.image;
+            var nameImg = fullpath.replace(/^.*[\\\/]/, '');
+            item.image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
+            if(item.constituents && item.constituents.length >0){
+               for(var i=0, len=item.constituents.length; i < len; i++){
+                  item.constituents[i].wasteType.link = null;
+                  fullpath = item.constituents[i].image;
+                  nameImg = fullpath.replace(/^.*[\\\/]/, '');
+                  item.constituents[i].image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
+               }
+            }
          }
-	   	}
+
+
    	}
    })
 
