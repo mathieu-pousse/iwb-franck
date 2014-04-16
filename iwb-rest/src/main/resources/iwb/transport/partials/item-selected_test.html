@@ -76,7 +76,8 @@
                       </div>
                       <div class="form-group">
                         <label for="imageUrl">Changer l'image</label>
-                        <input type="file" id="imageUrl">
+                        <!--<input type="file" ng-model="file_data" id="imageUrl">-->
+                        <input type="file" ng-file-select="onFileSelect($files)" ng-model="file_field">
                       </div>
                       <div class="form-group">
                         <select class="form-control" id="myselection" ng-model="waste_selected" ng-options="w.name for w in wastes"></select>

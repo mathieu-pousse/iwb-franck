@@ -7,6 +7,8 @@ import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import org.apache.commons.io.FilenameUtils;
+
 import iwb.transverse.PartsReader.FilePart;
 import iwb.transverse.PartsReader.Part;
 import iwb.transverse.PartsReader.PartListener;
@@ -20,12 +22,21 @@ import restx.StdRoute;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+
 @Component
 public class FileUploadRoute extends StdRoute {
+	
+	
+	private String fileNameCreated;
 	
     public FileUploadRoute() {
         super("upload", new StdRestxRequestMatcher("POST", "/upload"));
     }
+    
 
     @Override
     public void handle(RestxRequestMatch match, RestxRequest req, RestxResponse resp, RestxContext ctx) throws IOException {
@@ -37,7 +48,10 @@ public class FileUploadRoute extends StdRoute {
                     filePart.readStreamTo(outputStream);
                     String filename = filePart.getFilename();
                     
-                    FileOutputStream fos = new FileOutputStream (new File("/home/franck/Desktop/"+filename)); 
+                    String ext = FilenameUtils.getExtension(filename);
+                    String timestampName = new SimpleDateFormat("yyyyMMddhhmmssS'."+ext+"'").format(new Date());
+                    fileNameCreated =  timestampName;
+                    FileOutputStream fos = new FileOutputStream (new File("/home/franck/Desktop/workspace/iwb/iwb-rest/src/main/resources/iwb/transport/img/iwb-imgs/"+timestampName)); 
                     try {
                          outputStream.writeTo(fos);
                     }catch ( IOException e ) {
@@ -49,6 +63,7 @@ public class FileUploadRoute extends StdRoute {
             }
         }); 
         resp.setStatus(HttpStatus.OK);
+        resp.getWriter().write(fileNameCreated);
     }
 
 	

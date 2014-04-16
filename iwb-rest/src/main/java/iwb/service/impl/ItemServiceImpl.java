@@ -202,22 +202,23 @@ public class ItemServiceImpl implements ItemService{
 		
 		if(!recycling.isPresent())
 			return item;
+		int toIndex = 1;
+		try{
+			toIndex = Integer.parseInt(nb.get());
+		}catch(NumberFormatException nfe){}
 		
 		if(location.isPresent()){
 			if(item.get().getWasteType() != null){
 				String wasteId = item.get().getWasteType().getId();
-				int toIndex = 1;
-				try{
-					toIndex = Integer.parseInt(nb.get());
-				}catch(NumberFormatException nfe){}
+				
 				List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), toIndex);
 				item.get().setTrashes(tc);
 			}
 			else{
 				for(Constituent cons : item.get().getConstituents()){
 					String wasteId = cons.getWasteType().getId();
-					List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), 1);
-					cons.setTrash(tc.get(0));
+					List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), toIndex);
+					cons.setTrashes(tc);
 				}
 			}
 		}

@@ -18,10 +18,18 @@ angular.module('iwbApp.services', ['ngResource']).
 
 
    .service('ItemService', function($resource){
-   	return $resource('/api/items/:id', {}, 
+      return $resource('/api/items/:id', {}, 
+      {
+         get: {method: 'GET', isArray: false},
+         update: { method: 'PUT'}
+      }
+
+   )})
+
+   .service('ItemServiceTrashes', function($resource){
+   	return $resource('/api/items/:id?recycling=true&nb=:nb_trash', {}, 
 		{
-			get: {method: 'GET', isArray: false},
-			update: { method: 'PUT'}
+			get: {method: 'GET', isArray: false}
 		}
 
 	)})
@@ -30,6 +38,12 @@ angular.module('iwbApp.services', ['ngResource']).
    	return $resource('/api/wastes', 
 		{}, 
 		{ 'wastes': {method: 'GET', isArray: true}})
+   })
+
+   .service('WastesServiceRecyling', function($resource){
+      return $resource('/api/wastes/:id/recycling?nb=:nb_trash', 
+      {}, 
+      { 'getMatchingTrashes': {method: 'GET', isArray: true}})
    })
 
 
@@ -65,6 +79,9 @@ angular.module('iwbApp.services', ['ngResource']).
 			}else{
 				item.image = null;
 			}
+         if(item.trashes){
+            item.trashes = null;
+         }
 	   	}
    	}
    })

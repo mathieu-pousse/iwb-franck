@@ -2,7 +2,7 @@
 
 /* CONTROLLERS MODULE: containts controllers used in the application */
 
-angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 'google-maps']).
+angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 'google-maps', 'angularFileUpload']).
 
 
   /*
@@ -80,8 +80,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: SelectedItemController
     get the id parameter from the url, use the restx API retreive te matching item and update item using PUT query when submit
   */
-  .controller('SelectedItemController', ['$scope','$routeParams','ItemService','CommonFunctionsService','WastesService','BASE_PATH_IMG','$route',  
-    function($scope,$routeParams, ItemService, CommonFunctionsService, WastesService, BASE_PATH_IMG, $route) {
+  .controller('SelectedItemController', ['$scope','$routeParams','ItemService','ItemServiceTrashes' ,'CommonFunctionsService','WastesService', 'WastesServiceRecyling','BASE_PATH_IMG','$route','$upload',  
+    function($scope,$routeParams, ItemService, ItemServiceTrashes, CommonFunctionsService, WastesService, WastesServiceRecyling, BASE_PATH_IMG, $route, $upload) {
     //init css
     CommonFunctionsService.unset_home_css();
     //gets the item id from the url
@@ -93,11 +93,13 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     $scope.isConstituent = false;
     $scope.curIndex = 0;
     $scope.curImage;
+    $scope.markers = [];
     //properties bind with form fields
     $scope.name_field = '';
     $scope.barcode_field ='';
     $scope.image_field = '';
     $scope.waste_type_field = '';
+    $scope.file_field = '';
     //retreive informations to print using API
     getItem();
     getAllWastes();
@@ -140,15 +142,6 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         },
         zoom: 16
     };
-    
-    $scope.markers = [];
-    $scope.markers.push({latitude: 48.1123817155356,longitude: -1.68449063596917});
-    $scope.markers.push({latitude: 48.1122986451369,longitude: -1.68560023023808});
-    $scope.markers.push({latitude: 48.1105959360598,longitude: -1.68513283285159});
-    $scope.markers.push({latitude: 48.113112849899,longitude: -1.68548769583337});
-
-
-
 
     /*Scope functions*/
     $scope.editform = function (index){
@@ -162,6 +155,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $scope.isConstituent = true;
         $scope.curImage = $scope.item.constituents[index-1].image;
         $scope.name_field = $scope.item.constituents[index-1].name;
+        editMapMarkers($scope.item.constituents[index-1].trashes);
       }  
     }
     $scope.submitForm = function (event){
@@ -182,17 +176,21 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
 
     /*Other function*/
     function getItem(){
-      ItemService.get({id:$scope.id},function(response) {
+      ItemServiceTrashes.get({id:$scope.id,nb_trash:3},function(response) {
         $scope.item = response;
         CommonFunctionsService.set_img($scope.item,BASE_PATH_IMG);
         //Set images constituents
         if($scope.item.constituents && $scope.item.constituents.length >0)
         {
+          editMapMarkers($scope.item.constituents[0].trashes);
           for(var j=0; j<$scope.item.constituents.length; j++)
           {
             CommonFunctionsService.set_img($scope.item.constituents[j],BASE_PATH_IMG);
           }
+        }else{
+          editMapMarkers($scope.item.trashes);
         }
+        console.log($scope.markers)
         //Init Thumbnails
         initDataThumbnails();
         //Init form fields
@@ -200,6 +198,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $scope.name_field = $scope.item.name;
         $scope.barcode_field = $scope.item.barcode;
         $scope.waste_selected = ($scope.item.constituents) ? $scope.item.constituents[0].wasteType : {};
+
       });
     }
     function getAllWastes(){
@@ -216,6 +215,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         //This updates the constituents fields
         $scope.item.constituents[$scope.curIndex-1].name = $scope.name_field;
       }
+      $scope.file_field = '';
     }
     function initDataThumbnails(){
       var thumbObject = {'position': 0, 'image': $scope.item.image};
@@ -228,6 +228,40 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       }
       $scope.thumbnailDataResized = $scope.thumbnailData.slice(0,$scope.pageSize);
     }
+    function editMapMarkers(trashes){
+      $scope.markers = [];
+      for (var i = 1; i < trashes.length; i++) {
+        $scope.markers.push(
+          {
+            latitude: parseFloat(trashes[i].latitude),
+            longitude: parseFloat(trashes[i].longitude)
+          }
+        );
+      };
+    }
+
+    $scope.onFileSelect = function($files) {
+    //$files: an array of files selected, each file has name, size, and type.
+    for (var i = 0; i < $files.length; i++) {
+      var timeStamp = new Date().getTime();
+      var $file = $files[i];
+      $upload.upload({
+        url: '/api/upload',
+        method: 'POST',
+        data: {path: 'BASE_PATH_IMG'},
+        file: $file,
+        progress: function(e){}
+      }).then(function(data, status, headers, config) {
+        // file is uploaded successfully
+        if($scope.curIndex === 0){
+          $scope.item.image = BASE_PATH_IMG+data.data;
+        }else{
+          $scope.item.constituents[index-1].image = BASE_PATH_IMG+data.data;
+        }  
+        });
+        console.log($scope.item) 
+    }
+  }
   }])
 
 ;

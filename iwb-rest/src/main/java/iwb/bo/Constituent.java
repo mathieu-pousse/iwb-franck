@@ -1,6 +1,9 @@
 package iwb.bo;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonInclude;
+
 
 
 /**
@@ -12,15 +15,15 @@ public class Constituent {
     private String name;
     private String image;
     private Waste wasteType;
-    private TrashCustom trash;
+    private List<TrashCustom> trashes;
     private Link link;
     
     public Constituent(){}
     
-    public Constituent(String name, Waste waste, TrashCustom trash){
+    public Constituent(String name, Waste waste, List<TrashCustom> trashes){
     	this.name = name;
     	this.wasteType = waste;
-    	this.trash = trash;
+    	this.trashes = trashes;
     }
 
     public String getName() {
@@ -46,13 +49,13 @@ public class Constituent {
     public void setLink(Link link) {
         this.link = link;
     }
-
-	public TrashCustom getTrash() {
-		return trash;
+	
+	public List<TrashCustom> getTrashes() {
+		return trashes;
 	}
 
-	public void setTrash(TrashCustom trash) {
-		this.trash = trash;
+	public void setTrashes(List<TrashCustom> trashes) {
+		this.trashes = trashes;
 	}
 
 	public String getImage() {
