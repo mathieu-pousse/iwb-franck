@@ -21,7 +21,9 @@ angular.module('iwbApp.services', ['ngResource']).
       return $resource('/api/items/:id', {}, 
       {
          get: {method: 'GET', isArray: false},
-         update: { method: 'PUT'}
+         update: { method: 'PUT'},
+         post: {method: 'POST'},
+         deleteItem: {method: 'DELETE'}
       }
 
    )})
@@ -86,17 +88,21 @@ angular.module('iwbApp.services', ['ngResource']).
 
          "removeLinks": function(item){
             item.link = null;
-            item.wasteType.link = null;
+            
             var fullpath = item.image;
             var nameImg = fullpath.replace(/^.*[\\\/]/, '');
             item.image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
             if(item.constituents && item.constituents.length >0){
                for(var i=0, len=item.constituents.length; i < len; i++){
-                  item.constituents[i].wasteType.link = null;
+                  if(typeof item.constituents[i].wasteType !== 'undefined'){
+                     if(typeof item.constituents[i].wasteType.link !== 'undefined'){item.constituents[i].wasteType.link = null;}
+                  }
                   fullpath = item.constituents[i].image;
                   nameImg = fullpath.replace(/^.*[\\\/]/, '');
                   item.constituents[i].image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
                }
+            }else if(typeof item.wasteType !== 'undefined'){
+               if(typeof item.wasteType.link !== 'undefined'){item.wasteType.link = null;}
             }
          }
 

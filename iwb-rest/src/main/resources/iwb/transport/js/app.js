@@ -12,6 +12,7 @@ angular.module('iwbApp', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/home', {templateUrl: 'partials/home.html' , controller: 'HomeController'});
   $routeProvider.when('/search', {templateUrl: 'partials/q-results.html', controller: 'SearchItemController'});
-  $routeProvider.when('/items/:id', {templateUrl: 'partials/item-selected_test.html', controller: 'EditItemController'});
+  $routeProvider.when('/items/:id', {templateUrl: 'partials/item-selected.html', controller: 'EditItemController'});
+  $routeProvider.when('/items', {templateUrl: 'partials/new-item.html', controller: 'NewItemController'});
   $routeProvider.otherwise({redirectTo: '/home'});
 }]);
