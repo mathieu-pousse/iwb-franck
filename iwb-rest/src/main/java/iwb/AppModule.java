@@ -12,6 +12,8 @@ import javax.inject.Named;
 
 @Module
 public class AppModule {
+	
+
 
     public static User currentUser() {
         return (User) RestxSession.current().getPrincipal().get();
@@ -28,6 +30,7 @@ public class AppModule {
     public SignatureKey signatureKey() {
         return new SignatureKey("iwb fd66f4c9-2b76-4495-9d57-d0f92d3b02f6 -8512238729272782174 iwb".getBytes(Charsets.UTF_8));
     }
+    
     @Provides
     @Named("restx.admin.password")
     public String restxAdminPassword() {
@@ -38,11 +41,6 @@ public class AppModule {
     @Named("app.name")
     public String appName(){
         return "iwb";
-    }
-
-    @Provides @Named(MongoModule.MONGO_DB_NAME)
-    public String dbName() {
-        return "iwb-test";
     }
 
     @Provides
