@@ -8,6 +8,6 @@ import restx.factory.Component;
 public class ApplicationUIResource extends ResourcesRoute{
 	
 	public ApplicationUIResource() {
-		 super("ApplicationUIResource", "/ui", "iwb/transport", ImmutableMap.of("", "index.html"));
+		 super("ApplicationUIResource", "/ui", "ui", ImmutableMap.of("", "index.html"));
 	}
 }

@@ -1,18 +1,19 @@
 package iwb.transverse;
 
-import java.io.BufferedWriter;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-
-import org.apache.commons.io.FilenameUtils;
-
 import iwb.transverse.PartsReader.FilePart;
 import iwb.transverse.PartsReader.Part;
 import iwb.transverse.PartsReader.PartListener;
-import iwb.transverse.PartsReader.TextPart;
+import iwb.transverse.settings.SettingsInterface;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.apache.commons.io.FilenameUtils;
+
 import restx.RestxContext;
 import restx.RestxRequest;
 import restx.RestxRequestMatch;
@@ -22,19 +23,17 @@ import restx.StdRoute;
 import restx.factory.Component;
 import restx.http.HttpStatus;
 
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 
 @Component
 public class FileUploadRoute extends StdRoute {
 	
 	
 	private String fileNameCreated;
+	private String location;
 	
-    public FileUploadRoute() {
+    public FileUploadRoute(SettingsInterface settings) {
         super("upload", new StdRestxRequestMatcher("POST", "/upload"));
+        this.location = settings.imgLocation();
     }
     
 
@@ -51,7 +50,8 @@ public class FileUploadRoute extends StdRoute {
                     String ext = FilenameUtils.getExtension(filename);
                     String timestampName = new SimpleDateFormat("yyyyMMddhhmmssS'."+ext+"'").format(new Date());
                     fileNameCreated =  timestampName;
-                    FileOutputStream fos = new FileOutputStream (new File("/home/franck/Desktop/workspace/iwb/iwb-rest/src/main/resources/iwb/transport/img/iwb-imgs/"+timestampName)); 
+                    FileOutputStream fos = new FileOutputStream (new File(location+timestampName)); 
+                    
                     try {
                          outputStream.writeTo(fos);
                     }catch ( IOException e ) {

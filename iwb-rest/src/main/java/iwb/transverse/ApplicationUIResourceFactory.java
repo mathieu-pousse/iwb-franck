@@ -1,25 +1,16 @@
 package iwb.transverse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
-import com.google.common.base.CaseFormat;
-import com.google.common.base.Optional;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Lists;
-
-import restx.*;
-import restx.factory.Component;
-import restx.factory.Factory;
-import restx.factory.NamedComponent;
-import restx.jackson.FrontObjectMapperFactory;
-import restx.jackson.StdJsonProducerEntityRoute;
+import java.io.IOException;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
-import java.io.IOException;
-import java.util.List;
-import java.util.Set;
+import restx.RestxContext;
+import restx.RestxRequest;
+import restx.RestxRequestMatch;
+import restx.RestxResponse;
+import restx.StdRestxRequestMatcher;
+import restx.StdRoute;
+import restx.factory.Factory;
 
 public class ApplicationUIResourceFactory extends StdRoute{
 	private Factory factory;

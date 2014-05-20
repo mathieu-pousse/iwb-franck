@@ -143,13 +143,13 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.path("/search");
       }
 
-      $scope.uploadImage = function ($files, index){
+      $scope.uploadImage = function ($files, index, BASE_PATH_URL){
         //$files: an array of files selected, each file has name, size, and type.
         for (var i = 0; i < $files.length; i++) {
           var timeStamp = new Date().getTime();
           var $file = $files[i];
           $upload.upload({
-            url: '/api/upload',
+            url: BASE_PATH_URL+'/api/upload',
             method: 'POST',
             data: {path: 'BASE_PATH_IMG'},
             file: $file,
@@ -209,9 +209,9 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
 
       $scope.pushUpdateToServer = function(){
         CommonFunctionsService.removeLinks($scope.item);
-        //ItemService.post($scope.item);
         ItemService.post($scope.item,function(response) {
           var itemCreated = response;
+          CommonFunctionsService.set_img(itemCreated);
           $location.path("/items/"+itemCreated._id);
         });
       }
@@ -232,9 +232,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
             if(index === -1)
             {
               $scope.item.image = BASE_PATH_IMG+data.data;
-            }
-            else
-            {
+            }else{
               $scope.item.constituents[index].image = BASE_PATH_IMG+data.data;
             }  
           });

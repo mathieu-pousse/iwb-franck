@@ -2,23 +2,17 @@
 
 /* Services */
 
-angular.module('iwbApp.services', ['ngResource']).
+angular.module('iwbApp.services', ['ngResource', 'iwbApp.configuration']).
 
 
-
-   service('AngularIssues', function($resource){
-   	return $resource('/api/trashes/531f0f25e4b0f61504f12b1a', {}, {'query': {method: 'GET', isArray: false}})
-   })
-
-
-   .service('QueryItemService', function($resource){
-   	return $resource('/api/items?query=:q_string',{}, 
+   service('QueryItemService', function($resource, BASE_PATH_URL){
+   	return $resource(BASE_PATH_URL+'/api/items?query=:q_string',{}, 
 		   {'query': {method: 'GET', isArray: true}})
    })
 
 
-   .service('ItemService', function($resource){
-      return $resource('/api/items/:id', {}, 
+   .service('ItemService', function($resource, BASE_PATH_URL){
+      return $resource(BASE_PATH_URL+'/api/items/:id', {}, 
       {
          get: {method: 'GET', isArray: false},
          update: { method: 'PUT'},
@@ -28,29 +22,15 @@ angular.module('iwbApp.services', ['ngResource']).
 
    )})
 
-   .service('ItemServiceTrashes', function($resource){
-   	return $resource('/api/items/:id?recycling=true&nb=:nb_trash', {}, 
-		{
-			get: {method: 'GET', isArray: false}
-		}
-
-	)})
-
-   .service('WastesService', function($resource){
-   	return $resource('/api/wastes', 
+   .service('WastesService', function($resource, BASE_PATH_URL){
+   	return $resource(BASE_PATH_URL+'/api/wastes', 
 		{}, 
 		{ 'wastes': {method: 'GET', isArray: true}})
    })
 
-   .service('WastesServiceRecyling', function($resource){
-      return $resource('/api/wastes/:id/recycling?nb=:nb_trash', 
-      {}, 
-      { 'getMatchingTrashes': {method: 'GET', isArray: true}})
-   })
-
 
     /*
-   	  TransverseService
+   	TransverseService
       contains common functions used by a variety of controllers
     */
    .service('CommonFunctionsService',function(){
@@ -72,40 +52,31 @@ angular.module('iwbApp.services', ['ngResource']).
    				item.image = BASE_PATH_IMG+'imageNotFound.jpg';
    			}
 	   	},
-	   	//Unset the image base path url before commit changes
-	   	"unset_img": function(item){
-	   		var fullpath = item.image;
-   			var name_img = fullpath.replace(/^.*[\\\/]/, '');
-   			if(name_img !== 'imageNotFound.jpg'){
-   				item.image = name_img;
-   			}else{
-   				item.image = null;
-   			}
-            if(item.trashes){
-               item.trashes = null;
+	   	//Unset the image base path url
+	   	"unset_path": function(fullpathName){
+            var nameWihoutPath = fullpathName;
+            if(nameWihoutPath){
+               nameWihoutPath = nameWihoutPath.replace(/^.*[\\\/]/, '');
             }
+            return nameWihoutPath;
 	   	},
 
          "removeLinks": function(item){
             item.link = null;
-            
-            var fullpath = item.image;
-            var nameImg = fullpath.replace(/^.*[\\\/]/, '');
+            var nameImg = this.unset_path(item.image);
             item.image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
             if(item.constituents && item.constituents.length >0){
                for(var i=0, len=item.constituents.length; i < len; i++){
                   if(typeof item.constituents[i].wasteType !== 'undefined'){
                      if(typeof item.constituents[i].wasteType.link !== 'undefined'){item.constituents[i].wasteType.link = null;}
                   }
-                  fullpath = item.constituents[i].image;
-                  nameImg = fullpath.replace(/^.*[\\\/]/, '');
-                  item.constituents[i].image = (nameImg === 'imageNotFound.jpg') ? null : nameImg;
+                  var nameImgComponent = this.unset_path(item.constituents[i].image);
+                  item.constituents[i].image = (nameImgComponent === 'imageNotFound.jpg') ? null : nameImgComponent;
                }
             }else if(typeof item.wasteType !== 'undefined'){
                if(typeof item.wasteType.link !== 'undefined'){item.wasteType.link = null;}
             }
          }
-
 
    	}
    })
