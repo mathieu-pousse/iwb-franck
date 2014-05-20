@@ -80,8 +80,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: HomeController
     gets the query string inside the text fields, sets the url and redirect to the correct view
   */
-  .controller('EditItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', 'WastesService', '$routeParams', 'BASE_PATH_IMG', '$upload','$route',
-    function($scope, ItemService, CommonFunctionsService, $location, WastesService, $routeParams, BASE_PATH_IMG, $upload, $route) {
+  .controller('EditItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', 'WastesService', '$routeParams', 'BASE_PATH_IMG', '$upload','$route', 'BASE_PATH_URL',
+    function($scope, ItemService, CommonFunctionsService, $location, WastesService, $routeParams, BASE_PATH_IMG, $upload, $route, BASE_PATH_URL) {
       CommonFunctionsService.unset_home_css();
 
       $scope.item = {};
@@ -143,7 +143,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.path("/search");
       }
 
-      $scope.uploadImage = function ($files, index, BASE_PATH_URL){
+      $scope.uploadImage = function ($files, index){
         //$files: an array of files selected, each file has name, size, and type.
         for (var i = 0; i < $files.length; i++) {
           var timeStamp = new Date().getTime();
@@ -173,8 +173,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: HomeController
     gets the query string inside the text fields, sets the url and redirect to the correct view
   */
-  .controller('NewItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', 'WastesService', 'BASE_PATH_IMG', '$upload','$route',
-    function($scope, ItemService, CommonFunctionsService, $location, WastesService, BASE_PATH_IMG, $upload, $route) {
+  .controller('NewItemController', ['$scope' ,'ItemService', 'ItemServicePost','CommonFunctionsService','$location', 'WastesService', 'BASE_PATH_IMG', '$upload','$route','BASE_PATH_URL',
+    function($scope, ItemService, ItemServicePost, CommonFunctionsService, $location, WastesService, BASE_PATH_IMG, $upload, $route, BASE_PATH_URL) {
       CommonFunctionsService.unset_home_css();
 
       $scope.item = {'image': ''};
@@ -209,7 +209,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
 
       $scope.pushUpdateToServer = function(){
         CommonFunctionsService.removeLinks($scope.item);
-        ItemService.post($scope.item,function(response) {
+        ItemServicePost.post($scope.item,function(response) {
           var itemCreated = response;
           CommonFunctionsService.set_img(itemCreated);
           $location.path("/items/"+itemCreated._id);
@@ -238,10 +238,4 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
           });
         }
       }
-  }])
-
-
-
-
-
-;
+  }]);

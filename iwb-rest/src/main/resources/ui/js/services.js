@@ -16,11 +16,18 @@ angular.module('iwbApp.services', ['ngResource', 'iwbApp.configuration']).
       {
          get: {method: 'GET', isArray: false},
          update: { method: 'PUT'},
-         post: {method: 'POST'},
          deleteItem: {method: 'DELETE'}
       }
-
    )})
+
+   .service('ItemServicePost', function($resource, BASE_PATH_URL){
+      return $resource(BASE_PATH_URL+'/api/items', {}, 
+      {
+         post: {method: 'POST'}
+      }
+   )})
+
+
 
    .service('WastesService', function($resource, BASE_PATH_URL){
    	return $resource(BASE_PATH_URL+'/api/wastes', 

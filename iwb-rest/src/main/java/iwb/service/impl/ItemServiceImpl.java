@@ -237,7 +237,9 @@ public class ItemServiceImpl implements ItemService{
             item.getWasteType().setLink(new Link("alternate", "/wastes/"+item.getWasteType().getId()));
         }else if(item.getConstituents() != null){
             for(Constituent constituent : item.getConstituents()){
-                constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
+            	if(constituent.getWasteType() != null){
+            		constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
+            	}
             }
         }
         return item;
@@ -254,7 +256,9 @@ public class ItemServiceImpl implements ItemService{
             item.get().getWasteType().setLink(new Link("alternate", "/wastes/"+item.get().getWasteType().getId()));
         }else if(item.get().getConstituents() != null){
             for(Constituent constituent : item.get().getConstituents()){
-                constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
+            	if(constituent.getWasteType() != null){
+            		constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
+            	}
             }
         }
         return item;

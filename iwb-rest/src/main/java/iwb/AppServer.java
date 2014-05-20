@@ -1,6 +1,7 @@
 package iwb;
 
 import com.google.common.base.Optional;
+
 import restx.server.WebServer;
 import restx.server.JettyWebServer;
 
@@ -19,6 +20,7 @@ public class AppServer {
         int port = Integer.valueOf(Optional.fromNullable(System.getenv("PORT")).or("8083"));
         WebServer server = new JettyWebServer(WEB_INF_LOCATION, WEB_APP_LOCATION, port, "0.0.0.0");
         System.setProperty("restx.mode", "dev");
+        System.setProperty("iwb.context", "dev");
         server.startAndAwait();
     }
 }

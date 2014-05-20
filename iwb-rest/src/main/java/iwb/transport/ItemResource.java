@@ -8,6 +8,7 @@ import iwb.bo.Constituent;
 import iwb.bo.Trash;
 import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.impl.ItemServiceImpl;
+import iwb.transverse.settings.SettingsInterface;
 import restx.annotations.*;
 import restx.factory.Component;
 import restx.security.PermitAll;
@@ -17,6 +18,7 @@ import javax.inject.Named;
 @Component @RestxResource
 @PermitAll
 public class ItemResource {
+	
      private ItemServiceImpl itemService;
 
     public ItemResource(@Named("itemService") ItemServiceImpl itemServiceImpl){
@@ -74,6 +76,4 @@ public class ItemResource {
     	return itemService.getConstituentTrash(oid);
     }
     
-
-
 }

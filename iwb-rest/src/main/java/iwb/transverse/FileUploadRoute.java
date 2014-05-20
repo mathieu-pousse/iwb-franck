@@ -33,7 +33,7 @@ public class FileUploadRoute extends StdRoute {
 	
     public FileUploadRoute(SettingsInterface settings) {
         super("upload", new StdRestxRequestMatcher("POST", "/upload"));
-        this.location = settings.imgLocation();
+        this.location = settings.getImageLocation();
     }
     
 
