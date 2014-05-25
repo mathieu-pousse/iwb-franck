@@ -19,12 +19,11 @@ public class TrashBinFieldSetMapper implements FieldSetMapper<Trash>{
 		Trash trash =  new Trash();
 		trash.setType("BIN");
 		trash.setCityCode(fs.readString("codeinsee"));
-		trash.setAddress(fs.readString("localisati"));
+		trash.setAddress(fs.readString("adresse"));
 		String tmp = fs.readString("flux");
 		List<String> handledWastes = Arrays.asList(adaptWastesToModel(tmp.split("-")));
 		trash.setWastesHandled(handledWastes);
-		trash.setLongitude(fs.readString("longitude"));
-		trash.setLatitude(fs.readString("latitude"));
+		trash.setLocation(getLocationArray(fs));
 		return trash;
 	}
 	
@@ -35,6 +34,13 @@ public class TrashBinFieldSetMapper implements FieldSetMapper<Trash>{
 			}
 		}
 		return handledWastes;
+	}
+	
+	public Iterable<Double> getLocationArray(FieldSet fs){
+		String longitudeString = fs.readString("longitude");
+		String latitudeString = fs.readString("latitude");
+		Double[] location = {Double.parseDouble(longitudeString),Double.parseDouble(latitudeString)};
+		return Arrays.asList(location);
 	}
 
 }

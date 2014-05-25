@@ -21,15 +21,8 @@ public class Trash {
     private String cityCode;
     private String address;
     private Iterable<String> wastesHandled;
-    private String longitude;
-    private String latitude;
+    private Iterable<Double>  location;
     
-	public String getIdPav() {
-		return pavID;
-	}
-	public void setId(String pavID) {
-		this.pavID = pavID;
-	}
 	public String getType() {
 		return type;
 	}
@@ -66,17 +59,18 @@ public class Trash {
 	public void setWastesHandled(Iterable<String> wastesHandled) {
 		this.wastesHandled = wastesHandled;
 	}
-	public String getLongitude() {
-		return longitude;
+	public String getPavID() {
+		return pavID;
 	}
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
+	public void setPavID(String pavID) {
+		this.pavID = pavID;
 	}
-	public String getLatitude() {
-		return latitude;
+	public Iterable<Double> getLocation() {
+		return location;
 	}
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
+	public void setLocation(Iterable<Double> location) {
+		this.location = location;
 	}	
+	
 	
 }
