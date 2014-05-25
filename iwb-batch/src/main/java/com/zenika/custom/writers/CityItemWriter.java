@@ -21,11 +21,8 @@ public class CityItemWriter implements ItemWriter<City>{
 	}
 	
 	public void write(List<? extends City> items) throws Exception {
-		int i = 0;
 		for(City city : items){
 			mongoOperation.save(city, "cities");
-			i++;
-			System.out.println("city "+i+" created");
 		}
 		
 	}

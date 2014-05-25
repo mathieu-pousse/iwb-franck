@@ -12,5 +12,5 @@ public interface CityDAO {
     public Optional<City> getCityById(String oid);
     public Iterable<City> getCities();
     public Iterable<City> getCityByName(String name);
-
+    
 }

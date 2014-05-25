@@ -3,34 +3,38 @@ package com.zenika.bo;
 
 public class Trash {
 	
-	private String id;
+	/**
+	 * Identifiant du point d'apport volontaire
+	 */
+	private String pavID;
+	
+	/**
+	 * Trash type BIN/GARBAGE/HOME
+	 */
     private String type;
-    private String description;
-    private String name;
+    
+    /**
+     * Color for home trashes
+     */
     private String color;
+    private String name;
     private String cityCode;
     private String address;
     private Iterable<String> wastesHandled;
     private String longitude;
     private String latitude;
     
-	public String getId() {
-		return id;
+	public String getIdPav() {
+		return pavID;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public void setId(String pavID) {
+		this.pavID = pavID;
 	}
 	public String getType() {
 		return type;
 	}
 	public void setType(String type) {
 		this.type = type;
-	}
-	public String getDescription() {
-		return description;
-	}
-	public void setDescription(String description) {
-		this.description = description;
 	}
 	public String getName() {
 		return name;

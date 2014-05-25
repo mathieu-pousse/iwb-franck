@@ -8,7 +8,6 @@ public class MetropolisItemProcessor implements ItemProcessor<Mapping,Mapping>{
 
 	@Override
 	public Mapping process(Mapping mapObject) throws Exception {
-		// TODO Auto-generated method stub
 		return mapObject;
 	}
 

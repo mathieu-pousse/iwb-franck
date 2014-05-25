@@ -9,12 +9,12 @@ import org.springframework.data.mongodb.core.MongoOperations;
 
 import com.zenika.bo.Trash;
 
-public class TrashBinItemWriter implements ItemWriter<Trash> {
+public class TrashItemWriter implements ItemWriter<Trash> {
 	
 	private ApplicationContext ctx;
 	private MongoOperations mongoOperation;
 	
-	public TrashBinItemWriter(){
+	public TrashItemWriter(){
 		super();
 		this.ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
 		this.mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
