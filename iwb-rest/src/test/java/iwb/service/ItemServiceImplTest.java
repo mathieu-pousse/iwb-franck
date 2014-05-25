@@ -1,24 +1,21 @@
 package iwb.service;
 
-import static org.junit.Assert.*;
-
-import java.util.ArrayList;
-import java.util.List;
-
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
 import iwb.bo.Trash;
-import iwb.bo.TrashCustom;
 import iwb.bo.Waste;
 import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.ItemDAO;
 import iwb.repository.TrashDAO;
 import iwb.repository.WasteDAO;
-import iwb.repository.impl.CityDAOImpl;
 import iwb.service.impl.ItemServiceImpl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;

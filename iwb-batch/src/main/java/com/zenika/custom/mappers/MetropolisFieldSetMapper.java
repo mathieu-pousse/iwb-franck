@@ -4,7 +4,6 @@ import org.springframework.batch.item.file.mapping.FieldSetMapper;
 import org.springframework.batch.item.file.transform.FieldSet;
 import org.springframework.validation.BindException;
 
-import com.zenika.bo.City;
 import com.zenika.bo.Mapping;
 
 public class MetropolisFieldSetMapper implements FieldSetMapper<Mapping>{

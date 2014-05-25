@@ -4,18 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.jongo.Jongo;
-import org.jongo.MongoCollection;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 
 import com.google.common.collect.Lists;
-import com.mongodb.DB;
-import com.zenika.bo.City;
 import com.zenika.bo.CityCustom;
 import com.zenika.bo.Mapping;
 import com.zenika.bo.Metropolis;

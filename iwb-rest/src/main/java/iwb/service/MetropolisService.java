@@ -1,8 +1,9 @@
 package iwb.service;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.Metropolis;
+
+import com.google.common.base.Optional;
 
 public interface MetropolisService {
     public Metropolis createMetropolis(Metropolis metropolis);

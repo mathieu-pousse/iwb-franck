@@ -2,7 +2,6 @@ package iwb.service.helpers;
 
 import iwb.bo.Trash;
 import iwb.bo.TrashCustom;
-import iwb.bo.Waste;
 import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.TrashDAO;
 import iwb.repository.WasteDAO;

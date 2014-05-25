@@ -1,8 +1,9 @@
 package iwb.service;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.User;
+
+import com.google.common.base.Optional;
 
 public interface UserService {
     public User createUser(User user);

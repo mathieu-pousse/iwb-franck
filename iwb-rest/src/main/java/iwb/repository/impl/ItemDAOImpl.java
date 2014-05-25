@@ -1,9 +1,15 @@
 package iwb.repository.impl;
 
 
+import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
 import iwb.repository.ItemDAO;
+
+import java.util.List;
+import java.util.regex.Pattern;
+
+import javax.inject.Named;
 
 import org.bson.types.ObjectId;
 
@@ -12,13 +18,6 @@ import restx.jongo.JongoCollection;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Lists;
-
-import javax.inject.Named;
-
-import java.util.List;
-import java.util.regex.Pattern;
-
-import static restx.common.MorePreconditions.checkEquals;
 
 /**
  * Item DAO implements methods to create, retreive, update and delete items

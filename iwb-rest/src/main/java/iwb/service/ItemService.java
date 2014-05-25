@@ -1,13 +1,13 @@
 package iwb.service;
 
 
-import com.google.common.base.Optional;
-
 import iwb.bo.Constituent;
 import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
 import iwb.bo.Trash;
 import iwb.bo.coordinates.GeoPoint2D;
+
+import com.google.common.base.Optional;
 
 public interface ItemService {
 

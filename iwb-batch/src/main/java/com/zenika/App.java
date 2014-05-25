@@ -13,6 +13,8 @@ import com.mongodb.DB;
 
 
 public class App {
+	private static ApplicationContext appContext;
+
 	public static void main(String[] args){
 		String[] springConfig  = 
 			{	
@@ -20,7 +22,7 @@ public class App {
 				"spring/batch/config/database.xml",
 				"spring/batch/jobs/jobs.xml" 
 			};
-		ApplicationContext appContext = new ClassPathXmlApplicationContext(springConfig);
+		appContext = new ClassPathXmlApplicationContext(springConfig);
 
 		DB db = (DB) appContext.getBean("db");
 		db.dropDatabase();

@@ -1,8 +1,9 @@
 package iwb.transverse;
 
-import com.google.common.collect.ImmutableMap;
 import restx.ResourcesRoute;
 import restx.factory.Component;
+
+import com.google.common.collect.ImmutableMap;
 
 @Component
 public class ApplicationUIResource extends ResourcesRoute{

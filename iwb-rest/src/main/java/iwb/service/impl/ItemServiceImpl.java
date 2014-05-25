@@ -1,32 +1,26 @@
 package iwb.service.impl;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
-
+import iwb.bo.Constituent;
 import iwb.bo.ConstituentTrash;
+import iwb.bo.Item;
 import iwb.bo.Link;
 import iwb.bo.Trash;
 import iwb.bo.TrashCustom;
-import iwb.bo.Waste;
+import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.ItemDAO;
 import iwb.repository.TrashDAO;
 import iwb.repository.WasteDAO;
-import iwb.repository.impl.ItemDAOImpl;
-import iwb.bo.Constituent;
-import iwb.bo.Item;
-import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.ItemService;
-import iwb.service.helpers.TrashComparator;
 import iwb.service.helpers.TrashHelper;
-import restx.factory.Component;
+
+import java.util.List;
 
 import javax.inject.Named;
+
+import restx.factory.Component;
+
+import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 
 
 /**

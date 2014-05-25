@@ -1,12 +1,12 @@
 package iwb.transverse;
 
-import com.google.common.base.Predicates;
+import static java.util.Arrays.asList;
 import restx.factory.Module;
 import restx.factory.Provides;
 import restx.security.CORSAuthorizer;
 import restx.security.StdCORSAuthorizer;
 
-import static java.util.Arrays.asList;
+import com.google.common.base.Predicates;
 
 @Module
 public class CorsModule {

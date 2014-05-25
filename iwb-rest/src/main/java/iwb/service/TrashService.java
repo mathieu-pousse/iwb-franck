@@ -1,8 +1,9 @@
 package iwb.service;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.Trash;
+
+import com.google.common.base.Optional;
 
 public interface TrashService {
     public Trash createTrash(Trash waste);

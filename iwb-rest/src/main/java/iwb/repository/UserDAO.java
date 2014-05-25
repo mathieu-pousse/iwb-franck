@@ -1,8 +1,9 @@
 package iwb.repository;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.User;
+
+import com.google.common.base.Optional;
 
 public interface UserDAO {
     public User createUser(User user);

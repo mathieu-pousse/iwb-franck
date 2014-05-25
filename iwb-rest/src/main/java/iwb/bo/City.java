@@ -1,10 +1,9 @@
 package iwb.bo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Represents a City and it's characteristics

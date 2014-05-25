@@ -1,11 +1,9 @@
 package iwb.bo;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Represents a group of cities where recycling policies are the same

@@ -1,10 +1,9 @@
 package iwb.service;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 import iwb.bo.City;
 import iwb.repository.CityDAO;
 import iwb.repository.impl.CityDAOImpl;
-import iwb.service.CityService;
 import iwb.service.impl.CityServiceImpl;
 
 import org.junit.After;

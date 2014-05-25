@@ -1,8 +1,5 @@
 package com.zenika.bo;
 
-import java.util.List;
-
-import org.jongo.marshall.jackson.oid.ObjectId;
 import org.springframework.data.annotation.Id;
 
 

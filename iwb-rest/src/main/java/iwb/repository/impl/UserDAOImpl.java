@@ -2,19 +2,19 @@ package iwb.repository.impl;
 
 
 
-import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
+import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.User;
 import iwb.repository.UserDAO;
 import iwb.transverse.RestxAuthentication;
-import restx.factory.Component;
-
-import javax.inject.Named;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static restx.common.MorePreconditions.checkEquals;
+import javax.inject.Named;
+
+import restx.factory.Component;
+
+import com.google.common.base.Optional;
 
 /**
  * User DAO implements methods to create, retreive, update and delete users

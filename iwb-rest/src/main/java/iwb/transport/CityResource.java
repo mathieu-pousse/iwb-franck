@@ -1,17 +1,20 @@
 package iwb.transport;
 
-import com.google.common.base.Optional;
-import iwb.AppModule;
 import iwb.bo.City;
 import iwb.service.impl.CityServiceImpl;
-import restx.Status;
-import restx.annotations.*;
-import restx.factory.Component;
-import restx.jongo.JongoCollection;
-import restx.security.PermitAll;
-import restx.security.RolesAllowed;
 
 import javax.inject.Named;
+
+import restx.Status;
+import restx.annotations.DELETE;
+import restx.annotations.GET;
+import restx.annotations.POST;
+import restx.annotations.PUT;
+import restx.annotations.RestxResource;
+import restx.factory.Component;
+import restx.security.PermitAll;
+
+import com.google.common.base.Optional;
 
 @Component @RestxResource
 @PermitAll

@@ -1,7 +1,8 @@
 package iwb.repository;
 
-import com.google.common.base.Optional;
 import iwb.bo.Waste;
+
+import com.google.common.base.Optional;
 
 
 public interface WasteDAO {

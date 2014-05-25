@@ -1,10 +1,11 @@
 package iwb.bo;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
+import java.util.List;
+
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
-import java.util.List;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Represents an Item with its characteristics

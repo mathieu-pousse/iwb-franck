@@ -2,12 +2,12 @@ package com.zenika.custom.writers;
 
 import java.util.List;
 
-import com.zenika.bo.Trash;
-
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
+
+import com.zenika.bo.Trash;
 
 public class TrashBinItemWriter implements ItemWriter<Trash> {
 	

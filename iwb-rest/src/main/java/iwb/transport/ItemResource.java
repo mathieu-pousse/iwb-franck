@@ -1,19 +1,23 @@
 package iwb.transport;
 
-import com.google.common.base.Optional;
-
+import iwb.bo.Constituent;
 import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
-import iwb.bo.Constituent;
 import iwb.bo.Trash;
 import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.impl.ItemServiceImpl;
-import iwb.transverse.settings.SettingsInterface;
-import restx.annotations.*;
+
+import javax.inject.Named;
+
+import restx.annotations.DELETE;
+import restx.annotations.GET;
+import restx.annotations.POST;
+import restx.annotations.PUT;
+import restx.annotations.RestxResource;
 import restx.factory.Component;
 import restx.security.PermitAll;
 
-import javax.inject.Named;
+import com.google.common.base.Optional;
 
 @Component @RestxResource
 @PermitAll

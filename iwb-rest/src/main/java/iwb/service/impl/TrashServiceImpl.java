@@ -1,15 +1,16 @@
 package iwb.service.impl;
 
-import com.google.common.base.Optional;
-import com.google.common.collect.Lists;
 import iwb.bo.Link;
 import iwb.bo.Trash;
-import iwb.bo.Waste;
 import iwb.repository.TrashDAO;
 import iwb.service.TrashService;
-import restx.factory.Component;
 
 import javax.inject.Named;
+
+import restx.factory.Component;
+
+import com.google.common.base.Optional;
+import com.google.common.collect.Lists;
 
 
 @Component @Named("trashService")

@@ -21,3 +21,5 @@ untitled
 .settings
 .classpath
 .project
+.factorypath
+*~

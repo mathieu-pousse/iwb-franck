@@ -1,15 +1,17 @@
 package iwb.bo;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.google.common.collect.ImmutableSet;
-import restx.security.RestxPrincipal;
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
-import java.util.ArrayList;
-import java.util.Collection;
+import restx.security.RestxPrincipal;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.google.common.collect.ImmutableSet;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements RestxPrincipal{

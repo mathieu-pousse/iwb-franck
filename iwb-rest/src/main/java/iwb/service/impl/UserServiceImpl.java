@@ -1,13 +1,15 @@
 package iwb.service.impl;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.User;
 import iwb.repository.UserDAO;
 import iwb.service.UserService;
-import restx.factory.Component;
 
 import javax.inject.Named;
+
+import restx.factory.Component;
+
+import com.google.common.base.Optional;
 
 @Component @Named("userService")
 public class UserServiceImpl implements UserService{

@@ -1,16 +1,18 @@
 package iwb.transverse;
 
-import com.google.common.base.Charsets;
-import com.google.common.base.Splitter;
-import org.apache.commons.fileupload.MultipartStream;
-import restx.RestxRequest;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import org.apache.commons.fileupload.MultipartStream;
+
+import restx.RestxRequest;
+
+import com.google.common.base.Charsets;
+import com.google.common.base.Splitter;
 
 /**
  * Helper class to read multi part requests.
@@ -90,7 +92,8 @@ public class PartsReader {
         int boundaryIndex = contentType.indexOf("boundary=");
         byte[] boundary = (contentType.substring(boundaryIndex + 9)).getBytes();
 
-        MultipartStream multipartStream =  new MultipartStream(req.getContentStream(), boundary);
+        @SuppressWarnings("deprecation")
+		MultipartStream multipartStream =  new MultipartStream(req.getContentStream(), boundary);
         boolean nextPart = multipartStream.skipPreamble();
         while (nextPart) {
             Map<String, String> headers = parseHeaders(multipartStream.readHeaders());

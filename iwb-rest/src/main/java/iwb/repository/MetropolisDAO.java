@@ -1,8 +1,9 @@
 package iwb.repository;
 
 
-import com.google.common.base.Optional;
 import iwb.bo.Metropolis;
+
+import com.google.common.base.Optional;
 
 public interface MetropolisDAO {
     public Metropolis createMetropolis(Metropolis metropolis);

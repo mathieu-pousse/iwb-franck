@@ -1,11 +1,10 @@
 package iwb.bo;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonInclude;
-
 import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 /**
  * Not only representing a bin or a trash but all recycling solutions.

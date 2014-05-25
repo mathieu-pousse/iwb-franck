@@ -1,29 +1,19 @@
 package iwb.transverse;
 
+import static iwb.AppModule.Roles.ADMIN;
 import iwb.bo.User;
 
-import com.google.common.base.Optional;
+import java.util.Arrays;
+
+import javax.inject.Named;
+
 import org.bson.types.ObjectId;
-import restx.Status;
-import restx.WebException;
+
 import restx.admin.AdminModule;
-import restx.annotations.*;
-import restx.exceptions.RestxErrors;
 import restx.factory.Component;
-import restx.http.HttpStatus;
 import restx.jongo.JongoCollection;
 import restx.jongo.JongoUserRepository;
 import restx.security.CredentialsStrategy;
-import restx.security.RolesAllowed;
-import iwb.AppModule;
-
-import javax.inject.Named;
-import java.util.Arrays;
-import java.util.Map;
-
-import static com.google.common.base.Preconditions.checkNotNull;
-import static restx.common.MorePreconditions.checkEquals;
-import static iwb.AppModule.Roles.*;
 
 @Component @Named("restxAuth")
 public class RestxAuthentication extends JongoUserRepository<User> {

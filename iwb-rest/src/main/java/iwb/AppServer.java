@@ -1,9 +1,9 @@
 package iwb;
 
-import com.google.common.base.Optional;
-
-import restx.server.WebServer;
 import restx.server.JettyWebServer;
+import restx.server.WebServer;
+
+import com.google.common.base.Optional;
 
 /**
  * This class can be used to run the app.

@@ -1,9 +1,9 @@
 package iwb.repository;
 
 
-import com.google.common.base.Optional;
-
 import iwb.bo.Trash;
+
+import com.google.common.base.Optional;
 
 public interface TrashDAO {
     public Trash createTrash(Trash trash);

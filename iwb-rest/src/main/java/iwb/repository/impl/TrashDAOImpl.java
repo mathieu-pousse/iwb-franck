@@ -1,22 +1,18 @@
 package iwb.repository.impl;
 
 
-import java.util.List;
-
-import com.google.common.base.Optional;
-
-import iwb.bo.City;
+import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.Trash;
 import iwb.repository.TrashDAO;
+
+import javax.inject.Named;
 
 import org.bson.types.ObjectId;
 
 import restx.factory.Component;
 import restx.jongo.JongoCollection;
 
-import javax.inject.Named;
-
-import static restx.common.MorePreconditions.checkEquals;
+import com.google.common.base.Optional;
 
 @Component @Named("trashDAO")
 public class TrashDAOImpl implements TrashDAO{

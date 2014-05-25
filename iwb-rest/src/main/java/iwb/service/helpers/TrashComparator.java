@@ -1,9 +1,8 @@
 package iwb.service.helpers;
 
-import java.util.Comparator;
-
 import iwb.bo.Trash;
-import iwb.bo.coordinates.GeoPoint2D;
+
+import java.util.Comparator;
 
 public class TrashComparator implements Comparator<Trash>{
 
@@ -17,5 +16,4 @@ public class TrashComparator implements Comparator<Trash>{
 			return 0;
 		}
 	}
-
 }
