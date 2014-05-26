@@ -77,7 +77,7 @@ public class TrashDAOImpl implements TrashDAO{
 		for(Object obj : list){
 			BasicDBObject bObj = (BasicDBObject) obj;
 			double distance =  (double) bObj.get("dis");
-			Trash trash =  new Trash((BasicDBObject) bObj.get("obj")) ;
+			Trash trash =  new Trash((BasicDBObject) bObj.get("obj"));
 			trash.setDistanceTo(distance);
 		    trashList.add(trash);
 		}

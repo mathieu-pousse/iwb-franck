@@ -2,10 +2,11 @@ package iwb.service.impl;
 
 import iwb.bo.Constituent;
 import iwb.bo.Item;
-import iwb.bo.Link;
 import iwb.bo.Trash;
 import iwb.repository.ItemDAO;
 import iwb.service.ItemService;
+import iwb.service.helpers.ImageUrlHelper;
+import iwb.service.helpers.LinkHelper;
 
 import javax.inject.Named;
 
@@ -24,10 +25,14 @@ public class ItemServiceImpl implements ItemService{
 
 
     private ItemDAO itemDAO;
+    public LinkHelper linkHelper;
+    public ImageUrlHelper imageHelper;
 
 
-    public ItemServiceImpl(@Named("itemDAO") ItemDAO itemDAO){
+    public ItemServiceImpl(@Named("itemDAO") ItemDAO itemDAO, @Named("imageHelper") ImageUrlHelper imageHelper){
         this.itemDAO = itemDAO;
+        this.linkHelper = new LinkHelper();
+        this.imageHelper = imageHelper; 
     }
 
     /**
@@ -37,7 +42,9 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Item createItem(Item item) {
-        return setLinks(itemDAO.createItem(item));
+    	removeLinksAndImages(item);
+    	Item result = itemDAO.createItem(item);
+        return this.addLinksAndImages(result);
     }
 
     /**
@@ -47,7 +54,8 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Optional<Item> getItemById(String oid) {
-        return setLinks(itemDAO.getItemById(oid));
+    	Optional<Item> result = itemDAO.getItemById(oid);
+        return addLinksAndImages(result);
     }
 
     /**
@@ -59,7 +67,7 @@ public class ItemServiceImpl implements ItemService{
     public Iterable<Item> getItemByBarcode(String barcode) {
         Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByBarcode(barcode));
         for(Item item : items){
-            setLinks(item);
+            addLinksAndImages(item);
         }
         return items;
     }
@@ -73,7 +81,7 @@ public class ItemServiceImpl implements ItemService{
     public Iterable<Item> getItemByName(String name) {
         Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByName(name));
         for(Item item : items){
-            setLinks(item);
+            addLinksAndImages(item);
         }
         return items;
     }
@@ -85,11 +93,11 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Iterable<Item> getItemByBarcodeOrName(String query){
-    	Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByBarcodeOrName(query));
+        Iterable<Item> items = Lists.newArrayList(itemDAO.getItemByBarcodeOrName(query));
         for(Item item : items){
-            setLinks(item);
+            addLinksAndImages(item);
         }
-        return items; 
+        return items;
     }
 
     /**
@@ -100,7 +108,7 @@ public class ItemServiceImpl implements ItemService{
     public Iterable<Item> getItems() {
         Iterable<Item> items = Lists.newArrayList(itemDAO.getItems());
         for(Item item : items){
-            setLinks(item);
+            addLinksAndImages(item);
         }
         return items;
     }
@@ -159,16 +167,26 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Item setLinks(Item item){
-        item.setLink(new Link("alternative", "/items/" + item.getId()));
-        if (item.getWasteType() != null){
-            item.getWasteType().setLink(new Link("alternate", "/wastes/"+item.getWasteType().getId()));
-        }else if(item.getConstituents() != null){
-            for(Constituent constituent : item.getConstituents()){
-            	if(constituent.getWasteType() != null){
-            		constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
-            	}
-            }
-        }
+    	linkHelper.createLink(item);
+    	linkHelper.createLink(item.getWasteType());
+    	if(item.getConstituents() == null){
+    		return item;
+    	}
+    	for(Constituent constituent : item.getConstituents()){
+    		linkHelper.createLink(constituent.getWasteType());
+    	}
+        return item;
+    }
+    
+    public Item unSetLinks(Item item){
+    	linkHelper.removeLink(item);
+    	linkHelper.removeLink(item.getWasteType());
+    	if(item.getConstituents() == null){
+    		return item;
+    	}
+    	for(Constituent constituent : item.getConstituents()){
+    		linkHelper.removeLink(constituent.getWasteType());
+    	}
         return item;
     }
 
@@ -178,18 +196,67 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Optional<Item>  setLinks(Optional<Item> item){
-        item.get().setLink(new Link("alternative", "/items/" + item.get().getId()));
-        if (item.get().getWasteType() != null){
-            item.get().getWasteType().setLink(new Link("alternate", "/wastes/"+item.get().getWasteType().getId()));
-        }else if(item.get().getConstituents() != null){
-            for(Constituent constituent : item.get().getConstituents()){
-            	if(constituent.getWasteType() != null){
-            		constituent.getWasteType().setLink(new Link("alternate", "/wastes/"+constituent.getWasteType().getId()));
-            	}
-            }
-        }
+    	setLinks(item.get());
         return item;
-      
     }
+    
+    public Optional<Item>  unSetLinks(Optional<Item> item){
+    	unSetLinks(item.get());
+        return item;
+    } 
+    
+    public Item setImages(Item item){
+    	item.setImage(imageHelper.addBasePathUrl(item.getImage()));
+    	if(item.getConstituents() == null){
+    		return item;
+    	}
+    	for(Constituent constituent : item.getConstituents()){
+    		constituent.setImage(imageHelper.addBasePathUrl(constituent.getImage()));
+    	}
+    	return item;
+    }
+    
+    public Optional<Item> setImages(Optional<Item> item){
+    	setImages(item.get());
+    	return item;
+    }
+    
+    
+    public Item unSetImages(Item item){
+    	item.setImage(imageHelper.removeBasePathUrl(item.getImage()));
+    	if(item.getConstituents() == null){
+    		return item;
+    	}
+    	for(Constituent constituent : item.getConstituents()){
+    		constituent.setImage(imageHelper.removeBasePathUrl(constituent.getImage()));
+    	}
+    	return item;
+    }
+    
+    public Optional<Item> unSetImages(Optional<Item> item){
+    	unSetImages(item.get());
+    	return item;
+    }
+    
+    public Item removeLinksAndImages(Item item){
+    	unSetImages(item);
+    	return unSetLinks(item);
+    }
+    
+    public Optional<Item> removeLinksAndImages(Optional<Item> item){
+    	removeLinksAndImages(item.get());
+    	return item;
+    }
+    
+    public Item addLinksAndImages(Item item){
+    	setImages(item);
+    	return setLinks(item);
+    }
+    
+    public Optional<Item> addLinksAndImages(Optional<Item> item){
+    	addLinksAndImages(item.get());
+    	return item;
+    }
+    
 
 }
