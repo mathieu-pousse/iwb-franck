@@ -11,8 +11,9 @@
 	<import resource="../config/context.xml"/>     
 	
 	<!-- Readers Bean declaration -->  
-	<bean id="cityReader" class="com.zenika.custom.readers.CityItemReader">
+	<bean id="cityReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/cities.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -33,6 +34,7 @@
     
     <bean id="mapppingFileReader" class="com.zenika.custom.readers.MetropolisItemReader">
     	<property name="resource" value="classpath:csv/metropolises.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -47,8 +49,9 @@
 		</property>
     </bean>
     
-    <bean id="trashCenterFileReader" class="com.zenika.custom.readers.TrashItemReader">
+    <bean id="trashCenterFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/bin_garbage.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -65,8 +68,9 @@
 		</property>
     </bean>
     
-    <bean id="trashBinFileReader" class="com.zenika.custom.readers.TrashItemReader">
+    <bean id="trashBinFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/bin_pav.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -82,8 +86,9 @@
 		</property>
     </bean>
     
-    <bean id="trashHomeFileReader" class="com.zenika.custom.readers.TrashItemReader">
+    <bean id="trashHomeFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/bin_home.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -101,6 +106,7 @@
     
     <bean id="itemFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/items.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">
@@ -118,6 +124,7 @@
     
     <bean id="wasteFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
     	<property name="resource" value="classpath:csv/wastes.csv" />
+    	<property name="encoding" value="UTF-8" />
 		<property name="lineMapper">
 			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
 				<property name="lineTokenizer">

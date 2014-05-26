@@ -27,8 +27,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: SearchItemController
     gets the query_string and use the restx API to retreive matching items
   */
-  .controller('SearchItemController', ['$scope', 'QueryItemService','CommonFunctionsService', '$routeParams','BASE_PATH_IMG','$location',  
-    function($scope, QueryItemService, CommonFunctionsService, $routeParams, BASE_PATH_IMG, $location) {
+  .controller('SearchItemController', ['$scope', 'QueryItemService','CommonFunctionsService', '$routeParams', '$location',  
+    function($scope, QueryItemService, CommonFunctionsService, $routeParams, $location) {
       //init css
       CommonFunctionsService.unset_home_css();
       //get query string from url
@@ -59,17 +59,6 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       function getItems(){
         QueryItemService.query({q_string:$scope.queryString},function(response) {
           $scope.results = response;
-          for (var i=0;i<$scope.results.length;i++)
-          { 
-            CommonFunctionsService.set_img($scope.results[i],BASE_PATH_IMG);
-            if($scope.results[i].constituents && $scope.results[i].constituents.length >0)
-            {
-              for(var j=0; j<$scope.results[i].constituents.length; j++)
-              {
-                CommonFunctionsService.set_img($scope.results[i].constituents[j],BASE_PATH_IMG);
-              }
-            }
-          }
           $scope.objectDetail = $scope.results[0];
         });
       }
@@ -80,8 +69,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: HomeController
     gets the query string inside the text fields, sets the url and redirect to the correct view
   */
-  .controller('EditItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', 'WastesService', '$routeParams', 'BASE_PATH_IMG', '$upload','$route', 'BASE_PATH_URL',
-    function($scope, ItemService, CommonFunctionsService, $location, WastesService, $routeParams, BASE_PATH_IMG, $upload, $route, BASE_PATH_URL) {
+  .controller('EditItemController', ['$scope' ,'ItemService','CommonFunctionsService','$location', 'WastesService', '$routeParams', '$upload','$route', 'BASE_PATH_URL',
+    function($scope, ItemService, CommonFunctionsService, $location, WastesService, $routeParams, $upload, $route, BASE_PATH_URL) {
       CommonFunctionsService.unset_home_css();
 
       $scope.item = {};
@@ -108,16 +97,6 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       function getItem(){
         ItemService.get({id:$scope.id},function(response) {
           $scope.item = response;
-          CommonFunctionsService.set_img($scope.item,BASE_PATH_IMG);
-          //Set images constituents
-          if($scope.item.constituents && $scope.item.constituents.length >0)
-          {
-            for(var j=0; j<$scope.item.constituents.length; j++)
-            {
-              CommonFunctionsService.set_img($scope.item.constituents[j],BASE_PATH_IMG);
-            }
-          }
-
         });
       }
 
@@ -133,7 +112,6 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       }
 
       $scope.pushUpdateToServer = function(){
-        CommonFunctionsService.removeLinks($scope.item);
         ItemService.update({id:$scope.id},$scope.item);
         $route.reload();
       }
@@ -151,18 +129,15 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
           $upload.upload({
             url: BASE_PATH_URL+'/api/upload',
             method: 'POST',
-            data: {path: 'BASE_PATH_IMG'},
+            data: {},
             file: $file,
             progress: function(e){}
           }).then(function(data, status, headers, config){
             // file is uploaded successfully
-            if(index === -1)
-            {
-              $scope.item.image = BASE_PATH_IMG+data.data;
-            }
-            else
-            {
-              $scope.item.constituents[index].image = BASE_PATH_IMG+data.data;
+            if(index === -1){
+              $scope.item.image = data.data;
+            }else{
+              $scope.item.constituents[index].image = data.data;
             }  
           });
         }
@@ -173,8 +148,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: HomeController
     gets the query string inside the text fields, sets the url and redirect to the correct view
   */
-  .controller('NewItemController', ['$scope' ,'ItemService', 'ItemServicePost','CommonFunctionsService','$location', 'WastesService', 'BASE_PATH_IMG', '$upload','$route','BASE_PATH_URL',
-    function($scope, ItemService, ItemServicePost, CommonFunctionsService, $location, WastesService, BASE_PATH_IMG, $upload, $route, BASE_PATH_URL) {
+  .controller('NewItemController', ['$scope' ,'ItemService', 'ItemServicePost','CommonFunctionsService','$location', 'WastesService', '$upload','$route','BASE_PATH_URL',
+    function($scope, ItemService, ItemServicePost, CommonFunctionsService, $location, WastesService, $upload, $route, BASE_PATH_URL) {
       CommonFunctionsService.unset_home_css();
 
       $scope.item = {'image': ''};
@@ -208,10 +183,8 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       }
 
       $scope.pushUpdateToServer = function(){
-        CommonFunctionsService.removeLinks($scope.item);
         ItemServicePost.post($scope.item,function(response) {
           var itemCreated = response;
-          CommonFunctionsService.set_img(itemCreated);
           $location.path("/items/"+itemCreated._id);
         });
       }
@@ -222,18 +195,17 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
           var timeStamp = new Date().getTime();
           var $file = $files[i];
           $upload.upload({
-            url: '/api/upload',
+            url: BASE_PATH_URL+'/api/upload',
             method: 'POST',
-            data: {path: 'BASE_PATH_IMG'},
+            data: {},
             file: $file,
             progress: function(e){}
           }).then(function(data, status, headers, config){
             // file is uploaded successfully
-            if(index === -1)
-            {
-              $scope.item.image = BASE_PATH_IMG+data.data;
+            if(index === -1){
+              $scope.item.image = data.data;
             }else{
-              $scope.item.constituents[index].image = BASE_PATH_IMG+data.data;
+              $scope.item.constituents[index].image = data.data;
             }  
           });
         }

@@ -1,5 +1,6 @@
 package iwb.transverse;
 
+import iwb.service.helpers.ImageUrlHelper;
 import iwb.transverse.PartsReader.FilePart;
 import iwb.transverse.PartsReader.Part;
 import iwb.transverse.PartsReader.PartListener;
@@ -11,6 +12,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.inject.Named;
 
 import org.apache.commons.io.FilenameUtils;
 
@@ -30,10 +33,12 @@ public class FileUploadRoute extends StdRoute {
 	
 	private String fileNameCreated;
 	private String location;
+	private ImageUrlHelper imageHelper;
 	
-    public FileUploadRoute(SettingsInterface settings) {
+    public FileUploadRoute(SettingsInterface settings, @Named("imageHelper") ImageUrlHelper imageHelper) {
         super("upload", new StdRestxRequestMatcher("POST", "/upload"));
-        this.location = settings.getImageLocation();
+        this.location = settings.getImageStoreLocation();
+        this.imageHelper = imageHelper;
     }
     
 
@@ -50,7 +55,8 @@ public class FileUploadRoute extends StdRoute {
                     String ext = FilenameUtils.getExtension(filename);
                     String timestampName = new SimpleDateFormat("yyyyMMddhhmmssS'."+ext+"'").format(new Date());
                     fileNameCreated =  timestampName;
-                    FileOutputStream fos = new FileOutputStream (new File(location+timestampName)); 
+                    String absolutePath = this.getClass().getResource("").getPath()+"../../ui/"+location;
+                    FileOutputStream fos = new FileOutputStream (new File(absolutePath+timestampName)); 
                     
                     try {
                          outputStream.writeTo(fos);
@@ -63,7 +69,7 @@ public class FileUploadRoute extends StdRoute {
             }
         }); 
         resp.setStatus(HttpStatus.OK);
-        resp.getWriter().write(fileNameCreated);
+        resp.getWriter().write(imageHelper.addBasePathUrl(fileNameCreated));
     }
 
 	

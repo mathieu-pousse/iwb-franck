@@ -44,7 +44,7 @@ public class ItemServiceImpl implements ItemService{
     public Item createItem(Item item) {
     	removeLinksAndImages(item);
     	Item result = itemDAO.createItem(item);
-        return this.addLinksAndImages(result);
+        return addLinksAndImages(result);
     }
 
     /**
@@ -138,7 +138,9 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Item updateItem(String oid, Item item) {
-        return setLinks(itemDAO.updateItem(oid, item));
+    	removeLinksAndImages(item);
+    	Item result = itemDAO.updateItem(oid, item);
+        return addLinksAndImages(result);
     }
 
     /**
