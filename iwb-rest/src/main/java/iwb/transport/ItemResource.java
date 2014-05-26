@@ -1,10 +1,7 @@
 package iwb.transport;
 
 import iwb.bo.Constituent;
-import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
-import iwb.bo.Trash;
-import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.impl.ItemServiceImpl;
 
 import javax.inject.Named;
@@ -36,17 +33,11 @@ public class ItemResource {
         }else{
         	return itemService.getItems();
         }
-        
     }
     
     @GET("/items/{oid}")
     public Optional<Item> findItemById(String oid, Optional<String> recycling, Optional<String> nb){
-    	if((recycling.isPresent() || nb.isPresent()) && nb.isPresent()){
-    		Optional<GeoPoint2D> location = Optional.fromNullable(new GeoPoint2D(48.111933799999996,-1.6838946999999962));
-    		return itemService.getItemAndTrash(oid,recycling,nb,location);
-    	}else {
-    		return itemService.getItemById(oid);
-    	}
+    	return itemService.getItemById(oid);
     }
 
     @GET("/items/{oid}/components")
@@ -69,15 +60,6 @@ public class ItemResource {
     public Item updateItem(String oid, Item item){
         return itemService.updateItem(oid, item);
     }
-    
-    @GET("/items/{oid}/recycling")
-    public Iterable<Trash> findTrashes(String oid, Optional<String> cityName){
-    	return itemService.getTrashesByProductId(oid, cityName);
-    }
-    
-    @GET("/items/{oid}/components/recycling")
-    public Iterable<ConstituentTrash> findTrashesComponents(String oid){
-    	return itemService.getConstituentTrash(oid);
-    }
+ 
     
 }

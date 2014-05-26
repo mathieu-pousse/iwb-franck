@@ -4,6 +4,10 @@ package iwb.repository.impl;
 import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.Trash;
 import iwb.repository.TrashDAO;
+import iwb.repository.helpers.MongoHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -13,14 +17,21 @@ import restx.factory.Component;
 import restx.jongo.JongoCollection;
 
 import com.google.common.base.Optional;
+import com.mongodb.BasicDBList;
+import com.mongodb.BasicDBObject;
+import com.mongodb.CommandResult;
+
+
 
 @Component @Named("trashDAO")
 public class TrashDAOImpl implements TrashDAO{
 
     private JongoCollection trashes;
+    private MongoHelper mongoHelper;
 
-    public TrashDAOImpl(@Named("trashes") JongoCollection trashes){
+    public TrashDAOImpl(@Named("trashes") JongoCollection trashes, @Named("mongoHelper") MongoHelper helper){
         this.trashes = trashes;
+        this.mongoHelper = helper;
     }
     
     public Trash createTrash(Trash trash) {
@@ -41,6 +52,7 @@ public class TrashDAOImpl implements TrashDAO{
 
     public Optional<Trash> getTrashById(String oid) {
         return Optional.fromNullable(trashes.get().findOne(new ObjectId(oid)).as(Trash.class));
+       
     }
 
     public Iterable<Trash> getTrashes() {
@@ -48,28 +60,30 @@ public class TrashDAOImpl implements TrashDAO{
     }
 
 	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
-		if(acr == null|| acr.isEmpty()){
-			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(max).as(Trash.class);
-		}else{
-			return trashes.get().find("{type: #, wastesHandled: { $all: [#] }}", "PAV",acr).limit(max).as(Trash.class);
+		
+		BasicDBObject query = new BasicDBObject();
+		query.append("geoNear", "trashes");
+		double[] location = {-1.6838059, 48.1004064};
+		query.append("near", location);
+		query.append("spherical", true);
+		query.append("maxDistance", 1);
+		query.append("query", new BasicDBObject("wastesHandled", acr));
+		query.append("limit", max);
+		
+		CommandResult results = mongoHelper.getDb().command(query);
+		BasicDBList list = (BasicDBList) results.get("results");
+		List<Trash> trashList = new ArrayList<Trash>();
+		
+		for(Object obj : list){
+			BasicDBObject bObj = (BasicDBObject) obj;
+			double distance =  (double) bObj.get("dis");
+			Trash trash =  new Trash((BasicDBObject) bObj.get("obj")) ;
+			trash.setDistanceTo(distance);
+		    trashList.add(trash);
 		}
-	}
-	
-	public Iterable<Trash> getTrashesByWasteTypeLimitless(String acr) {
-		if(acr == null|| acr.isEmpty()){
-			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").as(Trash.class);
-		}else{
-			return trashes.get().find("{type: { $ne: 'decheterie'}, wastesHandled: { $all: [#] }}",acr).as(Trash.class);
-		}
-	}
-	
-	
-	public Iterable<Trash> getTrashesByWasteTypeForComponents(String acr, int max) {
-		if(acr == null|| acr.isEmpty()){
-			return trashes.get().find("{type: #, cityCode: # }", "decheterie", "35238").limit(max).as(Trash.class);
-		}else{
-			return trashes.get().find("{type: #}", "DOM").limit(5).as(Trash.class);
-		}
+		
+		return trashList;
+		
 	}
 	
 	

@@ -5,6 +5,7 @@ import org.jongo.marshall.jackson.oid.Id;
 import org.jongo.marshall.jackson.oid.ObjectId;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.mongodb.BasicDBObject;
 
 /**
  * Not only representing a bin or a trash but all recycling solutions.
@@ -25,14 +26,24 @@ public class Trash {
     private Iterable<String> wastesHandled;
     private String cityCode;
     private String address;
-    private String longitude;
-    private String latitude;
+    private Iterable<Double>  location;
     private double distanceTo;
 
     public Trash(){
         this.color = null;
     }
-
+    
+    public Trash(BasicDBObject obj){
+    	this.id = obj.getString("_id");
+    	this.type = (obj.get("description") != null) ? obj.getString("type") : this.type;
+    	this.address = (obj.get("address") != null) ? obj.getString("address") : this.address;
+    	this.color = (obj.get("color") != null) ? obj.getString("color") : this.color;
+    	this.name = (obj.get("name") != null) ? obj.getString("name") : this.name;
+    	this.cityCode = (obj.get("cityCode") != null) ? obj.getString("cityCode") : this.cityCode;
+    	this.location = (Iterable<Double>) ((obj.get("location") != null) ? obj.get("location") : this.location);
+    	this.wastesHandled = (Iterable<String>) ((obj.get("wastesHandled") != null) ? obj.get("wastesHandled") : this.wastesHandled);
+    }
+    
     public String getId() {
         return id;
     }
@@ -105,22 +116,6 @@ public class Trash {
 		this.address = adress;
 	}
 
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-
 	public double getDistanceTo() {
 		return distanceTo;
 	}
@@ -129,9 +124,16 @@ public class Trash {
 		this.distanceTo = distanceTo;
 	}
 	
+	public Iterable<Double> getLocation() {
+		return location;
+	}
+
+	public void setLocation(Iterable<Double> location) {
+		this.location = location;
+	}
+
 	public void toTrashCustom(){
-		this.latitude = null;
-		this.longitude = null;
+		this.location = null;
 		this.cityCode = null;
 		this.wastesHandled = null;
 	}

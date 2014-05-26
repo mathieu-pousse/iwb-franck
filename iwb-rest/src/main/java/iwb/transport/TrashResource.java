@@ -26,9 +26,9 @@ public class TrashResource {
     }
 
     @GET("/trashes")
-    public Iterable<Trash> findTrashes(Optional<String> zip, Optional<String> waste){
-        if(zip.isPresent() || waste.isPresent()){
-            return null;
+    public Iterable<Trash> findTrashes(Optional<String> type){
+        if(type.isPresent()){
+            return trashService.getTrashesByWasteType(type.get(),5);
         }else{
             return trashService.getTrashes();
         }
@@ -44,10 +44,9 @@ public class TrashResource {
         return trashService.getTrashById(oid);
     }
 
-    @DELETE("trashes/{oid}")
+    @DELETE("/trashes/{oid}")
     public void deleteTrash(String oid){
         trashService.deleteTrash(oid);
     }
-
 
 }

@@ -2,13 +2,10 @@ package iwb.service.impl;
 
 
 import iwb.bo.Link;
-import iwb.bo.TrashCustom;
 import iwb.bo.Waste;
-import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.TrashDAO;
 import iwb.repository.WasteDAO;
 import iwb.service.WasteService;
-import iwb.service.helpers.TrashHelper;
 
 import javax.inject.Named;
 
@@ -21,11 +18,9 @@ import com.google.common.collect.Lists;
 public class WasteServiceImpl implements WasteService {
 
     private WasteDAO wasteDAO;
-    private TrashDAO trashDAO;
 
     public WasteServiceImpl(@Named("wasteDAO") WasteDAO wasteDAO, @Named("trashDAO") TrashDAO trashDAO){
         this.wasteDAO = wasteDAO;
-        this.trashDAO = trashDAO;
     }
 
     /**
@@ -109,17 +104,4 @@ public class WasteServiceImpl implements WasteService {
         waste.get().setLink(new Link("alternate", "/wastes/"+waste.get().getId()));
         return waste;
     }
-
-    
-	public Iterable<TrashCustom> getMatchingTrashesHome(String oid, Optional<String> nb, Optional<GeoPoint2D> location) {
-		if(nb.isPresent() && location.isPresent()){
-			int toIndex = 5;
-			try{
-				toIndex = Integer.parseInt(nb.get());
-			}catch(NumberFormatException nfe){}
-			return TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, oid, location.get(), toIndex);
-		}else{
-			return null;
-		}
-	}
 }

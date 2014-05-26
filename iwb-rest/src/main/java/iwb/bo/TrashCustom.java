@@ -14,8 +14,7 @@ public class TrashCustom {
     private String name;
     private String address;
     private double distanceTo;
-    private String longitude;
-    private String latitude;
+    private Iterable<Double> location;
     private Link link;
     
     public TrashCustom(){}
@@ -27,9 +26,7 @@ public class TrashCustom {
     	this.name = trash.getName();
     	this.address = trash.getAddress();
     	this.distanceTo = trash.getDistanceTo();
-    	if(trash.getLatitude() !=null && trash.getLongitude() != null){
-    		setCoords(trash.getLatitude(), trash.getLongitude());
-    	}
+    	this.location = trash.getLocation();
     }
 
     public String getId() {
@@ -80,34 +77,19 @@ public class TrashCustom {
 		this.address = address;
 	}
 
+	public Iterable<Double> getLocation() {
+		return location;
+	}
+
+	public void setLocation(Iterable<Double> location) {
+		this.location = location;
+	}
+
 	public double getDistanceTo() {
 		return distanceTo;
 	}
 
 	public void setDistanceTo(double distanceTo) {
 		this.distanceTo = distanceTo;
-	}
-
-	public String getLongitude() {
-		return longitude;
-	}
-
-	public void setLongitude(String longitude) {
-		this.longitude = longitude;
-	}
-
-	public String getLatitude() {
-		return latitude;
-	}
-
-	public void setLatitude(String latitude) {
-		this.latitude = latitude;
-	}
-	
-	public void setCoords(String latitude, String longitude){
-		this.latitude = latitude;
-		this.longitude = longitude;
-	}
-    
-    
+	}  
 }

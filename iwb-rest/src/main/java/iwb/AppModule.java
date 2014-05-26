@@ -87,13 +87,4 @@ public class AppModule {
         }
     }
 
-    /*@Provides
-    public BasicPrincipalAuthenticator basicPrincipalAuthenticator(
-            RestxAuthentication userRepository, SecuritySettings securitySettings,
-            CredentialsStrategy credentialsStrategy,
-            @Named("restx.admin.password") String adminPasswordHash) {
-        return new StdBasicPrincipalAuthenticator(
-                new StdUserService<User>(userRepository, credentialsStrategy, adminPasswordHash), securitySettings);
-    } */
-
 }

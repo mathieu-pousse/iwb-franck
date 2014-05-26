@@ -1,9 +1,6 @@
 package iwb.transport;
 
-
-import iwb.bo.TrashCustom;
 import iwb.bo.Waste;
-import iwb.bo.coordinates.GeoPoint2D;
 import iwb.service.WasteService;
 
 import javax.inject.Named;
@@ -40,12 +37,6 @@ public class WasteResource {
     @GET("/wastes/{oid}")
     public Optional<Waste> findWasteById(String oid){
         return wasteService.getWasteById(oid);
-    }
-    
-    @GET("/wastes/{oid}/recylcing")
-    public Iterable<TrashCustom> findWasteById(String oid, Optional<String> nb){
-    	Optional<GeoPoint2D> location = Optional.fromNullable(new GeoPoint2D(48.111933799999996,-1.6838946999999962));
-        return wasteService.getMatchingTrashesHome(oid, nb,location);
     }
     
 

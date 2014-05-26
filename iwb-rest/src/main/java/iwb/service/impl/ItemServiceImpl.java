@@ -1,19 +1,11 @@
 package iwb.service.impl;
 
 import iwb.bo.Constituent;
-import iwb.bo.ConstituentTrash;
 import iwb.bo.Item;
 import iwb.bo.Link;
 import iwb.bo.Trash;
-import iwb.bo.TrashCustom;
-import iwb.bo.coordinates.GeoPoint2D;
 import iwb.repository.ItemDAO;
-import iwb.repository.TrashDAO;
-import iwb.repository.WasteDAO;
 import iwb.service.ItemService;
-import iwb.service.helpers.TrashHelper;
-
-import java.util.List;
 
 import javax.inject.Named;
 
@@ -32,14 +24,10 @@ public class ItemServiceImpl implements ItemService{
 
 
     private ItemDAO itemDAO;
-    private WasteDAO wasteDAO;
-    private TrashDAO trashDAO;
 
 
-    public ItemServiceImpl(@Named("itemDAO") ItemDAO itemDAO, @Named("wasteDAO") WasteDAO wasteDAO, @Named("trashDAO") TrashDAO trashDAO){
+    public ItemServiceImpl(@Named("itemDAO") ItemDAO itemDAO){
         this.itemDAO = itemDAO;
-        this.wasteDAO = wasteDAO;
-        this.trashDAO = trashDAO;
     }
 
     /**
@@ -161,64 +149,9 @@ public class ItemServiceImpl implements ItemService{
      * @return
      */
     public Iterable<Trash> getTrashesByProductId(String oid, Optional<String> cityName){
-    	Optional<Item> item = itemDAO.getItemById(oid);
-    	if(!item.isPresent() || item.get().getConstituents() != null || item.get().getWasteType() == null){
-    		return Lists.newArrayList();
-    	}else{
-    		String wasteId = item.get().getWasteType().getId();
-    		return  trashDAO.getTrashesByWasteType(wasteDAO.getWasteById(wasteId).get().getAcronym(),5);
-    	}
+    	return null;
     }
-    
-	/**
-	 * 
-	 */
-    public Iterable<ConstituentTrash> getConstituentTrash(String oid) {
-    	Optional<Item> item = itemDAO.getItemById(oid);
-    	Iterable<Constituent> consituents;
-    	List<ConstituentTrash> list = Lists.newArrayList();
-    	
-    	if((consituents = item.get().getConstituents())!=null){
-    		for(Constituent cons : consituents){
-    			String wasteId = cons.getWasteType().getId();
-    			Iterable<Trash> trashes = trashDAO.getTrashesByWasteTypeForComponents(wasteDAO.getWasteById(wasteId).get().getAcronym(),5);
-    			List<Trash> tmp = Lists.newArrayList(trashes);
-    			ConstituentTrash cstTrash =  new ConstituentTrash(cons, tmp.get(0));
-    			list.add(cstTrash);
-    		}
-    	}
-		return list;
-	}
-    
-    
-	public Optional<Item> getItemAndTrash(String oid, Optional<String> recycling, Optional<String> nb, Optional<GeoPoint2D> location) {
-		Optional<Item> item = itemDAO.getItemById(oid);
-		
-		if(!recycling.isPresent())
-			return item;
-		int toIndex = 1;
-		try{
-			toIndex = Integer.parseInt(nb.get());
-		}catch(NumberFormatException nfe){}
-		
-		if(location.isPresent()){
-			if(item.get().getWasteType() != null){
-				String wasteId = item.get().getWasteType().getId();
-				
-				List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), toIndex);
-				item.get().setTrashes(tc);
-			}
-			else{
-				for(Constituent cons : item.get().getConstituents()){
-					String wasteId = cons.getWasteType().getId();
-					List<TrashCustom> tc = TrashHelper.findMatchingTrashes(wasteDAO, trashDAO, wasteId, location.get(), toIndex);
-					cons.setTrashes(tc);
-				}
-			}
-		}
-		return setLinks(item);
-	}
-    
+     
 
     /**
      *
