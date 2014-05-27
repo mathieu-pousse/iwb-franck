@@ -52,6 +52,7 @@ public class AppModule {
     public String appName(){
         return "iwb";
     }
+    
 
     @Provides
     public CredentialsStrategy credentialsStrategy() {

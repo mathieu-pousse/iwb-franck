@@ -12,7 +12,13 @@ public class ConfigSupplierModule {
     public ConfigSupplier myConfigSupplier(ConfigLoader configLoader) {
         // Load settings.properties in samplest.settings package as a set of config entries
 		{  
-			return configLoader.fromResource("settings/iwb-settings_"+System.getProperty("iwb.context", "dev"));
+			String context = "";
+			try{
+				context = System.getProperty("iwb.context", "dev");
+			}catch(Exception e){
+				context = "prod";
+			}
+			return configLoader.fromResource("settings/iwb-settings_"+context);
 		}
 	}
 }
