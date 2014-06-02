@@ -17,7 +17,7 @@ public class ImageUrlHelper {
 		if(name == null || name.isEmpty()){
 			return null;
 		}
-		return basePathUrl.concat(name);
+		return basePathUrl+name;
 	}
 	
 	public String removeBasePathUrl(String name){
