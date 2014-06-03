@@ -63,6 +63,11 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         });
       }
 
+      $scope.editItem = function(e){
+        e.stopPropagation();
+        $location.url($scope.objectDetail.link.href);
+      }
+
   }])
 
   /*
