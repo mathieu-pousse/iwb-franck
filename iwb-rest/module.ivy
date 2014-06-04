@@ -38,5 +38,7 @@
         <dependency org="junit" name="junit" rev="4.11" conf="test->default" />
         <dependency org="io.restx" name="restx-jongo-specs-tests" rev="0.31.1" conf="test->default" />
         <dependency org="org.springframework.batch" name="spring-batch-test" rev="2.2.0.RELEASE" conf="test->default" />
+        <dependency org="com.google.apis" name="google-api-services-drive" rev="v2-rev126-1.18.0-rc" conf="default" />
+        <dependency org="com.google.http-client" name="google-http-client-jackson2" rev="1.18.0-rc" conf="default" />
     </dependencies>
 </ivy-module>

@@ -1,5 +1,3 @@
-
-
 apply plugin: 'java'
 apply plugin: 'war'
 apply plugin: 'eclipse'
@@ -7,8 +5,8 @@ apply plugin: 'maven'
 apply plugin: 'jetty'
 
 
-repositories { 
-	mavenCentral()
+repositories {
+    mavenCentral()
 }
 
 
@@ -17,30 +15,30 @@ dependencies {
 
 
 
-	/*Restx dependencies*/
-	def restVersion = '0.31.1'
-	def mockitoVersion = '1.9.5'
-	compile "io.restx:restx-core:${restVersion}"
-	compile "io.restx:restx-core-annotation-processor:${restVersion}"
-	compile "io.restx:restx-factory:${restVersion}"
-	compile "io.restx:restx-jongo:${restVersion}"
-	compile "io.restx:restx-factory-admin:${restVersion}"
-	compile "io.restx:restx-monitor-admin:${restVersion}"
-	compile "io.restx:restx-apidocs:${restVersion}"
-	compile "io.restx:restx-specs-admin:${restVersion}"
-	compile "io.restx:restx-server-jetty:${restVersion}"
-	compile "org.mockito:mockito-all:${mockitoVersion}"
+    /*Restx dependencies*/
+    def restVersion = '0.33.1'
+    def mockitoVersion = '1.9.5'
+    compile "io.restx:restx-core:${restVersion}"
+    compile "io.restx:restx-core-annotation-processor:${restVersion}"
+    compile "io.restx:restx-factory:${restVersion}"
+    compile "io.restx:restx-jongo:${restVersion}"
+    compile "io.restx:restx-factory-admin:${restVersion}"
+    compile "io.restx:restx-monitor-admin:${restVersion}"
+    compile "io.restx:restx-apidocs:${restVersion}"
+    compile "io.restx:restx-specs-admin:${restVersion}"
+    compile "io.restx:restx-server-jetty:${restVersion}"
+    compile "org.mockito:mockito-all:${mockitoVersion}"
     compile "commons-fileupload:commons-fileupload:1.3"
     compile "com.google.apis:google-api-services-drive:v2-rev126-1.18.0-rc"
     compile "com.google.http-client:google-http-client-jackson2:1.18.0-rc"
-	/**/
-	compile "ch.qos.logback:logback-classic:1.0.9"
+    /**/
+    compile "ch.qos.logback:logback-classic:1.0.9"
 
-	/*Test*/
-	testCompile 'junit:junit:4.11'
+    /*Test*/
+    testCompile 'junit:junit:4.11'
     testCompile "io.restx:restx-specs-tests:${restVersion}"
     testCompile "io.restx:restx-jongo-specs-tests:${restVersion}"
 
-   
+
 
 }

@@ -4,10 +4,11 @@
 ------------------------------------*/
 
 .sr .navbar,
+.sr-new .navbar,
 .si .navbar,
 .ei .navbar{
 	height: 50px;
-	background: #0a5175;
+	background: #eee;
 	width: 100%;
 }
 
@@ -17,6 +18,7 @@
 }
 
 .sr .logo,
+.sr-new .logo,
 .si .logo,
 .ei .logo {
 	width: 200px;
@@ -25,6 +27,7 @@
 }
 
 .sr .search-bloc,
+.sr-new .search-bloc,
 .si .search-bloc,
 .ei .search-bloc {
 	width: 700px;
@@ -32,6 +35,7 @@
 }
 
 .sr .other,
+.sr-new .other,
 .si .other 
 .ei .other, {
 
@@ -39,6 +43,7 @@
 	height: 50px;
 }
 .sr .logo, .sr .search-bloc, .sr .other,
+.sr-new .logo, .sr-new .search-bloc, .sr-new .other,
 .si .logo, .si .search-bloc, .si .other, 
 .ei .logo, .ei .search-bloc, .ei .other
 {
@@ -46,6 +51,7 @@
 }
 
 .sr .indiv,
+.sr-new .indiv,
 .si .indiv,
 .ei .indiv {
 	display: table-cell;
@@ -53,9 +59,10 @@
 }
 
 .sr .logo h4,
+.sr-new .logo h4,
 .si .logo h4,
 .ei .logo h4  {
-	color: white;
+	color: black;
 	font-weight: bold;
 	text-align: center;
 }
@@ -556,3 +563,178 @@ body {
     cursor: inherit;
     display: block;
 }
+
+/*-----------------------------------
+	Search item results_new 
+	Everything starts with .ei class
+	except nav bar
+------------------------------------*/
+
+.sr-new .jumb-custom {
+min-height: 300px;
+min-width: 360px;
+background: #eee;
+border-radius: 6px 6px 6px 6px;
+padding: 10px 10px 10px 10px;
+}
+
+.sr-new .navbar-form,
+.ei .navbar-form,
+.si .navbar-form{
+	width: 500px !important;
+}
+
+.sr-new .container-fluid .col-lg-2 {
+	width: 80px;
+	height: 80px;
+	margin-right: 4px;
+}
+
+.sr-new .list-group-item .container-fluid .img-item > a >img {
+	width: 65px;
+	height: 80px;
+	cursor: pointer;
+}
+
+.sr-new .container-fluid .col-lg-9 {
+	height: 80px;
+}
+
+.sr-new .list-group-item{
+	height: 100px;
+	cursor: pointer;
+}
+
+
+.sr-new .list-group-item:hover{
+	background: #e5e5e5;
+}
+
+/*Details results*/
+.sr-new .details .container {
+	width: 100% !important;
+	min-height: 300px;
+}
+
+.sr-new .details .container .edit{
+	font-size: x-small;
+}
+
+.sr-new .edit {
+	margin-bottom: 0px !important;
+	padding-right: 0px;
+}
+.sr-new .details .item-general {
+	height: 160px;
+}
+.sr-new .inline{
+	display:inline-block;
+	float: left !important;
+}
+
+.sr-new .details .inline.gen-txt,  .sr .details .inline.gen-img{
+	height: 100%;
+}
+.sr-new .details .inline.gen-img {
+	width:30%;
+}
+.sr-new .details .inline.gen-img img{
+	width: 90px;
+	height: 100px;
+}
+.sr-new .details .inline.gen-txt {
+	width: 70%;
+	padding-right: 5px;
+	position: relative;
+}
+.sr-new .details .inline.gen-txt h5, .sr-new .details .cmp-txt h5{
+	font-weight: bold;
+	font-size: 15px;
+	margin-top: 0px !important; 
+}
+
+.sr-new .recycle-itm-ico {
+	position: absolute;
+	bottom: 2px;
+	left: 5px;
+}
+
+.sr-new .recycle-itm-ico span{
+	margin-left: 7px;
+}
+.sr-new .recycle-itm-ico span:first-child{
+	margin-left: 0px;
+}
+.tag-item {
+	font-size: 12px;
+	font-weight: normal;
+	color: #A4A4A4;
+}
+
+.sr-new .container-fluid.itm-comp{
+	margin-top: 15px;
+}
+
+.sr-new .panel-detail {
+	width: 100%;
+	height: 30px;
+	background: #0a5175;
+	text-align: center;
+	font-weight: bold;
+	color: white;
+	margin-top: 5px;
+}
+
+.sr-new .panel-item-content {
+	border-style: solid;
+	border-color: #d8d8d8;
+	border-width: 1px;
+	
+	border-top-width: 0px;
+	padding: 5px 5px 5px 5px;
+}
+
+.sr-new .panel-item-content:last-child  {
+	margin-bottom: 7px;
+}
+
+.sr-new #const div.itm{
+	margin-top: 7px;
+	padding-top: 7px;
+	height: 65px;
+	border: 0;
+	border-top: 1px solid #eeeeee;
+}
+
+.sr-new #const div.itm:first-child{
+	margin-top: 0px;
+	padding-top: 8px;
+	border-top: 0px;
+}
+
+.sr-new #const div.itm:last-child{
+	margin-bottom: 5px;
+}
+
+.sr-new .inline.cmp-img {
+	width: 15%;
+	height: 100%;
+}
+.sr-new .inline.cmp-img img{
+	width: 100%;
+	height: 100%;
+}
+.sr-new .inline.cmp-txt {
+	width: 85%;
+	height: 100%;
+	padding-left: 15px;
+}
+.txt-black{
+	color: black;
+}
+
+.navbar-brand{
+	font-family: 'Pacifico', cursive;
+}
+
+

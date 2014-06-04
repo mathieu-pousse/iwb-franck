@@ -68,6 +68,16 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.url($scope.objectDetail.link.href);
       }
 
+      $scope.goToCreateItem = function(e){
+        e.stopPropagation();
+        $location.url("/items");
+      }
+
+      $scope.goBackHome = function(e){
+        e.stopPropagation();
+        $location.url("/home");
+      }
+
   }])
 
   /*
@@ -147,6 +157,16 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
           });
         }
       }
+
+      $scope.goToCreateItem = function(e){
+        e.stopPropagation();
+        $location.url("/items");
+      }
+
+      $scope.goBackHome = function(e){
+        e.stopPropagation();
+        $location.url("/home");
+      }
   }])
   
   /*
@@ -160,7 +180,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
       $scope.item = {'image': ''};
       $scope.wastes = [];
       $scope.waste_selected;
-      $scope.query;
+      $scope.query='';
       
       getAllWastes();
 
@@ -215,4 +235,17 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
           });
         }
       }
+
+      $scope.goToCreateItem = function(e){
+        e.stopPropagation();
+        $location.url("/items");
+      }
+
+      $scope.goBackHome = function(e){
+        e.stopPropagation();
+        $location.url("/home");
+      }
   }]);
+
+
+

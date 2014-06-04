@@ -6,7 +6,6 @@ import iwb.service.helpers.PartsReader.FilePart;
 import iwb.transverse.settings.SettingsInterface;
 
 import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.GeneralSecurityException;
@@ -15,8 +14,6 @@ import java.util.Arrays;
 import java.util.Date;
 
 import javax.inject.Named;
-
-import org.apache.commons.io.FilenameUtils;
 
 import restx.factory.Component;
 
