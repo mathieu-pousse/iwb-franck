@@ -36,7 +36,7 @@
       </p>
       <div >
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="result in results" ng-click="updateDesc($index)">
+          <li class="list-group-item" ng-repeat="result in results" ng-click="updateDesc(result)">
             <div class="container-fluid" >
               <div class="col-lg-2 img-item" >
                   <a style="color:black;" >
@@ -71,25 +71,23 @@
                   <div class="inline gen-txt">
                     <h4>{{objectDetail.name | uppercase}}</h4>
                     <p class="tag-item">
-                      {{objectDetail.tags[0] || 'tag1'}}
+                      {{objectDetail.tags[0] || ''}}
                       <br>
-                      {{objectDetail.tags[1]|| 'tag2' }}
+                      {{objectDetail.tags[1]|| '' }}
                     </p> 
                     <div class="recycle-itm-ico">
-                      <span>
-                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie">
-                          <img src="fonts/glyphicons_png/png/glyphicons_450_factory.png" class="img-rounded"/></span>
-                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poublelle d'ordure ménagère">
-                          <img src="fonts/glyphicons_png/png/glyphicons_016_bin.png"/></span>
-                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Collecte">
-                          <img src="fonts/glyphicons_png/png/glyphicons_058_truck.png"/></span>
-                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport communautaire">
-                          <img src="fonts/glyphicons_png/png/glyphicons_059_cargo.png"/></span>
+                      <span ng-show="objectDetail.trashes">
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poublelle d'ordure ménagère" ng-show="colorItemTrash">
+                          <i class="fa fa-trash-o fa-lg {{colorItemTrash}}"></i></span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport volontaire">
+                          <i class="fa fa-inbox fa-lg"></i></span>
+                        <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie" ng-hide="colorItemTrash">
+                          <i class="fa fa-gears fa-lg"></i></span>
                       </span>
                     </div>
                   </div>
                   <div class="inline gen-img">
-                    <img ng-src="{{objectDetail.image}}" alt="product-image" class="img-rounded">
+                    <img ng-src="{{objectDetail.image}}" class="img-rounded">
                   </div>
                 </div>
                 <div class="container-fluid itm-comp">
@@ -99,16 +97,21 @@
                   <div class="panel-item-content" id="const">
                      <div class="container-fluild itm" ng-repeat="constituent in objectDetail.constituents">
                       <div class="inline cmp-img">
-                        <img ng-src="{{constituent.image}}">
+                        <img ng-src="{{constituent.image}}" class="img-rounded">
                       </div>
                       <div class="inline cmp-txt">
                         <h5>{{constituent.name}}</h5>
                         <div>
-                          <span>
-                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie">
-                              <img src="fonts/glyphicons_png/png/glyphicons_450_factory.png" class="img-rounded"/></span>
-                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport communautaire">
-                              <img src="fonts/glyphicons_png/png/glyphicons_059_cargo.png"/></span>
+                          <span ng-show="constituent.trashes">
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Poubelle d'ordures ménagères" ng-show="colorConstituentsTrash[$index]">
+                              <i class="fa fa-trash-o fa-lg {{colorConstituentsTrash[$index]}}"></i></span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Borne d'apport volontaire">
+                              <i class="fa fa-inbox fa-lg"></i></span>
+                            <span class="ico-trash" data-toggle="tooltip" data-placement="bottom" title="Décheterie" ng-hide="colorConstituentsTrash[$index]">
+                              <i class="fa fa-gears fa-lg"></i></span>
+                          </span>
+                          <span ng-hide="constituent.trashes">
+                            <span class="btn btn-default btn-xs" ng-click="editItem($event)"> Aucun type trouvé </span>
                           </span>
                         </div>
                       </div>

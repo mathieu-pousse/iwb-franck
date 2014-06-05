@@ -625,7 +625,7 @@ padding: 10px 10px 10px 10px;
 	padding-right: 0px;
 }
 .sr-new .details .item-general {
-	height: 160px;
+	min-height: 100px;
 }
 .sr-new .inline{
 	display:inline-block;
@@ -735,6 +735,17 @@ padding: 10px 10px 10px 10px;
 
 .navbar-brand{
 	font-family: 'Pacifico', cursive;
+}
+
+.vert {
+	color: #539C78;
+}
+
+.jaune {
+	color: #CDCD33;
+}
+.sr-new .ico-trash{
+	margin-right: 5px;
 }
 
 

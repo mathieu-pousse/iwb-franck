@@ -4,6 +4,7 @@ package iwb.repository.impl;
 import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
+import iwb.bo.Trash;
 import iwb.repository.ItemDAO;
 
 import java.util.List;
@@ -26,9 +27,11 @@ import com.google.common.collect.Lists;
 public class ItemDAOImpl implements ItemDAO {
 
     private JongoCollection items;
+    private JongoCollection trashes;
 
-    public ItemDAOImpl(@Named("items") JongoCollection items) {
+    public ItemDAOImpl(@Named("items") JongoCollection items, @Named("trashes") JongoCollection trashes) {
         this.items = items;
+        this.trashes = trashes;
     }
 
     /**
@@ -130,5 +133,29 @@ public class ItemDAOImpl implements ItemDAO {
         checkEquals("oid", oid, "item.id", item.getId());
         items.get().save(item);
         return item;
+    }
+    
+    public Item getItemWithHomeTrashes(String oid){
+    	Item item = Optional.fromNullable(items.get().findOne(new ObjectId(oid)).as(Item.class)).get();
+    	try{
+    		if(item.getConstituents() == null){
+    			String acronymItem = item.getWasteType().getAcronym();
+    			Trash trash = trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acronymItem).as(Trash.class);
+        		item.setTrashes(Lists.newArrayList(trash));
+    		}else{
+    			for(Constituent constituent : item.getConstituents()){
+    				try{
+            			String acronymConstituent = constituent.getWasteType().getAcronym();
+            			Trash trashConstituent = trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acronymConstituent).as(Trash.class);
+            			constituent.setTrashes(Lists.newArrayList(trashConstituent));
+            		}catch(NullPointerException e){
+            		}
+    			}
+    		}
+    	}catch(NullPointerException e){
+    		
+    	}
+    	
+    	return item;
     }
 }

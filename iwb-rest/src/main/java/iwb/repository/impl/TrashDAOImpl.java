@@ -58,6 +58,10 @@ public class TrashDAOImpl implements TrashDAO{
     public Iterable<Trash> getTrashes() {
         return trashes.get().find().limit(5).as(Trash.class);
     }
+    
+    public Trash getTrashHome(String acr){
+    	return trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acr).as(Trash.class);
+    }
 
 	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
 		

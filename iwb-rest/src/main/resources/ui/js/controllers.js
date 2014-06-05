@@ -20,6 +20,12 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.search('query', $scope.query);
         $location.path("/search");
       }
+      
+      $scope.goToCreateItem = function(e){
+        e.stopPropagation();
+        $location.url("/items");
+      }
+
   }])
 
 
@@ -27,15 +33,13 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     controller: SearchItemController
     gets the query_string and use the restx API to retreive matching items
   */
-  .controller('SearchItemController', ['$scope', 'QueryItemService','CommonFunctionsService', '$routeParams', '$location',  
-    function($scope, QueryItemService, CommonFunctionsService, $routeParams, $location) {
+  .controller('SearchItemController', ['$scope', 'QueryItemService','CommonFunctionsService', 'DetailItemService', '$routeParams', '$location', 'ItemServiceTrash', 'QueryItemService1',
+    function($scope, QueryItemService, CommonFunctionsService, DetailItemService, $routeParams, $location, ItemServiceTrash, QueryItemService1) {
       //init css
       CommonFunctionsService.unset_home_css();
       //get query string from url
       $scope.query = '';
       $scope.queryString = $routeParams.query;
-      $scope.results = [];
-      $scope.objectDetail = {};
       //retreive informations to print using restx API
       getItems();
 
@@ -46,23 +50,55 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.path("/search");
       }
 
-      $scope.updateDesc = function(index){
-        $scope.objectDetail = $scope.results[index];
+      $scope.refreshDescription = function(ObjectId){
+        $scope.getObjectDetail(ObjectId);
       }
       $scope.gtItem =  function(event,index){
         event.stopPropagation();
-        $scope.updateDesc(index);
-        $location.url($scope.objectDetail.link.href);
+        $location.url($scope.results[index].link.href);
+      }
+
+      $scope.updateDesc = function (object){
+        $scope.getObjectDetail(object._id);
       }
 
       /*Other functions*/
       function getItems(){
-        QueryItemService.query({q_string:$scope.queryString},function(response) {
-          $scope.results = response;
-          $scope.objectDetail = $scope.results[0];
-        });
+        QueryItemService1
+            .query($scope.queryString)
+            .then( function( matchingResults )
+            {
+              $scope.results = matchingResults.data;
+              var firstElement = $scope.results[0];
+              $scope.getObjectDetail(firstElement._id);
+            });
       }
 
+      $scope.getObjectDetail = function(objectDetailId){
+          ItemServiceTrash
+            .getItemObjectDetail(objectDetailId)
+            .then( function( response )
+            {
+              $scope.objectDetail = response.data;
+              if($scope.objectDetail.trashes){
+                $scope.colorItemTrash = $scope.objectDetail.trashes[0].color;
+              }else{
+                $scope.colorItemTrash = null;
+              }
+              if($scope.objectDetail.constituents){
+                $scope.colorConstituentsTrash = [];
+                for (var i = 0; i < $scope.objectDetail.constituents.length; i++) {
+                  if($scope.objectDetail.constituents[i].trashes){
+                    var color = $scope.objectDetail.constituents[i].trashes[0].color;
+                    $scope.colorConstituentsTrash.push(color);
+                  }else{
+                    $scope.colorConstituentsTrash.push(null);
+                  }
+                };
+              }
+            });
+      }
+      
       $scope.editItem = function(e){
         e.stopPropagation();
         $location.url($scope.objectDetail.link.href);
@@ -77,6 +113,11 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         e.stopPropagation();
         $location.url("/home");
       }
+
+      $scope.results = null;
+      $scope.objectDetail = null;
+      $scope.colorConstituentsTrash = [];
+
 
   }])
 

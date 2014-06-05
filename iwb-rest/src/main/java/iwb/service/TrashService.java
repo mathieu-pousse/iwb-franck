@@ -12,4 +12,5 @@ public interface TrashService {
     public Optional<Trash> getTrashById(String oid);
     public Iterable<Trash> getTrashes();
     public Iterable<Trash> getTrashesByWasteType(String wasteType, int max);
+    public Trash getTrashHome(String acr);
 }

@@ -20,4 +20,5 @@ public interface ItemService {
     public void deleteConstituent(Item item, Constituent comp);
     public Item updateItem(String oid, Item item);
     public Iterable<Trash> getTrashesByProductId(String oid, Optional<String> cityName);
+    public Item getItemWithHomeTrashes(String oid);
 }

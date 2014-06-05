@@ -112,6 +112,10 @@ public class ItemServiceImpl implements ItemService{
         }
         return items;
     }
+    
+	public Item getItemWithHomeTrashes(String oid) {
+		return addLinksAndImages(itemDAO.getItemWithHomeTrashes(oid));
+	}
 
     /**
      * Uses the appropriate DAO method to add a component to a product
@@ -259,6 +263,5 @@ public class ItemServiceImpl implements ItemService{
     	addLinksAndImages(item.get());
     	return item;
     }
-    
 
 }

@@ -23,7 +23,7 @@ public class Item {
     private Link link;
     private List<String> tags;
     private String description;
-    private List<TrashCustom> trashes;
+    private List<Trash> trashes;
 
 
     public Item(){
@@ -112,11 +112,11 @@ public class Item {
 		this.description = description;
 	}
 
-	public List<TrashCustom> getTrashes() {
+	public List<Trash> getTrashes() {
 		return trashes;
 	}
 
-	public void setTrashes(List<TrashCustom> trashes) {
+	public void setTrashes(List<Trash> trashes) {
 		this.trashes = trashes;
 	}
 

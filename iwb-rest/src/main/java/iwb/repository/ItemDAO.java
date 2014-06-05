@@ -17,4 +17,5 @@ public interface ItemDAO {
     public void deleteItem(String id);
     public void deleteConstituent(Item item, Constituent comp);
     public Item updateItem(String oid, Item item);
+    public Item getItemWithHomeTrashes(String oid);
 }

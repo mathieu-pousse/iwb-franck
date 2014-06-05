@@ -10,7 +10,6 @@ angular.module('iwbApp.services', ['ngResource', 'iwbApp.configuration']).
 		   {'query': {method: 'GET', isArray: true}})
    })
 
-
    .service('ItemService', function($resource, BASE_PATH_URL){
       return $resource(BASE_PATH_URL+'/api/items/:id', {}, 
       {
@@ -27,12 +26,51 @@ angular.module('iwbApp.services', ['ngResource', 'iwbApp.configuration']).
       }
    )})
 
-
+   .service('TrashService', function($resource, BASE_PATH_URL){
+      return $resource(BASE_PATH_URL+'/api/trash?acr=:p_acr', {}, 
+      {
+         get: {method: 'GET', isArray: false}
+      }
+   )})
 
    .service('WastesService', function($resource, BASE_PATH_URL){
    	return $resource(BASE_PATH_URL+'/api/wastes', 
 		{}, 
 		{ 'wastes': {method: 'GET', isArray: true}})
+   })
+
+   .service('DetailItemService', function($resource, BASE_PATH_URL){
+      return $resource(BASE_PATH_URL+'/api/item/:id', {}, 
+      {
+         get: {method: 'GET' , isArray: false}
+      }
+   )})
+
+   .service('ItemServiceTrash', function($http, BASE_PATH_URL){
+      return {
+         getItemObjectDetail: function(objectID){
+            var promise = $http({
+                  method: "GET",
+                  url: BASE_PATH_URL+'/api/item/'+objectID
+            });
+            return promise;
+         }
+      }
+
+   })
+
+   .service('QueryItemService1', function($http, BASE_PATH_URL){
+      return {
+         query: function(queryString){
+            var promise = $http({
+                  method: "GET",
+                  url: BASE_PATH_URL+'/api/items',
+                  params: {query: queryString},
+                  isArray: true
+            });
+            return promise;
+         }
+      }
    })
 
 

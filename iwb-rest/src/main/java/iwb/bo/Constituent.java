@@ -15,12 +15,12 @@ public class Constituent {
     private String name;
     private String image;
     private Waste wasteType;
-    private List<TrashCustom> trashes;
+    private List<Trash> trashes;
     private Link link;
     
     public Constituent(){}
     
-    public Constituent(String name, Waste waste, List<TrashCustom> trashes){
+    public Constituent(String name, Waste waste, List<Trash> trashes){
     	this.name = name;
     	this.wasteType = waste;
     	this.trashes = trashes;
@@ -50,11 +50,11 @@ public class Constituent {
         this.link = link;
     }
 	
-	public List<TrashCustom> getTrashes() {
+	public List<Trash> getTrashes() {
 		return trashes;
 	}
 
-	public void setTrashes(List<TrashCustom> trashes) {
+	public void setTrashes(List<Trash> trashes) {
 		this.trashes = trashes;
 	}
 

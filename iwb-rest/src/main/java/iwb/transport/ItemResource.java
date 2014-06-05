@@ -35,6 +35,11 @@ public class ItemResource {
         }
     }
     
+    @GET("/item/{oid}")
+    public Optional<Item> findItems(String oid){
+    	return Optional.fromNullable(itemService.getItemWithHomeTrashes(oid));
+    }
+    
     @GET("/items/{oid}")
     public Optional<Item> findItemById(String oid, Optional<String> recycling, Optional<String> nb){
     	return itemService.getItemById(oid);

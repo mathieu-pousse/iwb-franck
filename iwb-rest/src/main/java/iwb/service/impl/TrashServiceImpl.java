@@ -46,9 +46,14 @@ public class TrashServiceImpl implements TrashService{
         return trashes;
     }
     
+    public Trash getTrashHome(String acr) {
+		return trashDAO.getTrashHome(acr);
+	}
+    
 	public Iterable<Trash> getTrashesByWasteType(String wasteType, int max) {
     	return trashDAO.getTrashesByWasteType(wasteType, max);
 	}
+	
 
     public Trash setLinks(Trash trash){
         trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));
@@ -60,5 +65,7 @@ public class TrashServiceImpl implements TrashService{
        
         return trash;
     }
+
+	
     
 }
