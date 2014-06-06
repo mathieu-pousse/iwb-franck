@@ -115,7 +115,7 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
         $location.url("/home");
       }
 
-      $scope.results = null;
+      $scope.results = {};
       $scope.objectDetail = null;
       $scope.colorConstituentsTrash = [];
 
