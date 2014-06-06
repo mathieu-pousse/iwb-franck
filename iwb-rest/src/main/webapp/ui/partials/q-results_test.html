@@ -31,6 +31,13 @@
   <div class="row row-offcanvas row-offcanvas-right">
 
     <div class="col-xs-12 col-sm-8">
+      <div class="alert alert-info" ng-hide="results">
+        <h4>
+        <span>Aucun résulat trouvé pour "<b>{{queryString}}</b>" !</span>
+        <button type="button" class="btn btn-default pull-right" ng-click="goToCreateItem($event)">
+          <i class="fa fa-plus-square"> </i> Ajouter ce produit</button>
+        </h4>
+      </div>
       <p class="pull-right visible-xs">
         <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
       </p>
@@ -62,7 +69,7 @@
 
     </div><!--/span-->
 
-    <div class="col-xs-6 col-sm-4 sidebar-offcanvas" id="sidebar" role="navigation">
+    <div class="col-xs-6 col-sm-4 sidebar-offcanvas" id="sidebar" role="navigation" ng-show="results">
       <div class="jumb-custom details">
         <div class="container">
                 <a href="" ng-click="editItem($event)" class="btn edit" style="padding-left:0px;"><i class="fa fa-pencil fa-fw"></i>edit</a>
@@ -73,7 +80,7 @@
                     <p class="tag-item">
                       {{objectDetail.tags[0] || ''}}
                       <br>
-                      {{objectDetail.tags[1]|| '' }}
+                      {{objectDetail.tags[1] || '' }}
                     </p> 
                     <div class="recycle-itm-ico">
                       <span ng-show="objectDetail.trashes">

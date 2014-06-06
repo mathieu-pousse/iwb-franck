@@ -37,7 +37,6 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
     function($scope, QueryItemService, CommonFunctionsService, DetailItemService, $routeParams, $location, ItemServiceTrash, QueryItemService1) {
       //init css
       CommonFunctionsService.unset_home_css();
-      //get query string from url
       $scope.query = '';
       $scope.queryString = $routeParams.query;
       //retreive informations to print using restx API
@@ -70,33 +69,35 @@ angular.module('iwbApp.controllers', ['iwbApp.services','iwbApp.configuration', 
             {
               $scope.results = matchingResults.data;
               var firstElement = $scope.results[0];
-              $scope.getObjectDetail(firstElement._id);
+              if(firstElement){
+                $scope.getObjectDetail(firstElement._id);
+              }
             });
       }
 
       $scope.getObjectDetail = function(objectDetailId){
-          ItemServiceTrash
-            .getItemObjectDetail(objectDetailId)
-            .then( function( response )
-            {
-              $scope.objectDetail = response.data;
-              if($scope.objectDetail.trashes){
-                $scope.colorItemTrash = $scope.objectDetail.trashes[0].color;
-              }else{
-                $scope.colorItemTrash = null;
-              }
-              if($scope.objectDetail.constituents){
-                $scope.colorConstituentsTrash = [];
-                for (var i = 0; i < $scope.objectDetail.constituents.length; i++) {
-                  if($scope.objectDetail.constituents[i].trashes){
-                    var color = $scope.objectDetail.constituents[i].trashes[0].color;
-                    $scope.colorConstituentsTrash.push(color);
-                  }else{
-                    $scope.colorConstituentsTrash.push(null);
-                  }
-                };
-              }
-            });
+        ItemServiceTrash
+          .getItemObjectDetail(objectDetailId)
+          .then( function( response )
+          {
+            $scope.objectDetail = response.data;
+            if($scope.objectDetail.trashes){
+              $scope.colorItemTrash = $scope.objectDetail.trashes[0].color;
+            }else{
+              $scope.colorItemTrash = null;
+            }
+            if($scope.objectDetail.constituents){
+              $scope.colorConstituentsTrash = [];
+              for (var i = 0; i < $scope.objectDetail.constituents.length; i++) {
+                if($scope.objectDetail.constituents[i].trashes){
+                  var color = $scope.objectDetail.constituents[i].trashes[0].color;
+                  $scope.colorConstituentsTrash.push(color);
+                }else{
+                  $scope.colorConstituentsTrash.push(null);
+                }
+              };
+            }
+          });
       }
       
       $scope.editItem = function(e){
