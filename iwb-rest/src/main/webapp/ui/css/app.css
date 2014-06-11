@@ -6,7 +6,8 @@
 .sr .navbar,
 .sr-new .navbar,
 .si .navbar,
-.ei .navbar{
+.ei .navbar,
+.wst .navbar{
 	height: 50px;
 	background: #eee;
 	width: 100%;
@@ -20,7 +21,8 @@
 .sr .logo,
 .sr-new .logo,
 .si .logo,
-.ei .logo {
+.ei .logo, 
+.wst .logo{
 	width: 200px;
 	height: 50px;
 	
@@ -29,23 +31,28 @@
 .sr .search-bloc,
 .sr-new .search-bloc,
 .si .search-bloc,
-.ei .search-bloc {
+.ei .search-bloc,
+.wst .search-bloc {
 	width: 700px;
 	height: 50px;
 }
 
 .sr .other,
 .sr-new .other,
-.si .other 
-.ei .other, {
+.si .other, 
+.ei .other, 
+.wst .other
+{
 
 	width: 200px;
 	height: 50px;
 }
+
 .sr .logo, .sr .search-bloc, .sr .other,
 .sr-new .logo, .sr-new .search-bloc, .sr-new .other,
 .si .logo, .si .search-bloc, .si .other, 
-.ei .logo, .ei .search-bloc, .ei .other
+.ei .logo, .ei .search-bloc, .ei .other,
+.wst .logo, .wst .search-bloc, .wst .other
 {
 	display: table;
 }
@@ -53,7 +60,9 @@
 .sr .indiv,
 .sr-new .indiv,
 .si .indiv,
-.ei .indiv {
+.ei .indiv, 
+.wst .indiv 
+{
 	display: table-cell;
 	vertical-align: middle;
 }
@@ -61,7 +70,8 @@
 .sr .logo h4,
 .sr-new .logo h4,
 .si .logo h4,
-.ei .logo h4  {
+.ei .logo h4,
+.wst .logo h4  {
 	color: black;
 	font-weight: bold;
 	text-align: center;
@@ -80,19 +90,23 @@
 
 .sr .input-group,
 .si .input-group,
-.ei .input-group{
+.ei .input-group,
+.wst .input-group{
 	width: 700px;
 	height: 30px;
 }
 
 .sr .input-group-btn,
 .si .input-group-btn,
-.ei .input-group-btn {
+.ei .input-group-btn,
+.wst .input-group-btn {
 	width: 15% !important;
 }
+
 .sr .input-group-btn button,
 .si .input-group-btn button,
-.ei .input-group-btn button
+.ei .input-group-btn button,
+.wst .input-group-btn button
 {
 	width: 100%;
 }
@@ -106,7 +120,8 @@
 
 .sr .input-group-sm > .form-control,
 .si .input-group-sm > .form-control,
-.ei .input-group-sm > .form-control {
+.ei .input-group-sm > .form-control,
+.wst .input-group-sm > .form-control {
 	font-size: 17px;
 }
 
@@ -580,7 +595,8 @@ padding: 10px 10px 10px 10px;
 
 .sr-new .navbar-form,
 .ei .navbar-form,
-.si .navbar-form{
+.si .navbar-form,
+.wst .navbar-form{
 	width: 500px !important;
 }
 
