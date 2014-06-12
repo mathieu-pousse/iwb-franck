@@ -9,5 +9,5 @@ var iwbApp = angular.module('iwbApp', ['ngRoute', 'ngResource', 'google-maps', '
   $routeProvider.when('/wastes', {templateUrl: 'partials/wastes.html', controller: 'WasteController'});
   $routeProvider.otherwise({redirectTo: '/home'});
 }])
-.constant('BASE_PATH_URL','/iwb-rest')
+.constant('BASE_PATH_URL','')
 .constant('HOST','localhost');
