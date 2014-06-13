@@ -1,7 +1,10 @@
 package iwb.transport;
 
+import iwb.bo.Acronym;
 import iwb.bo.Waste;
 import iwb.service.WasteService;
+
+import java.util.List;
 
 import javax.inject.Named;
 
@@ -32,6 +35,11 @@ public class WasteResource {
         }else{
             return wasteService.getWastes();
         }
+    }
+    
+    @GET("/wastes/acronyms")
+    public List<Acronym> getAcronyms(){
+        return wasteService.getAcronyms();
     }
 
     @GET("/wastes/{oid}")

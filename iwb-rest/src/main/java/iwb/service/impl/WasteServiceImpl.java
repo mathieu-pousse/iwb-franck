@@ -1,6 +1,11 @@
 package iwb.service.impl;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
+import iwb.bo.Acronym;
+import iwb.bo.AcronymEnum;
 import iwb.bo.Link;
 import iwb.bo.Waste;
 import iwb.repository.TrashDAO;
@@ -70,6 +75,16 @@ public class WasteServiceImpl implements WasteService {
             setLinks(waste);
         }
         return wastes;
+    }
+    
+    public List<Acronym> getAcronyms(){
+    	List<Acronym> acronymList = new ArrayList<Acronym>();
+    	AcronymEnum[] values =  AcronymEnum.values();
+    	for(int i=0; i<values.length; i++ ){
+    		AcronymEnum acronymElt = values[i];
+    		acronymList.add(new Acronym(acronymElt.name(), acronymElt.getDescription()));
+    	}
+    	return acronymList;
     }
 
     /**

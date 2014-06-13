@@ -62,6 +62,10 @@ public class TrashDAOImpl implements TrashDAO{
     public Trash getTrashHome(String acr){
     	return trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acr).as(Trash.class);
     }
+    
+    public Trash getTrashByTypeAndAcronym(String type, String acronym){
+    	return trashes.get().findOne("{type: #, wastesHandled: #}", type, acronym).as(Trash.class);
+    }
 
 	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
 		

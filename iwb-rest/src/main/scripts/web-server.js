@@ -64,6 +64,11 @@ HttpServer.prototype.handleRequest_ = function(req, res) {
   }
   util.puts(logEntry);
   req.url = this.parseUrl_(req.url);
+  if (req.url.pathname.indexOf('/api/') !== -1) {
+    req.url.path = "/iwb-rest" + req.url.path;
+  }
+ 
+  
   var handler = this.handlers[req.method];
   if (!handler) {
     res.writeHead(501);
@@ -99,9 +104,10 @@ StaticServlet.prototype.handleRequest = function(req, res) {
   });
   var parts = path.split('/');
   var redirect = false;
-  if (path.indexOf('/api/')) {
+  if (path.indexOf('/api/') !== -1) {
     redirect=true;
   }
+  
   var redirectUrl = 'http://localhost:8080';
   if (parts[parts.length-1].charAt(0) === '.')
     return self.sendForbidden_(req, res, path);

@@ -58,9 +58,8 @@ angular.module('iwbApp').controller('EditItemController', ['$scope' ,'ItemServic
       }
 
       $scope.deleteItem = function(){
-        ItemService.deleteItem({id:$scope.id});
         ItemService
-          .deleteItem()
+          .deleteItem($scope.id)
           .then(function (result){
             $location.path("/search");
           });

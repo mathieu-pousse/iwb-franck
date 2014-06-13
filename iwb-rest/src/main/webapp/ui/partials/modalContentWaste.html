@@ -4,17 +4,37 @@
     <h4 class="modal-title">Modification type de déchet</h4>
 </div>
 <div class="modal-body">
-
-  <h1>Hi there you reached the right modal content !!! lucky you :)</h1>
-
+    <form role="form">
+      <div class="form-group">
+        <label for="inputName">Nom du déchet</label>
+        <input type="text" class="form-control" id="inputName" ng-model="selectedWaste.name">
+      </div>
+      <div class="form-group">
+        <label for="inputDescription">Description</label>
+        <textarea class="form-control" rows="3" id="inputDescription" ng-model="selectedWaste.description"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="selectAcronym">Sélection du type de déchet</label>
+        <select 
+            class="form-control" 
+            ng-model="selectedWaste.acronym" 
+            ng-options="acronym.name as acronym.description+ ' ('+acronym.name+') ' for acronym in acronyms">
+          <option value="">-- Aucun --</option>
+        </select>
+      </div>
+    </form>
 </div>
 <div class="modal-footer">
     <div class="actions">
         <div class="right-align">
-            <a class="btn btn-default" ng-click="save()">
+            <button class="btn btn-danger" ng-click="cancel()">
+                <i class="fa fa-trash-o"></i>
+                Annuler
+            </button>
+            <button class="btn btn-default" ng-click="save()">
                 <i class="fa fa-check"></i>
                 Enregistrer
-            </a>
+            </button>
         </div>
     </div>
 </div>

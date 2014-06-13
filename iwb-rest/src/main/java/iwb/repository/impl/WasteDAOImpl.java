@@ -2,6 +2,7 @@ package iwb.repository.impl;
 
 
 import static restx.common.MorePreconditions.checkEquals;
+import iwb.bo.Trash;
 import iwb.bo.Waste;
 import iwb.repository.WasteDAO;
 

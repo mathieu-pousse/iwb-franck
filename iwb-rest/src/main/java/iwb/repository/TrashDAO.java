@@ -13,4 +13,5 @@ public interface TrashDAO {
     public Iterable<Trash> getTrashes();
     public Iterable<Trash> getTrashesByWasteType(String wasteType, int max);
     public Trash getTrashHome(String acr);
+    public Trash getTrashByTypeAndAcronym(String type, String acronym);
 }
