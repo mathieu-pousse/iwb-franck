@@ -76,6 +76,16 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
         $location.url("/items");
       }
 
+      $scope.goToWastes = function(e){
+        e.stopPropagation();
+        $location.url("/wastes");
+      }
+
+      $scope.goToTrashes = function(e){
+        e.stopPropagation();
+        $location.url("/trashes");
+      }
+
       $scope.goBackHome = function(e){
         e.stopPropagation();
         $location.url("/home");
@@ -84,4 +94,6 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
       $scope.results = {};
       $scope.objectDetail = {};
       $scope.colorConstituentsTrash = [];
+
+
   }]);

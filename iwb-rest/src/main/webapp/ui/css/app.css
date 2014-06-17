@@ -7,7 +7,8 @@
 .sr-new .navbar,
 .si .navbar,
 .ei .navbar,
-.wst .navbar{
+.wst .navbar,
+.trsh .navbar{
 	height: 50px;
 	background: #eee;
 	width: 100%;
@@ -22,7 +23,8 @@
 .sr-new .logo,
 .si .logo,
 .ei .logo, 
-.wst .logo{
+.wst .logo,
+.trsh .logo{
 	width: 200px;
 	height: 50px;
 	
@@ -32,7 +34,8 @@
 .sr-new .search-bloc,
 .si .search-bloc,
 .ei .search-bloc,
-.wst .search-bloc {
+.wst .search-bloc,
+.trsh .search-bloc {
 	width: 700px;
 	height: 50px;
 }
@@ -41,9 +44,9 @@
 .sr-new .other,
 .si .other, 
 .ei .other, 
-.wst .other
+.wst .other,
+.trsh .other
 {
-
 	width: 200px;
 	height: 50px;
 }
@@ -52,7 +55,8 @@
 .sr-new .logo, .sr-new .search-bloc, .sr-new .other,
 .si .logo, .si .search-bloc, .si .other, 
 .ei .logo, .ei .search-bloc, .ei .other,
-.wst .logo, .wst .search-bloc, .wst .other
+.wst .logo, .wst .search-bloc, .wst .other,
+.trsh .logo, .trsh .search-bloc, .trsh .other
 {
 	display: table;
 }
@@ -61,7 +65,8 @@
 .sr-new .indiv,
 .si .indiv,
 .ei .indiv, 
-.wst .indiv 
+.wst .indiv,
+.trsh .indiv  
 {
 	display: table-cell;
 	vertical-align: middle;
@@ -71,7 +76,8 @@
 .sr-new .logo h4,
 .si .logo h4,
 .ei .logo h4,
-.wst .logo h4  {
+.wst .logo h4,
+.trsh .logo h4 {
 	color: black;
 	font-weight: bold;
 	text-align: center;
@@ -91,7 +97,8 @@
 .sr .input-group,
 .si .input-group,
 .ei .input-group,
-.wst .input-group{
+.wst .input-group,
+.trsh .input-group{
 	width: 700px;
 	height: 30px;
 }
@@ -99,14 +106,16 @@
 .sr .input-group-btn,
 .si .input-group-btn,
 .ei .input-group-btn,
-.wst .input-group-btn {
+.wst .input-group-btn,
+.trsh .input-group-btn {
 	width: 15% !important;
 }
 
 .sr .input-group-btn button,
 .si .input-group-btn button,
 .ei .input-group-btn button,
-.wst .input-group-btn button
+.wst .input-group-btn button,
+.trsh .input-group-btn button
 {
 	width: 100%;
 }
@@ -121,9 +130,30 @@
 .sr .input-group-sm > .form-control,
 .si .input-group-sm > .form-control,
 .ei .input-group-sm > .form-control,
-.wst .input-group-sm > .form-control {
+.wst .input-group-sm > .form-control,
+.trsh .input-group-sm > .form-control {
 	font-size: 17px;
 }
+
+.sr-new .collapse.navbar-collapse .menu-elt,
+.si .collapse.navbar-collapse .menu-elt,
+.ei .collapse.navbar-collapse .menu-elt,
+.wst .collapse.navbar-collapse .menu-elt,
+.trsh .collapse.navbar-collapse .menu-elt{
+	height: 50px !important;
+	width: 87px  !important;
+} 
+
+.sr-new .collapse.navbar-collapse .menu-elt.btn-group,
+.si .collapse.navbar-collapse .menu-elt.btn-group,
+.ei .collapse.navbar-collapse .menu-elt.btn-group,
+.wst .collapse.navbar-collapse .menu-elt.btn-group,
+.trsh .collapse.navbar-collapse .menu-elt.btn-group{
+	padding-top: 10px;
+	padding-bottom: 10px;
+} 
+
+
 
 
 
@@ -596,7 +626,8 @@ padding: 10px 10px 10px 10px;
 .sr-new .navbar-form,
 .ei .navbar-form,
 .si .navbar-form,
-.wst .navbar-form{
+.wst .navbar-form,
+.trsh .navbar-form{
 	width: 500px !important;
 }
 

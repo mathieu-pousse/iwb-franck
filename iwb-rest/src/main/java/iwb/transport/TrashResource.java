@@ -24,15 +24,19 @@ public class TrashResource {
 
     public TrashResource(@Named("trashService") TrashService trashService){
         this.trashService = trashService;
-
     }
 
     @GET("/trashes")
-    public Iterable<Trash> findTrashes(Optional<String> type, Optional<String> acr){
+    public Iterable<Trash> findTrashes(Optional<String> type, Optional<String> acr, 
+    		Optional<String> number, Optional<String> page){
         if(type.isPresent()){
             return trashService.getTrashesByWasteType(type.get(),5);
         }else if(acr.isPresent()){
         	return Lists.newArrayList(trashService.getTrashHome(acr.get()));
+        }else if(number.isPresent() && page.isPresent()){
+        	final int NUMBER_OF_ITEMS = Integer.parseInt(number.get());
+        	final int PAGE_NUMBER = Integer.parseInt(page.get());
+        	return trashService.getTrashesPagination(NUMBER_OF_ITEMS, PAGE_NUMBER);
         }
         else{
             return trashService.getTrashes();
@@ -49,6 +53,7 @@ public class TrashResource {
             return new Trash();
         }
     }
+    
 
     @POST("/trashes")
     public Trash createTrash(Trash trash){

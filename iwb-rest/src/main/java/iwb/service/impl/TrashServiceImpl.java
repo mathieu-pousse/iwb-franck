@@ -54,6 +54,10 @@ public class TrashServiceImpl implements TrashService{
     	return trashDAO.getTrashesByWasteType(wasteType, max);
 	}
 	
+	public Iterable<Trash> getTrashesPagination(final int NUMBER_OF_ITEMS, final int PAGE_NUMBER){
+		return trashDAO.getTrashesPagin(NUMBER_OF_ITEMS, PAGE_NUMBER);
+	}
+	
 
     public Trash setLinks(Trash trash){
         trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));

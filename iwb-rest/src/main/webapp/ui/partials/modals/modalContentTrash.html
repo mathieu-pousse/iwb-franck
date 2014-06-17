@@ -1,0 +1,58 @@
+
+<div class="modal-header">
+    <button type="button" ng-click="cancel()" class="close" aria-hidden="true">&times;</button>
+    <h4 class="modal-title">Modification type de Poubelles</h4>
+</div>
+<div class="modal-body">
+    <form class="form-horizontal" role="form">
+      <div class="form-group">
+        <label for="inputTypeTrash">Type de poubelle</label>
+        <input type="text" class="form-control" id="inputTypeTrash" ng-model="selectedTrash.type">
+      </div>
+      <div class="form-group">
+        <label for="inputName">Nom de la poubelle</label>
+        <input type="text" class="form-control" id="inputName" ng-model="selectedTrash.name">
+      </div>
+      <div class="form-group">
+        <label for="inputCityCode">Code INSEE de la ville</label>
+        <input type="text" class="form-control" id="inputCityCode" ng-model="selectedTrash.cityCode">
+      </div>
+      <div class="form-group">
+        <label for="inputAddressTrash">Adresse</label>
+        <input type="text" class="form-control" id="inputAddressTrash" ng-model="selectedTrash.address">
+      </div>
+      <div class="form-group">
+        <div class="form-inline">
+            <label for="inputKey">Lattitude</label>
+            <input type="text" class="location-field" placeholder="Key" ng-model="selectedTrash.location[0]">
+            <label for="inputValue">Longitude</label>
+            <input type="text" class="location-field" ng-model="selectedTrash.location[1]">
+        </div>
+      </div>
+      <div class="form-group select optional">
+        <label for="selectAcronym">Sélection types de déchets</label>
+        <select 
+            multiple ng-multiple="true"
+            size="{{acronyms.length}}"
+            class="form-control select optional" 
+            ng-model="matchingTrashes" 
+            ng-options="acronym.name as acronym.description+ ' ('+acronym.name+') ' for acronym in acronyms">
+          
+        </select> 
+      </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <div class="actions">
+        <div class="right-align">
+            <button class="btn btn-danger" ng-click="cancel()">
+                <i class="fa fa-trash-o"></i>
+                Annuler
+            </button>
+            <button class="btn btn-default" ng-click="save()">
+                <i class="fa fa-check"></i>
+                Enregistrer
+            </button>
+        </div>
+    </div>
+</div>

@@ -66,6 +66,11 @@ public class TrashDAOImpl implements TrashDAO{
     public Trash getTrashByTypeAndAcronym(String type, String acronym){
     	return trashes.get().findOne("{type: #, wastesHandled: #}", type, acronym).as(Trash.class);
     }
+    
+    public Iterable<Trash> getTrashesPagin(final int NUMBER_OF_ITEMS, final int PAGE_NUMBER){
+    	return trashes.get().find().skip(NUMBER_OF_ITEMS * (PAGE_NUMBER -1)).limit(NUMBER_OF_ITEMS).as(Trash.class);
+    	 
+    }
 
 	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
 		

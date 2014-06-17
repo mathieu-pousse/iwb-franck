@@ -19,11 +19,23 @@
 	      </div><!-- /input-group -->
 	    </div>
 	    <div class="collapse navbar-collapse">
-	      <ul class="nav navbar-nav navbar-right">
-	        <li>
-	            <a href="" class="txt-black" ng-click="goToCreateItem($event)"><span class="txt-black">Mange Items</span></a>
+	      <ul class="nav navbar-nav navbar-right menu-elt">
+	        <li class="menu-elt">
+	            <!--<a href="" ng-click="goToCreateItem($event)"><span class="btn btn-default"> Action <i class="fa fa-caret-down"> </i></span></a>-->
+	            <div class="btn-group menu-elt" dropdown>
+	              <button type="button" class="btn btn-default">Action</button>
+	              <button type="button" class="btn btn-default dropdown-toggle">
+	                <span class="caret"></span>
+	                <span class="sr-only">Split button!</span>
+	              </button>
+	              <ul class="dropdown-menu" role="menu">
+	                <li><a href="" ng-click="goToCreateItem($event)">Create Item</a></li>
+	                <li><a href="" ng-click="goToWastes($event)">Manage Wastes</a></li>
+	                <li><a href="" ng-click="goToTrashes($event)">Manage Trashes</a></li>
+	              </ul>
+	            </div>
 	        </li>
-      	  </ul>
+	      </ul>
 	    </div><!-- /.nav-collapse -->
 	  </div><!-- /.container -->
 	  </div><!-- /.navbar --><!-- Header end-->

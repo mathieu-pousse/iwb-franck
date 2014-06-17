@@ -93,8 +93,19 @@ angular.module('iwbApp').controller('EditItemController', ['$scope' ,'ItemServic
         $location.url("/items");
       }
 
+      $scope.goToWastes = function(e){
+        e.stopPropagation();
+        $location.url("/wastes");
+      }
+
       $scope.goBackHome = function(e){
         e.stopPropagation();
         $location.url("/home");
       }
+
+      $scope.goToTrashes = function(e){
+        e.stopPropagation();
+        $location.url("/trashes");
+      }
+      
   }]);

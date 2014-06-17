@@ -77,4 +77,15 @@ angular.module('iwbApp').controller('NewItemController', ['$scope' ,'ItemService
         e.stopPropagation();
         $location.url("/home");
       }
+
+      $scope.goToWastes = function(e){
+        e.stopPropagation();
+        $location.url("/wastes");
+      }
+
+      $scope.goToTrashes = function(e){
+        e.stopPropagation();
+        $location.url("/trashes");
+      }
+      
   }]);

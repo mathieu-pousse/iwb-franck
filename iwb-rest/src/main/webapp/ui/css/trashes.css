@@ -2,3 +2,34 @@
 	Trashes results css
 	Everything starts with .tsh class
 ------------------------------------*/
+
+.container.trsh {
+	width: 80%;
+	margin-top: 80px;
+}
+
+.trsh .add-btn {
+	margin-bottom: 15px;
+}
+
+.trsh .row .col-md-4 {
+	height: 73px;
+}
+
+.trsh .row .col-md-4 form {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.location-field {
+	height: 34px;
+	padding: 6px 12px;
+	font-size: 14px;
+	line-height: 1.428571429;
+	color: #555555;
+	vertical-align: middle;
+	background-color: #ffffff;
+	background-image: none;
+	border: 1px solid #cccccc;
+	border-radius: 4px;
+}

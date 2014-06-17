@@ -31,6 +31,16 @@ angular.module('iwbApp').controller('WasteController', ['$scope' , 'WasteService
         $location.url("/items");
       }
 
+      $scope.goToWastes = function(e){
+        e.stopPropagation();
+        $location.url("/wastes");
+      }
+
+      $scope.goToTrashes = function(e){
+        e.stopPropagation();
+        $location.url("/trashes");
+      }
+
       $scope.goBackHome = function(e){
         e.stopPropagation();
         $location.url("/home");
