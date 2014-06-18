@@ -113,6 +113,14 @@ angular.module('iwbApp').controller('TrashController', ['$scope', '$location', '
       $scope.selectTrash =  function(index){
         $scope.selectedTrash = $scope.trashes[index];
       }
+
+      $scope.isGarbage = function(index){
+      	return ($scope.trashes[index].type === 'GARBAGE') ? true : false;
+      }
+
+      $scope.isLocalizable = function(index){
+      	return ($scope.trashes[index].location) ? true : false;
+      }
 		
 
 }]);

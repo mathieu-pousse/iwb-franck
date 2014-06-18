@@ -6,7 +6,6 @@ angular.module('iwbApp').controller('ModalInstanceTrashController', ['$scope', '
 		$scope.selectedTrash = selectedTrash;
 		$scope.update = update;
 		$scope.acronyms = acronyms;
-		$scope.matchingTrashes = ($scope.selectedTrash !== 'GARBAGE') ? $scope.selectedTrash.wastesHandled : acronyms;
 
 		$scope.save = function () {
 			if($scope.update){
