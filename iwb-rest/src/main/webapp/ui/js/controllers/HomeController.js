@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunctionsService','$location',  
-    function($scope, CommonFunctionsService, $location) {
+angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunctionsService','$location', '$anchorScroll',  
+    function($scope, CommonFunctionsService, $location, $anchorScroll) {
       CommonFunctionsService.init_home_css();
       $scope.name = 'HomeController';
       $scope.query = '';
@@ -16,4 +16,5 @@ angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunction
         e.stopPropagation();
         $location.url("/items");
       }
+     
   }]);

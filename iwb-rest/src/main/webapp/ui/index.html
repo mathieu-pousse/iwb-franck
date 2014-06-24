@@ -61,34 +61,6 @@
   <script src="js/filters/trashTypeExplanation.js"></script>
   <script src="js/filters/acronymExplanation.js"></script>
   <script src="js/directives/appVersion.js"></script>
-
-  <script>
-  $("#menu-close").click(function(e) {
-        e.preventDefault();
-        $("#sidebar-wrapper").toggleClass("active");
-    });
-  $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#sidebar-wrapper").toggleClass("active");
-  });
-  $(function() {
-      $('.scroll').click(function() {
-          if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
-
-              var target = $(this.hash);
-              target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-              if (target.length) {
-                  $('html,body').animate({
-                      scrollTop: target.offset().top
-                  }, 1000);
-                  return false;
-              }
-          }
-      });
-      $('.pull-down').each(function() {
-          $(this).css('margin-top', $(this).parent().height()-$(this).height())
-      });
-  });
-  </script>
+  <script src="js/directives/scrollTo.js"></script>
 </body>
 </html>
