@@ -28,7 +28,7 @@ angular.module('iwbApp').service('ItemService', function($http, BASE_PATH_URL) {
         updateItem: function(objectID, itemToUpdate){
         	var promise = $http({
                   method: "PUT",
-                  url: BASE_PATH_URL+'/api/items'+objectID,
+                  url: BASE_PATH_URL+'/api/items/'+objectID,
                   data: itemToUpdate
             });
             return promise;
@@ -36,7 +36,7 @@ angular.module('iwbApp').service('ItemService', function($http, BASE_PATH_URL) {
         deleteItem: function(objectID){
         	var promise = $http({
                   method: "DELETE",
-                  url: BASE_PATH_URL+'/api/items'+objectID
+                  url: BASE_PATH_URL+'/api/items/'+objectID
             });
             return promise;
         },
