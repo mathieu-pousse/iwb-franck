@@ -144,6 +144,24 @@
 	width: 87px  !important;
 } 
 
+.sr-new .collapse.navbar-collapse .menu-elt .btn-desc,
+.si .collapse.navbar-collapse .menu-elt .btn-desc,
+.ei .collapse.navbar-collapse .menu-elt .btn-desc,
+.wst .collapse.navbar-collapse .menu-elt .btn-desc,
+.trsh .collapse.navbar-collapse .menu-elt .btn-desc{
+	height: 32px !important;
+	width: 60px  !important;
+} 
+
+.sr-new .collapse.navbar-collapse .menu-elt .btn-toogle,
+.si .collapse.navbar-collapse .menu-elt .btn-toogle,
+.ei .collapse.navbar-collapse .menu-elt .btn-toogle,
+.wst .collapse.navbar-collapse .menu-elt .btn-toogle,
+.trsh .collapse.navbar-collapse .menu-elt .btn-toogle{
+	height: 32px !important;
+	width: 26px  !important;
+} 
+
 .sr-new .collapse.navbar-collapse .menu-elt.btn-group,
 .si .collapse.navbar-collapse .menu-elt.btn-group,
 .ei .collapse.navbar-collapse .menu-elt.btn-group,
