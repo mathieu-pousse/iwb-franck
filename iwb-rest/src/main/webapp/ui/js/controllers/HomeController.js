@@ -7,7 +7,6 @@ angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunction
       $scope.query = '';
       $scope.list = [];
       $scope.submitForm = function (e){
-        e.stopPropagation();
         $location.search('query', $scope.query);
         $location.path("/search");
       }
