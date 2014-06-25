@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunctionsService','$location', '$anchorScroll',  
-    function($scope, CommonFunctionsService, $location, $anchorScroll) {
+angular.module('iwbApp').controller('HomeController', ['$scope' ,'CommonFunctionsService','$location',  
+    function($scope, CommonFunctionsService, $location) {
       CommonFunctionsService.init_home_css();
       $scope.name = 'HomeController';
       $scope.query = '';
