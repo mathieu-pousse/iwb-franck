@@ -771,6 +771,10 @@ padding: 10px 10px 10px 10px;
 	border-top: 1px solid #eeeeee;
 }
 
+.sr-new .btn-details{
+	padding-top: 27px;
+}
+
 .sr-new #const div.itm:first-child{
 	margin-top: 0px;
 	padding-top: 8px;

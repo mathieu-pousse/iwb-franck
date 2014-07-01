@@ -12,7 +12,7 @@
 	      </button>
 	      <a class="navbar-brand" href="" ng-click="goBackHome($event)"><span class="txt-black" >Inwhichbin</span></a>
 	      <div class="navbar-form input-group">
-	        <input type="text" class="form-control" ame="query" id="query" ng-model="query">
+	        <input type="text" class="form-control" ame="query" id="query" ng-model="query" ng-keyup="$event.keyCode == 13 ? submitForm($event) : null">
 	        <span class="input-group-btn">
 	          <button class="btn btn-default" type="button" ng-click="submitForm($event)"> Go! </button>
 	        </span>

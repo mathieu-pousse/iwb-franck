@@ -11,7 +11,7 @@
       </button>
       <a class="navbar-brand" href="" ng-click="goBackHome($event)"><span class="txt-black" >Inwhichbin</span></a>
       <div class="navbar-form input-group">
-        <input type="text" class="form-control" ame="query" id="query" ng-model="query">
+        <input type="text" class="form-control" ame="query" id="query" ng-model="query" ng-keyup="$event.keyCode == 13 ? submitForm($event) : null">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button" ng-click="submitForm($event)"> Go! </button>
         </span>
@@ -98,7 +98,11 @@
                           </div>
                           <div class="form-group">
                             <label>Type de déchet composant</label>
-                            <select class="form-control" ng-model="item.constituents[$index].wasteType" ng-options="waste as waste.name for waste in wastes">
+                            <select 
+                              class="form-control" 
+                              ng-model="item.constituents[$index]" 
+                              ng-options="waste as waste.name for waste in wastes">
+                              <option value="">-- Aucun --</option>
                             </select>
                           </div>
                           <div class="form-group action-cmp">

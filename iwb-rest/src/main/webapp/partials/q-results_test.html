@@ -12,7 +12,7 @@
       </button>
       <a class="navbar-brand" href="" ng-click="goBackHome($event)"><span class="txt-black" >Inwhichbin</span></a>
       <div class="navbar-form input-group">
-        <input type="text" class="form-control" ame="query" id="query" ng-model="queryString">
+        <input type="text" class="form-control" ame="query" id="query" ng-model="queryString" ng-keyup="$event.keyCode == 13 ? submitForm($event) : null">
         <span class="input-group-btn">
           <button class="btn btn-default" type="button" ng-click="submitForm($event)"> Go! </button>
         </span>
@@ -57,7 +57,7 @@
       </p>
       <div >
         <ul class="list-group">
-          <li class="list-group-item" ng-repeat="result in results" ng-click="updateDesc(result)">
+          <li class="list-group-item" ng-repeat="result in results" ng-click="gtItem($event,$index)">
             <div class="container-fluid" >
               <div class="col-lg-2 img-item" >
                   <a style="color:black;" >
@@ -75,6 +75,9 @@
                   <b>Composants</b> : {{result.constituents.length || 0}}
                   <br>
                 </p>
+              </div>
+              <div class="col-lg-2 btn-details">
+                  <button class="btn btn-default btn-sm" ng-click="updateDesc(result);$event.stopPropagation()" tooltip-placement="bottom" tooltip="Détails produit"><i class="fa fa-hand-o-right"></i></button>
               </div>
             </div>
           </li>
