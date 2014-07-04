@@ -78,13 +78,7 @@ public class WasteServiceImpl implements WasteService {
     }
     
     public List<Acronym> getAcronyms(){
-    	List<Acronym> acronymList = new ArrayList<Acronym>();
-    	AcronymEnum[] values =  AcronymEnum.values();
-    	for(int i=0; i<values.length; i++ ){
-    		AcronymEnum acronymElt = values[i];
-    		acronymList.add(new Acronym(acronymElt.name(), acronymElt.getDescription()));
-    	}
-    	return acronymList;
+    	return Lists.newArrayList(wasteDAO.getAcronyms());
     }
 
     /**

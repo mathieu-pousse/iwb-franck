@@ -15,6 +15,7 @@ import restx.factory.Component;
 import restx.security.PermitAll;
 
 import com.google.common.base.Optional;
+import com.google.common.primitives.Ints;
 
 @Component @RestxResource
 @PermitAll
@@ -41,6 +42,11 @@ public class TrashResource {
         else{
             return trashService.getTrashes();
         }
+    }
+    
+    @GET("/trashes/count")
+    public Integer findTrashes(){ 
+    	return new Integer(Ints.checkedCast(trashService.getTrashNumber()));
     }
     
     

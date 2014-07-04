@@ -71,6 +71,10 @@ public class TrashDAOImpl implements TrashDAO{
     	return trashes.get().find().skip(NUMBER_OF_ITEMS * (PAGE_NUMBER -1)).limit(NUMBER_OF_ITEMS).as(Trash.class);
     	 
     }
+    
+    public long getTrashNumber(){
+    	return trashes.get().count();
+    }
 
 	public Iterable<Trash> getTrashesByWasteType(String acr, int max) {
 		

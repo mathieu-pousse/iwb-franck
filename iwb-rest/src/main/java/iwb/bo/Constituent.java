@@ -14,13 +14,13 @@ public class Constituent {
 
     private String name;
     private String image;
-    private Waste wasteType;
-    private List<Trash> trashes;
+    private WasteCustom wasteType;
+    private List<String> trashes;
     private Link link;
     
     public Constituent(){}
     
-    public Constituent(String name, Waste waste, List<Trash> trashes){
+    public Constituent(String name, WasteCustom waste, List<String> trashes){
     	this.name = name;
     	this.wasteType = waste;
     	this.trashes = trashes;
@@ -34,11 +34,11 @@ public class Constituent {
         this.name = name;
     }
 
-    public Waste getWasteType() {
+    public WasteCustom getWasteType() {
         return wasteType;
     }
 
-    public void setWasteType(Waste wasteType) {
+    public void setWasteType(WasteCustom wasteType) {
         this.wasteType = wasteType;
     }
 
@@ -50,11 +50,11 @@ public class Constituent {
         this.link = link;
     }
 	
-	public List<Trash> getTrashes() {
+	public List<String> getTrashes() {
 		return trashes;
 	}
 
-	public void setTrashes(List<Trash> trashes) {
+	public void setTrashes(List<String> trashes) {
 		this.trashes = trashes;
 	}
 

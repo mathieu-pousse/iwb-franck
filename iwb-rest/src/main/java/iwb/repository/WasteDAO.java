@@ -1,5 +1,6 @@
 package iwb.repository;
 
+import iwb.bo.Acronym;
 import iwb.bo.Waste;
 
 import com.google.common.base.Optional;
@@ -13,4 +14,5 @@ public interface WasteDAO {
     public Iterable<Waste> getWastesByName(String name);
     public Iterable<Waste> getWastes();
     public Iterable<Waste> getWasteByAcronym(String acronym);
+    public Iterable<Acronym> getAcronyms();
 }

@@ -4,7 +4,6 @@ package iwb.repository.impl;
 import static restx.common.MorePreconditions.checkEquals;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
-import iwb.bo.Trash;
 import iwb.repository.ItemDAO;
 
 import java.util.List;
@@ -139,15 +138,15 @@ public class ItemDAOImpl implements ItemDAO {
     	Item item = Optional.fromNullable(items.get().findOne(new ObjectId(oid)).as(Item.class)).get();
     	try{
     		if(item.getConstituents() == null){
-    			String acronymItem = item.getWasteType().getAcronym();
-    			Trash trash = trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acronymItem).as(Trash.class);
-        		item.setTrashes(Lists.newArrayList(trash));
+    			String acronymItem = item.getWasteType().getName();
+    			Iterable<String> trasheTypes = trashes.get().distinct("type").query("{wastesHandled: #}",acronymItem).as(String.class);
+        		item.setTrashes(Lists.newArrayList(trasheTypes));
     		}else{
     			for(Constituent constituent : item.getConstituents()){
     				try{
-            			String acronymConstituent = constituent.getWasteType().getAcronym();
-            			Trash trashConstituent = trashes.get().findOne("{type: 'HOME', wastesHandled: #}", acronymConstituent).as(Trash.class);
-            			constituent.setTrashes(Lists.newArrayList(trashConstituent));
+            			String acronymConstituent = constituent.getWasteType().getName();
+            			Iterable<String> trashConstituentTypes = trashes.get().distinct("type").query("{wastesHandled: #}",acronymConstituent).as(String.class);
+            			constituent.setTrashes(Lists.newArrayList(trashConstituentTypes));
             		}catch(NullPointerException e){
             		}
     			}

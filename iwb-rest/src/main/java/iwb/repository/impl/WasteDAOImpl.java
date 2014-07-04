@@ -2,7 +2,7 @@ package iwb.repository.impl;
 
 
 import static restx.common.MorePreconditions.checkEquals;
-import iwb.bo.Trash;
+import iwb.bo.Acronym;
 import iwb.bo.Waste;
 import iwb.repository.WasteDAO;
 
@@ -22,9 +22,11 @@ import com.google.common.base.Optional;
 public class WasteDAOImpl implements WasteDAO{
 
     private JongoCollection wastes;
+    private JongoCollection acronyms;
 
-    public WasteDAOImpl(@Named("wastes") JongoCollection wastes){
+    public WasteDAOImpl(@Named("wastes") JongoCollection wastes, @Named("acronyms") JongoCollection acronyms){
         this.wastes = wastes;
+        this.acronyms = acronyms;
     }
 
     /**
@@ -86,5 +88,9 @@ public class WasteDAOImpl implements WasteDAO{
 	@Override
 	public Iterable<Waste> getWasteByAcronym(String acronym) {
 		return wastes.get().find("{acronym : #}",acronym).limit(5).as(Waste.class);
+	}
+	
+	public Iterable<Acronym> getAcronyms(){
+		return acronyms.get().find().as(Acronym.class);
 	}
 }

@@ -112,7 +112,7 @@
 				<property name="lineTokenizer">
 					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
 						<property name="delimiter" value=";"/>
-						<property name="names" value="name,barcode,image,constituents,tags" />
+						<property name="names" value="json,empty" />
 					</bean>
 				</property>
 				<property name="fieldSetMapper">
@@ -130,11 +130,29 @@
 				<property name="lineTokenizer">
 					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
 						<property name="delimiter" value=";"/>
-						<property name="names" value="name,acronym,description" />
+						<property name="names" value="name,description" />
 					</bean>
 				</property>
 				<property name="fieldSetMapper">
 					<bean class="com.zenika.custom.mappers.WasteFieldSetMapper" />
+				</property>
+			</bean>
+		</property>
+    </bean>
+    
+    <bean id="acronymFileReader" class="org.springframework.batch.item.file.FlatFileItemReader">
+    	<property name="resource" value="classpath:csv/acronyms.csv" />
+    	<property name="encoding" value="UTF-8" />
+		<property name="lineMapper">
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+				<property name="lineTokenizer">
+					<bean class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value=";"/>
+						<property name="names" value="label,description" />
+					</bean>
+				</property>
+				<property name="fieldSetMapper">
+					<bean class="com.zenika.custom.mappers.AcronymFieldSetMapper" />
 				</property>
 			</bean>
 		</property>
@@ -147,6 +165,7 @@
     <bean id="trashProcessor" class="com.zenika.custom.processors.TrashItemProcessor" />
     <bean id="itemProcessor" class="com.zenika.custom.processors.ProductItemProcessor" />
     <bean id="wasteProcessor" class="com.zenika.custom.processors.WasteItemProcessor" />
+    <bean id="acronymProcessor" class="com.zenika.custom.processors.AcronymItemProcessor" />
     
     
     <!-- Writers Bean declaration -->
@@ -155,20 +174,16 @@
     <bean id="trashWriter" class="com.zenika.custom.writers.TrashItemWriter" />
     <bean id="itemWriter" class="com.zenika.custom.writers.ProductItemWriter" />
     <bean id="wasteWriter" class="com.zenika.custom.writers.WasteItemWriter" />
+    <bean id="acronymWriter" class="com.zenika.custom.writers.AcronymItemWriter" />
     
     
     <!-- Batch Job Declarations -->
     <batch:job id="loadDatatJob"> 
-		<batch:step id="loadCities" next="loadMetropolises">
+		<batch:step id="loadAcronyms" next="loadTrashHome">
 			<batch:tasklet>
-				<batch:chunk reader="cityReader" processor="cityProcessor" writer="cityWriter" commit-interval="37000"/>
+				<batch:chunk reader="acronymFileReader" processor="acronymProcessor" writer="acronymWriter" commit-interval="2000"/>
 			</batch:tasklet>
 		</batch:step>
-		<batch:step id="loadMetropolises" next="loadTrashHome">
-			<batch:tasklet>
-				<batch:chunk reader="mapppingFileReader" processor="metropolisProcessor" writer="metropolisWriter" commit-interval="37000"/>
-			</batch:tasklet>
-		</batch:step> 
 		<batch:step id="loadTrashHome" next="loadTrashCenters">
 			<batch:tasklet>
 				<batch:chunk reader="trashHomeFileReader" processor="trashProcessor" writer="trashWriter" commit-interval="200"/>
@@ -194,6 +209,7 @@
 				<batch:chunk reader="wasteFileReader" processor="wasteProcessor" writer="wasteWriter" commit-interval="10"/>
 			</batch:tasklet>
 		</batch:step>
+		
 	</batch:job>
            
                 

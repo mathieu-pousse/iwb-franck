@@ -68,7 +68,7 @@
                           <div class="col-sm-10">
                             <select class="form-control" 
                             ng-model="item.wasteType" 
-                            ng-options="waste as waste.name for waste in wastes track by waste._id"
+                            ng-options="waste as waste.name for waste in wastes track by waste.name"
                             ng-disabled="item.constituents">
                             <option value="">-- Aucun --</option>
                             </select>
@@ -105,7 +105,7 @@
                             <select 
                               class="form-control" 
                               ng-model="item.constituents[$index].wasteType" 
-                              ng-options="waste as waste.name for waste in wastes track by waste._id">
+                              ng-options="waste as waste.name for waste in wastes track by waste.name">
                               <option value="">-- Aucun --</option>
                             </select>
                           </div>

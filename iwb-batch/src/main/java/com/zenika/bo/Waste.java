@@ -5,7 +5,6 @@ public class Waste {
 
 	private String name;
 	private String description;
-	private String acronym;
 	
 	public String getName() {
 		return name;
@@ -18,11 +17,5 @@ public class Waste {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getAcronym() {
-		return acronym;
-	}
-	public void setAcronym(String acronym) {
-		this.acronym = acronym;
 	}
 }

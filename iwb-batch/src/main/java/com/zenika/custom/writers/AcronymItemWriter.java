@@ -6,26 +6,22 @@ import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
 import org.springframework.data.mongodb.core.MongoOperations;
-import com.mongodb.util.JSON;
 
-import com.zenika.bo.Item;
+import com.zenika.bo.Acronym;
 
-public class ProductItemWriter implements ItemWriter<Item> {
-	
+public class AcronymItemWriter implements ItemWriter<Acronym>{
 	private ApplicationContext ctx;
 	private MongoOperations mongoOperation;
 	
-	public ProductItemWriter(){
+	public AcronymItemWriter(){
 		super();
 		this.ctx = new GenericXmlApplicationContext("spring/batch/config/database.xml");
 		this.mongoOperation = (MongoOperations)ctx.getBean("mongoTemplate");
 	}
 	
-	@Override
-	public void write(List<? extends Item> items) throws Exception {
-		for(Item item : items){
-			mongoOperation.save(JSON.parse(item.getJson()), "items");
+	public void write(List<? extends Acronym> acronyms) throws Exception {
+		for(Acronym acronym : acronyms){
+			mongoOperation.save(acronym, "acronyms");
 		}
 	}
-
 }

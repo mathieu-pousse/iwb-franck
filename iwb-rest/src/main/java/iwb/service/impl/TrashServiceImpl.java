@@ -58,6 +58,9 @@ public class TrashServiceImpl implements TrashService{
 		return trashDAO.getTrashesPagin(NUMBER_OF_ITEMS, PAGE_NUMBER);
 	}
 	
+	public long getTrashNumber(){
+    	return trashDAO.getTrashNumber();
+    }
 
     public Trash setLinks(Trash trash){
         trash.setLink(new Link("alternate", "/trashes/"+trash.getId()));
@@ -69,6 +72,8 @@ public class TrashServiceImpl implements TrashService{
        
         return trash;
     }
+    
+    
 
 	
     

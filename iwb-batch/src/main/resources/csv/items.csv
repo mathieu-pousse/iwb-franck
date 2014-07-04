@@ -1,5 +1,43 @@
-Building an Testing with gradle;9781449304638;;;livre
-Epson T0715 Cartouche d'encre d'origine;9781449304630;;barquette plastique-Emballage plastique cartouche-Cartouche imprimante sans plastique;cartouche-imprimante-epson
-DéliChoc original - Chocolat noir;9711449399630;;emballage carton-film plastique-barquette plastique-biscuit;biscuits-nourriture-alimentaire
-Whirpool WBE37172W;9711449664709;;;réfrigérateur-frigo
-Pâte à tartiner aux noisette nutella;9711449662709;;pot en verre-couvercle en plastique;nutella-chocolat
+{"barcode":"5410041143508","name":"TUC Bacon","constituents":[{"name":"Emballage plastique","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":"3121970125894","name":"Fertiligène FOURMIS - Anti fourmis Fertiligène","constituents":[{"name":"Emballage carton","wasteType":{"acronym":"PAPER"}},{"name":"Boitier anti fourmis","wasteType":{"name":"TOXIC"}}]};
+{"barcode":"3037922060093","name":"Bloc notes Rodia A4","wasteType":{"name":"PAPER"}};
+{"barcode":"3288131500034","name":"Lait pour bébé babybio Otptima","constituents":[{"name":"Pot métal","wasteType":{"name":"METAL"}},{"name":"Couvercle plastique","wasteType":{"name":"NONRECYCLABLE"}},{"name":"Cuillère plastique","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":"3700425903951","name":"Masque de chirurgie à élastiques","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}},{"name":"Feuillet de protection","wasteType":{"name":"PAPER"}},{"name":"Masque chirugicale","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":"3080210007829","name":"Pack de bière Grimbergen blonde","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}},{"name":"Bouteille en verre","wasteType":{"name":"GLASS"}},{"name":"Capsule","wasteType":{"name":"wasteType"}}]};
+{"barcode":"3400932913282","name":"Flacon de biseptine","wasteType":{"name":"MEDICAL"}};
+{"barcode":null,"name":"Smarties","constituents":[{"name":"Emballage plastique","wasteType":{"name":"NONRECYCLABLE"}},{"name":"Emballage carton","wasteType":{"name":"PAPER"}}]};
+{"barcode":"3256222978093","name":"Cubi côtes du Rohne Super U","constituents":[{"name":"Emballage carton","wasteType":{"name":"CARTON"}},{"name":"Poche","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":"3065890102804","name":"Paté pour chat Whiskas","wasteType":{"name":"METAL"}};
+{"barcode":"3179756031792","name":"Pack bouteilles d'eau minérale Plancoët","constituents":[{"name":"Emballage plastique","wasteType":{"name":"NONRECYCLABLE"}},{"name":"6x 3179730100742","wasteType":{"name":"REFERENCE"}}]};
+{"barcode":"3179730100742","name":"Bouteille d'eau minérale Plancoët","wasteType":{"name":"PLASTIC"}};
+{"barcode":"3256227420023","name":"Litière pour chat micro-agglomérante Super U","constituents":[{"name":"Litière","wasteType":{"name":"NONRECYCLABLE"}},{"name":"Emballage carton","wasteType":{"name":"PAPER"}}]};
+{"barcode":"325622645575","name":"Litière végétale pour chat haute absorption Super U","constituents":[{"name":"Litière","wasteType":{"name":"COMPOST"}},{"name":"Emballage papier","wasteType":{"name":"PAPER"}}]};
+{"barcode":"3049580530160","name":"Choucroute garnie William SAURIN 400g","wasteType":{"name":"METAL"}};
+{"barcode":null,"name":"Prospectus","wasteType":{"name":"PAPER"}};
+{"barcode":null,"name":"Publicité papier","wasteType":{"name":"PAPER"}};
+{"barcode":"3288131500201","name":"Boudoirs babybio","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}},{"name":"Emballage individuelle plastique","wasteType":{"name":"PLASTIC"}}]};
+{"barcode":null,"name":"Mobile Samsung Galaxy S2","wasteType":{"name":"ELECTRONIC"}};
+{"barcode":null,"name":"Mobile Nexus 5","wasteType":{"name":"ELECTRONIC"}};
+{"barcode":null,"name":"Sac à pain","constituents":[{"name":"Pain","wasteType":{"name":"COMPOST"}},{"name":"Sac en papier","wasteType":{"name":"PAPER"}}]};
+{"barcode":"541004142805","name":"PRINCE goût chocolat","constituents":[{"name":"Etui plastique","wasteType":{"name":"NONRECYCLABLE"}},{"name":"Etui papier","wasteType":{"name":"PAPER"}}]};
+{"barcode":"5061990140654","name":"BN goût chocolat","constituents":[{"name":"Etui plastique","wasteType":{"name":"NONRECYCLABLE"}},{"name":"Etui papier","wasteType":{"name":"PAPER"}}]};
+{"barcode":"3061990140692","name":"Lot de 3 paquets de BN goût chocolat","constituents":[{"name":"3x 5061990140654","wasteType":{"name":"REFERENCE"}}]};
+{"barcode":"834554004654","name":"Allume feux naturels ZIP","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}}]};
+{"barcode":"8002270014901","name":"Bouteille eau pétillante SAN PELLEGRINO","wasteType":{"name":"PLASTIC"}};
+{"barcode":"3660992120093","name":"Vinaigre d'alcool 8% Bien Vu","wasteType":{"name":"PLASTIC"}};
+{"barcode":"3700153131404","name":"ENERGIX Gel endurance citron OVERSTIM-S","wasteType":{"name":"NONRECYCLABLE"}};
+{"barcode":"3700153131466","name":"ENERGIX Gel endurance vanille OVERSTIM-S","wasteType":{"name":"NONRECYCLABLE"}};
+{"barcode":"5410081200551","name":"Chocolat au lait Côte d'Or","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}},{"name":"Emballage aluminum","wasteType":{"name":"METAL"}}]};
+{"barcode":"5410081200551","name":"Chocolat au lait, biscuits sablés Côte d'Or","constituents":[{"name":"Emballage carton","wasteType":{"name":"PAPER"}},{"name":"Emballage aluminum","wasteType":{"name":"METAL"}}]};
+{"barcode":"7613034493897","name":"Lot de 2 tablletes de chocolat noir dessert 100% pur beurre de cacao NESTLE","constituents":[{"name":"Emballage papier","wasteType":{"name":"PAPER"}},{"name":"3x 7613034480996","wasteType":{"name":"REFERENCE"}}]};
+{"barcode":"7613034480996","name":"Chocolat noir dessert 100% pur beurre de cacao NESTLE","constituents":[{"name":"Emballage papier","wasteType":{"name":"PAPER"}}]};
+{"barcode":null,"name":"Chaussures","wasteType":{"name":"TEXTILE"}};
+{"barcode":null,"name":"T-shirt","wasteType":{"name":"TEXTILE"}};
+{"barcode":null,"name":"Polo","wasteType":{"name":"TEXTILE"}};
+{"barcode":null,"name":"Pantalon","wasteType":{"name":"TEXTILE"}};
+{"barcode":null,"name":"Pull","wasteType":{"name":"TEXTILE"}};
+{"barcode":null,"name":"Bouteille de vin blanc","constituents":[{"name":"Bouteille en verre","wasteType":{"name":"GLASS"}},{"name":"Bouchon en liège","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":null,"name":"Bouteille de vin rosé","constituents":[{"name":"Bouteille en verre","wasteType":{"name":"GLASS"}},{"name":"Bouchon en liège","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":null,"name":"Bouteille de vin rouge","constituents":[{"name":"Bouteille en verre","wasteType":{"name":"GLASS"}},{"name":"Bouchon en liège","wasteType":{"name":"NONRECYCLABLE"}}]};
+{"barcode":"3037928534581","name":"Cahier format 17x22 - 140 pages Clairefontaine","wasteType":{"name":"PAPER"}};
+{"barcode":"3103220007822","name":"Boite de bonbon Haribo Dragolo","wasteType":{"name":"NONRECYCLABLE"}};

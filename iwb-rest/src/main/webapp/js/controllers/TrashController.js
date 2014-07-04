@@ -5,7 +5,7 @@ angular.module('iwbApp').controller('TrashController', ['$scope', '$location', '
 
 		$scope.query = '';
 		$scope.maxSize = 10;
-		$scope.totalItems = 300;
+		$scope.totalItems = 0;
 		$scope.currentPage = 1;
 		$scope.numberItemPerPage = 10;
 		$scope.trashes = [];
@@ -21,11 +21,17 @@ angular.module('iwbApp').controller('TrashController', ['$scope', '$location', '
 				.then( function( result )
 				{
 					$scope.trashes = result.data;
-					TrashService
-			            .getAllAcronyms()
-			              .then( function( result )
+					TrashService.
+						getTrashNumber()
+						.then( function( result )
 			              {
-			                $scope.acronyms = result.data;
+			                $scope.totalItems = parseInt(result.data);
+			                TrashService
+				            .getAllAcronyms()
+				              .then( function( result )
+				              {
+				                $scope.acronyms = result.data;
+				              });
 			              });
 				});
 	    }

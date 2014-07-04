@@ -15,15 +15,13 @@ public class Waste {
     private String id;
     private String name;
     private String description;
-    private String acronym;
     private Link link;
     
     public Waste(){}
     
-    public Waste(String id, String name, String acronym){
+    public Waste(String id, String name){
     	this.id = id;
     	this.name = name;
-    	this.acronym = acronym;
     }
 
     public String getId() {
@@ -56,15 +54,6 @@ public class Waste {
 
     public void setLink(Link link) {
         this.link = link;
-    }
-
-	public String getAcronym() {
-		return acronym;
-	}
-
-	public void setAcronym(String acronym) {
-		this.acronym = acronym;
-	}
-    
+    }    
     
 }

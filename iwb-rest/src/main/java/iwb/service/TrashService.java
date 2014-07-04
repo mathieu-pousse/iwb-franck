@@ -14,4 +14,5 @@ public interface TrashService {
     public Iterable<Trash> getTrashesByWasteType(String wasteType, int max);
     public Trash getTrashHome(String acr);
     public Iterable<Trash> getTrashesPagination(final int NUMBER_OF_ITEMS, final int PAGE_NUMBER);
+    public long getTrashNumber();
 }

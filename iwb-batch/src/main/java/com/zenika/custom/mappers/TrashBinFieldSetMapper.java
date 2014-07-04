@@ -29,9 +29,18 @@ public class TrashBinFieldSetMapper implements FieldSetMapper<Trash>{
 	
 	public String[] adaptWastesToModel(String[] handledWastes){
 		for(int i=0; i<handledWastes.length; i++){
-			if(handledWastes[i].equals("OM") || handledWastes[i].equals("VE")){
-				handledWastes[i] = handledWastes[i].concat("R");
-			}
+			switch (handledWastes[i]) {
+	            case "OM":  handledWastes[i] = "RECYCLABLE";
+	            	break;
+	            case "VE":  handledWastes[i] = "GLASS";
+	    			break;
+	            case "JM":  handledWastes[i] = "PAPER";
+	            	break;
+	            case "MM":  handledWastes[i] = "MULTI";
+	        		break;
+	            default: 
+	                break;
+	        }
 		}
 		return handledWastes;
 	}

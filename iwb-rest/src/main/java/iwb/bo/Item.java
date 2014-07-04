@@ -19,11 +19,11 @@ public class Item {
     private String barcode;
     private String image;
     private Iterable<Constituent> constituents;
-    private Waste wasteType;
+    private WasteCustom wasteType;
     private Link link;
     private List<String> tags;
     private String description;
-    private List<Trash> trashes;
+    private List<String> trashes;
 
 
     public Item(){
@@ -76,11 +76,11 @@ public class Item {
         this.constituents = component;
     }
 
-    public Waste getWasteType() {
+    public WasteCustom getWasteType() {
         return wasteType;
     }
 
-    public void setWasteType(Waste wasteType) {
+    public void setWasteType(WasteCustom wasteType) {
         this.wasteType = wasteType;
     }
 
@@ -112,11 +112,11 @@ public class Item {
 		this.description = description;
 	}
 
-	public List<Trash> getTrashes() {
+	public List<String> getTrashes() {
 		return trashes;
 	}
 
-	public void setTrashes(List<Trash> trashes) {
+	public void setTrashes(List<String> trashes) {
 		this.trashes = trashes;
 	}
 

@@ -3,7 +3,7 @@ package iwb.service.impl;
 import static org.junit.Assert.assertTrue;
 import iwb.bo.Constituent;
 import iwb.bo.Item;
-import iwb.bo.Waste;
+import iwb.bo.WasteCustom;
 import iwb.repository.ItemDAO;
 import iwb.repository.impl.ItemDAOImpl;
 import iwb.service.helpers.ImageUrlHelper;
@@ -89,7 +89,7 @@ public class ItemServiceImplTest {
 	public Item initFakeItem(){
 		Item item = new Item();
 		item.setId("fakeItemId");
-		item.setWasteType(new Waste("fakeWasteId","fakeName", "fakeAcronym"));
+		item.setWasteType(new WasteCustom("fakeWasteId", "fakeName", "fakeAcronym"));
 		return item;
 	}
 	
@@ -97,8 +97,8 @@ public class ItemServiceImplTest {
 		Item item = new Item();
 		item.setId("fakeItemId");
 		List<Constituent> constituents  = new ArrayList<Constituent>();
-		constituents.add(new Constituent("fakeConstituentName", new Waste("fakeWasteId","fakeName", "fakeAcronym"), null));
-		constituents.add(new Constituent("fakeConstituentName", new Waste("fakeWasteId","fakeName", "fakeAcronym"), null));
+		constituents.add(new Constituent("fakeConstituentName", new WasteCustom("fakeWasteId", "fakeName", "fakeAcronym"), null));
+		constituents.add(new Constituent("fakeConstituentName", new WasteCustom("fakeWasteId", "fakeName", "fakeAcronym"), null));
 		item.setConstituents(constituents);
 		return item;
 	}
@@ -108,7 +108,7 @@ public class ItemServiceImplTest {
 		item.setId("fakeItemId");
 		item.setImage("fakeItemImage.jpg");
 		List<Constituent> constituents  = new ArrayList<Constituent>();
-		Constituent constituent = new Constituent("fakeConstituentName", new Waste("fakeWasteId","fakeName", "fakeAcronym"), null);
+		Constituent constituent = new Constituent("fakeConstituentName", new WasteCustom("fakeWasteId", "fakeName", "fakeAcronym"), null);
 		constituent.setImage("fakeConstImage.jpg");
 		constituents.add(constituent);
 		item.setConstituents(constituents);

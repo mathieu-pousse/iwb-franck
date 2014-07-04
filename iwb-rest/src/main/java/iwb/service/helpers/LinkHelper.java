@@ -6,7 +6,7 @@ import iwb.bo.City;
 import iwb.bo.Item;
 import iwb.bo.Link;
 import iwb.bo.Trash;
-import iwb.bo.Waste;
+import iwb.bo.WasteCustom;
 
 public class LinkHelper {
 	
@@ -24,9 +24,9 @@ public class LinkHelper {
 		if(obj.getClass().equals(Item.class)){
 			createdLink = new Link("alternative", Strings.concat("/items/",((Item) obj).getId()));
 			((Item) obj).setLink(createdLink);
-		}else if(obj.getClass().equals(Waste.class)){
-			createdLink = new Link("alternative", Strings.concat("/wastes/",((Waste) obj).getId()));
-			((Waste) obj).setLink(createdLink);
+		}else if(obj.getClass().equals(WasteCustom.class)){
+			createdLink = new Link("alternative", Strings.concat("/wastes/",((WasteCustom) obj).getId()));
+			((WasteCustom) obj).setLink(createdLink);
 		}else if(obj.getClass().equals(City.class)){
 			createdLink = new Link("alternative", Strings.concat("/cities/",((City) obj).getId()));
 			((City) obj).setLink(createdLink);
@@ -44,8 +44,8 @@ public class LinkHelper {
 		if(obj != null){
 			if(obj.getClass().equals(Item.class)){
 				((Item) obj).setLink(null);
-			}else if(obj.getClass().equals(Waste.class)){
-				((Waste) obj).setLink(null);
+			}else if(obj.getClass().equals(WasteCustom.class)){
+				((WasteCustom) obj).setLink(null);
 			}else if(obj.getClass().equals(City.class)){
 				((City) obj).setLink(null);
 			}else if(obj.getClass().equals(Trash.class)){

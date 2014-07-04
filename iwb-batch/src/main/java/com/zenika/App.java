@@ -40,6 +40,7 @@ public class App {
 			createNameIndex(db);
 			createBarCodeIndex(db);
 			createIndexOnAcronymWastes(db);
+			createIndexOnAcronymlable(db);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -66,6 +67,12 @@ public class App {
 	public static void createIndexOnAcronymWastes(DB db){
 		DBCollection items = db.getCollection("wastes");
 		DBObject query = new BasicDBObject("acronym", 1);
+		items.createIndex(query);
+	}
+	
+	public static void createIndexOnAcronymlable(DB db){
+		DBCollection items = db.getCollection("acronyms");
+		DBObject query = new BasicDBObject("label", 1);
 		items.createIndex(query);
 	}
 	

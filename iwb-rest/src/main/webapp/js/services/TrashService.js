@@ -12,6 +12,14 @@ angular.module('iwbApp').service('TrashService', function($http, BASE_PATH_URL) 
             	});
             return promise;
          },
+         getTrashNumber: function(){
+            var promise = $http({
+                  method: "GET",
+                  url: BASE_PATH_URL+'/api/trashes/count',
+                  isArray: false
+            });
+            return promise;
+         },
          getAllAcronyms: function(){
             var promise = $http({
                   method: "GET",

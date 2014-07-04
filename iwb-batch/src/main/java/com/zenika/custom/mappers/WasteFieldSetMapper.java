@@ -12,10 +12,6 @@ public class WasteFieldSetMapper implements FieldSetMapper<Waste> {
 	public Waste mapFieldSet(FieldSet fs) throws BindException {
 		Waste waste = new Waste();
 		waste.setName(fs.readString("name"));
-		String acronym = (String)fs.readString("acronym");
-		if(!acronym.isEmpty() && acronym != null){
-			waste.setAcronym(acronym);
-		}
 		waste.setDescription(fs.readString("description"));
 		return waste;
 	}

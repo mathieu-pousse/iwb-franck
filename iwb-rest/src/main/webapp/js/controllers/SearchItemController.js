@@ -6,6 +6,7 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
       CommonFunctionsService.unset_home_css();
       $scope.query = '';
       $scope.queryString = $routeParams.query;
+
       //retreive informations to print using restx API
       getItems();
 
@@ -49,7 +50,12 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
           {
             $scope.objectDetail = response.data;
             if($scope.objectDetail.trashes){
-              $scope.colorItemTrash = $scope.objectDetail.trashes[0].color;
+              if($scope.checkWasteItem("HOME-YELLOW")){
+                $scope.colorItemTrash = 'jaune';
+              }else if($scope.checkWasteItem("HOME-GREEN")){
+                $scope.colorItemTrash = 'vert';
+              }
+
             }else{
               $scope.colorItemTrash = null;
             }
@@ -57,13 +63,25 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
               $scope.colorConstituentsTrash = [];
               for (var i = 0; i < $scope.objectDetail.constituents.length; i++) {
                 if($scope.objectDetail.constituents[i].trashes){
-                  var color = ($scope.objectDetail.constituents[i].trashes[0]) ? 
-                              $scope.objectDetail.constituents[i].trashes[0].color : null;
+                  var color = null;
+                  if($scope.checkWasteConstituent(i,'HOME-YELLOW')){
+                    color = 'jaune';
+                  }else if($scope.checkWasteConstituent(i,'HOME-GREEN')){
+                    color = 'vert';
+                  }
                   $scope.colorConstituentsTrash.push(color);
                 }
               };
             }
           });
+      }
+
+      $scope.checkWasteItem =  function (wasteString) {
+          return ($scope.objectDetail.trashes.indexOf(wasteString) !== -1);
+      }
+
+      $scope.checkWasteConstituent = function (index, wasteString) {
+        return ($scope.objectDetail.constituents[index].trashes.indexOf(wasteString) !== -1);
       }
       
       $scope.editItem = function(e){
@@ -94,6 +112,12 @@ angular.module('iwbApp').controller('SearchItemController', ['$scope', 'ItemServ
       $scope.results = {};
       $scope.objectDetail = {};
       $scope.colorConstituentsTrash = [];
-
-
+      $scope.itemTrashTypes = {
+        isSac: false,
+        isCompost: false,
+        isPharmacy: false,
+        isSupermarket: false,
+        isBornerelais: false,
+      }
+      $scope.constituentsTrashTypes = [];
   }]);

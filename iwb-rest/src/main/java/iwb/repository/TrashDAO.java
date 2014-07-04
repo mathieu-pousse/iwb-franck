@@ -15,4 +15,5 @@ public interface TrashDAO {
     public Trash getTrashHome(String acr);
     public Trash getTrashByTypeAndAcronym(String type, String acronym);
     public Iterable<Trash> getTrashesPagin(final int NUMBER_OF_ITEMS, final int PAGE_NUMBER);
+    public long getTrashNumber();
 }
